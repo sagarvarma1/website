@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Blog</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .landing-page {
+            height: 100vh;
+            width: 100%;
+            background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8));
+            background-color: black; /* Added black background */
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .welcome-text {
+            font-family: 'Playfair Display', serif;
+            color: #00ff00; /* Changed to green */
+            font-size: 4rem;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .cursor {
+            display: inline-block;
+            width: 3px;
+            height: 50px;
+            background-color: #00ff00; /* Changed cursor to green */
+            margin-left: 5px;
+            animation: blink 0.7s infinite;
+        }
+
+        .cursor.hide {
+            display: none;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #00ff00; /* Changed nav links to green */
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            padding: 0.5rem 1rem;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;  /* Added to make items horizontal */
+            gap: 2rem;     /* Added space between items */
+        }
+
+        nav li {
+            display: inline-block;  /* Added to ensure proper horizontal alignment */
+        }
+
+        nav {
+            opacity: 0; /* Start with nav hidden */
+            transition: opacity 1s ease-in;
+        }
+
+        nav a:hover {
+            border-color: #00ff00; /* Changed hover border to green */
+            border-radius: 4px;
+        }
+
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <div class="landing-page">
+        <h1 class="welcome-text">
+            <span id="typed-text"></span>
+            <span class="cursor"></span>
+        </h1>
+        <nav>
+            <ul>
+                <li><a href="about.html">About</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <script>
+        const text = "welcome to my world";
+        const typedTextElement = document.getElementById("typed-text");
+        const cursorElement = document.querySelector(".cursor");
+        const navElement = document.querySelector("nav");
+        let charIndex = 0;
+    
+        function typeText() {
+            if (charIndex < text.length) {
+                typedTextElement.textContent += text.charAt(charIndex);
+                charIndex++;
+                setTimeout(typeText, 150);
+            } else {
+                // Hide cursor and show nav after typing is complete
+                cursorElement.classList.add('hide');
+                navElement.style.opacity = '1';
+            }
+        }
+    
+        // Start typing when page loads
+        window.onload = typeText;
+    </script>
+</body>
+</html>

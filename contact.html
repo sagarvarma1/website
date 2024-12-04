@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - My Blog</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>   
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            background-color: #000;
+            font-family: 'Playfair Display', serif;
+            color: #fff;
+        }
+
+        nav {
+            padding: 1rem;
+            text-align: center;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #fff;
+            font-size: 1.5rem;
+            padding: 0.5rem 1rem;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        nav a:hover {
+            border-color: #fff;
+            border-radius: 4px;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .contact-form {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 0.8rem;
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            border-radius: 4px;
+            font-family: 'Playfair Display', serif;
+            font-size: 1rem;
+        }
+
+        textarea {
+            height: 150px;
+            resize: vertical;
+        }
+
+        button {
+            background: transparent;
+            color: #fff;
+            border: 2px solid #fff;
+            padding: 1rem 2rem;
+            font-size: 1.2rem;
+            font-family: 'Playfair Display', serif;
+            cursor: pointer;
+            width: 100%;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        button:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .container {
+            max-width: 600px;
+            width: 90%; /* Add this to ensure padding on small screens */
+            margin: 2rem auto;
+            padding: 1.5rem;
+        }
+
+        /* Responsive adjustments */
+        @media screen and (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            nav ul {
+                gap: 1rem;
+            }
+
+            nav a {
+                font-size: 1.2rem;
+                padding: 0.4rem 0.8rem;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .container {
+                width: 95%;
+                padding: 1rem;
+                margin: 1rem auto;
+            }
+
+            .contact-form {
+                padding: 1rem;
+            }
+
+            h1 {
+                font-size: 1.8rem;
+                margin-bottom: 1rem;
+            }
+
+            label {
+                font-size: 1rem;
+            }
+
+            input, textarea {
+                padding: 0.6rem;
+                font-size: 1rem;
+            }
+
+            button {
+                padding: 0.7rem 1rem;
+                font-size: 1rem;
+            }
+        }
+
+        /* Improve reCAPTCHA responsiveness */
+        .g-recaptcha {
+            margin-bottom: 1.5rem;
+            display: flex;
+            justify-content: center;
+        }
+
+        @media screen and (max-width: 400px) {
+            .g-recaptcha {
+                transform: scale(0.85);
+                transform-origin: center;
+                margin-left: -20px; /* Adjust based on your needs */
+            }
+        }
+
+        /* Fix iOS input styling */
+        input, textarea {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            border-radius: 4px;
+        }
+
+        /* Prevent zoom on input focus for iOS */
+        @media screen and (max-width: 480px) {
+            input, textarea, select {
+                font-size: 16px !important;
+            }
+        }
+
+        /* Improve touch targets for mobile */
+        @media (hover: none) {
+            button, 
+            input[type="submit"] {
+                min-height: 44px; /* Apple's recommended minimum */
+            }
+
+            nav a {
+                padding: 0.7rem 1rem;
+            }
+        }
+        .success-message {
+            background: transparent;
+            color: #fff;
+            border: 2px solid #4CAF50;
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            font-family: 'Playfair Display', serif;
+            width: 100%;
+            border-radius: 4px;
+            text-align: center;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+    </style>
+
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="landing.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="blog.html">Blog</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <h1>Contact Me</h1>
+        <form class="contact-form" id="contact-form" action="https://formspree.io/f/mldeaopb" method="POST">
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="message">Message</label>
+                <textarea id="message" name="message" required></textarea>
+            </div>
+            
+            <input type="hidden" name="g-recaptcha-response" id="recaptchaResponse">
+            <div class="form-group">
+                <div class="g-recaptcha" data-sitekey="6Le3kJAqAAAAAC8aB8qYtBhnjwetwdLPZOgn6TS9"></div>
+            </div>
+            
+            <button type="submit">Send Message</button>
+        </form>
+
+        <div id="form-status" style="margin-top: 1rem; text-align: center;"></div>
+
+        <script>
+            window.addEventListener('load', function() {
+                const form = document.getElementById('contact-form');
+                const submitButton = form.querySelector('button[type="submit"]');
+                
+                form.addEventListener('submit', async function(e) {
+                    e.preventDefault();
+                    
+                    try {
+                        submitButton.disabled = true; // Prevent double submission
+                        const formData = new FormData(form);
+                        const response = await fetch(form.action, {
+                            method: 'POST',
+                            body: formData,
+                            headers: {
+                                'Accept': 'application/json'
+                            }
+                        });
+
+                        const data = await response.json();
+                        if (response.ok) {
+                            // Create success message element
+                            const successMessage = document.createElement('div');
+                            successMessage.className = 'success-message';
+                            successMessage.textContent = 'Message sent successfully!';
+                            
+                            // Replace button with success message
+                            submitButton.parentNode.replaceChild(successMessage, submitButton);
+                            
+                            // Reset form
+                            form.reset();
+                            grecaptcha.reset();
+                        } else {
+                            throw new Error('Form submission failed');
+                        }
+                    } catch (error) {
+                        console.error('Error:', error);
+                        submitButton.disabled = false;
+                        const status = document.getElementById('form-status');
+                        status.innerHTML = "<p style='color: #f44336;'>Oops! There was a problem submitting your form.</p>";
+                    }
+                });
+            });
+        </script>
+    </div>
+
+    <style>
+        .g-recaptcha {
+            margin-bottom: 1.5rem;
+        }
+
+        /* Center the reCAPTCHA on mobile */
+        @media screen and (max-width: 400px) {
+            .g-recaptcha {
+                transform: scale(0.9);
+                transform-origin: left center;
+            }
+        }
+    </style>
+</body>
+</html>

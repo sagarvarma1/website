@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bricks In the Wall</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lora:ital@0;1&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: black;
+            color: #ffffff;  /* Changed from #00ff00 to white */
+            font-family: 'Lora', serif;
+            margin: 0;
+            line-height: 1.8;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1rem;
+            background-color: black;
+            z-index: 1000;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav a {
+            color: #ffffff;  /* Changed from #00ff00 to white */
+            text-decoration: none;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            padding: 0.5rem 1rem;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        nav a:hover {
+            border-color: #ffffff;  /* Changed from #00ff00 to white */
+            border-radius: 4px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 120px auto 0;
+            padding: 2rem;
+        }
+
+        .blog-header {
+            margin-bottom: 3rem;
+        }
+
+        .blog-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .blog-meta {
+            color: #ffffff;
+            opacity: 0.8;
+            margin-bottom: 2rem;
+        }
+
+        .featured-image {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            margin-bottom: 2rem;
+        }
+
+        .blog-content {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .blog-content p {
+            margin-bottom: 1.5rem;
+        }
+
+        .blog-content h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            margin: 2rem 0 1rem;
+        }
+
+        blockquote {
+            border-left: 3px solid #ffffff;
+            margin: 2rem 0;
+            padding-left: 1.5rem;
+            font-style: italic;
+        }
+
+        @media (max-width: 768px) {
+            .blog-title {
+                font-size: 2rem;
+            }
+            
+            .container {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="../landing.html">Home</a></li>
+            <li><a href="../about.html">About</a></li>
+            <li><a href="../blog.html">Blog</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <article>
+            <header class="blog-header">
+                <h1 class="blog-title">Bricks In the Wall</h1>
+                <div class="blog-meta">November 12, 2024 | Sagar Varma</div>
+            </header>
+
+            <img src="https://images.unsplash.com/photo-1501139083538-0139583c060f" alt="Houses" class="featured-image">
+
+            <div class="blog-content">
+                <p>
+                    Being part of the middle class in America is like standing in a perfectly manicured lawn surrounded by identical houses, each with its own white picket fence. It’s the promise of stability and the price of monotony. You’re not struggling to survive, but you’re also not thriving—just existing. There’s a strange comfort in this mediocrity, but it’s a comfort that feels suspiciously like being trapped.
+                </p>
+                <p>
+                    The suburbs, the iconic habitat of the middle class, epitomize this boredom. Designed for safety and predictability, they often feel sterile. Every street looks like the last, every neighbor blends into the next. You live surrounded by strip malls, chain restaurants, and the gentle hum of lawnmowers, repeating like a mantra. The promise of convenience has drained away the excitement of discovery. You become a cog in a machine, a brick in a wall, supporting a structure that doesn't quite know how to dream big anymore.
+                </p>
+                <p>
+                    Class mobility, the great myth of the American Dream, hovers above the middle class like a mirage. You work hard, save diligently, and wait for your shot at breaking through to wealth, but for most, that shot never comes. Upward mobility requires not just effort but opportunity, and those opportunities often get hoarded by the already privileged. Meanwhile, downward mobility always lurks in the background. One job loss, one medical emergency, and the middle class safety net feels disturbingly thin.
+                </p>
+                <p>
+                    This lack of mobility makes the middle class feel like a limbo. You're too comfortable to rebel but too constrained to break free. It’s not that the middle class doesn’t matter—it’s the backbone of the economy—but being its backbone means bearing the weight of a system that doesn’t prioritize you. You’re caught between envy of the rich and fear of the poor, stuck in a cycle that feels endless.
+                </p>
+                <p>
+                    The monotony of middle-class life is what makes it so quietly unbearable. The 9-to-5 grind, the commute, the bills—none of it is outright terrible, but none of it is exciting either. It’s a life of compromise, where ambition is dulled by routine and dreams give way to practicality. Sure, you’re a brick in the wall, but when was the last time anyone noticed a single brick? That’s the tragedy of the middle class: it’s the glue holding everything together, but it’s invisible, uncelebrated, and unremarkable.
+                </p>
+                <p>
+                    In the end, the middle class in America isn’t about living—it’s about maintaining. It’s about keeping the car running, the mortgage paid, and the kids’ college funds growing. And while there’s a certain pride in that, there’s also a deep, unspoken longing for something more. Maybe the real dream isn’t to break free of the wall but to build something more interesting with the bricks.
+                </p>
+            </div>
+        </article>
+    </div>
+</body>
+</html>
