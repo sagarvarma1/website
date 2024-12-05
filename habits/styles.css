@@ -3,10 +3,11 @@ body {
     color: white;
     font-family: 'Playfair Display', serif;
     margin: 0;
-    padding: 20px;
-    display: flex;
-    justify-content: center;
+    padding: 0;  /* Remove padding */
     min-height: 100vh;
+    display: flex;
+    flex-direction: column;  /* Change to column */
+    align-items: center;
 }
 
 .container {
@@ -15,9 +16,11 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding: 2rem 20px;  /* Add padding instead of margin */
 }
 
 nav {
+    width: 100%;
     padding: 1rem;
     text-align: center;
     background: rgba(0, 0, 0, 0.8);
@@ -282,8 +285,4 @@ nav a:hover {
 
 #saveHabit:hover {
     background-color: #e0e0e0;  /* Slightly darker white on hover */
-}
-
-.container {
-    margin-top: 2rem;  /* This adds 2rem of space above the container */
 }
