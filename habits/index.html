@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Habit Tracker</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="../landing.html">Home</a></li>
+            <li><a href="../blog.html">Blog</a></li>
+            <li><a href="../contact.html">Contact</a></li>
+        </ul>
+    </nav>
+    <div class="container">
+        <div id="habitsContainer"></div>
+        <button id="createHabit" class="create-button">Create New Habit</button>
+        
+        <!-- Add this modal HTML -->
+        <div id="habitModal" class="modal">
+            <div class="modal-content">
+                <input type="text" id="habitInput" placeholder="Enter habit name" maxlength="30">
+                <div class="modal-buttons">
+                    <button id="saveHabit">Create</button>
+                    <button id="cancelHabit">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

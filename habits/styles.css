@@ -1,0 +1,285 @@
+body {
+    background-color: black;
+    color: white;
+    font-family: 'Playfair Display', serif;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+nav {
+    padding: 1rem;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(10px);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+}
+
+nav a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 1.5rem;
+    padding: 0.5rem 1rem;
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+    font-family: 'Playfair Display', serif;
+}
+
+nav a:hover {
+    border-color: #fff;
+    border-radius: 4px;
+}
+
+.create-button {
+    background-color: #444;    /* Changed from white to dark gray */
+    color: white;              /* Changed text to lighter gray */
+    font-family: 'Playfair Display', serif;
+    padding: 10px 20px;
+    border: 1px solid #444;   /* Added subtle border */
+    border-radius: 20px;      /* Added rounded corners */
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 40px;
+    margin-bottom: 20px;
+    transition: all 0.3s ease; /* Smooth transition for hover effect */
+}
+
+.create-button:hover {
+    background-color: #444;   /* Slightly lighter on hover */
+    color: black;            /* Brighter text on hover */
+}
+
+
+.habit-container {
+    margin-bottom: 40px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.habit-title {
+    font-size: 24px;
+    margin: 0;          /* Remove default margins */
+    text-align: center;
+}
+
+.habit-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2px;
+    width: 100%;
+    max-width: 900px;
+    height: 25vh;
+    justify-content: center;
+    align-items: center;
+}
+
+.box {
+    width: 8px;
+    height: 8px;
+    border: 1px solid white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    border-radius: 2px;
+}
+
+.box:hover {
+    background-color: #c5c5c5;  /* Dark gray on hover */
+}
+
+.box.checked {
+    background-color: rgb(5, 156, 244)
+}
+
+/* Make sure checked boxes stay white even on hover */
+.box.checked:hover {
+    background-color: white;
+}
+
+.progress-container {
+    width: 100%;
+    max-width: 900px;
+    margin-top: 15px;
+    background-color: #333;
+    border-radius: 4px;
+    height: 8px;
+    position: relative;  /* Added for positioning markers */
+}
+
+.progress-bar {
+    height: 100%;
+    background-color: rgb(5, 244, 13);
+    border-radius: 4px;
+    transition: width 0.3s ease;
+}
+
+.progress-markers {
+    position: relative;
+    width: 100%;
+    height: 20px;
+    display: flex;
+    justify-content: space-between;
+    padding: 4px 0;
+    color: #666;  /* Subtle gray color */
+    font-size: 12px;  /* Small text */
+}
+
+@media screen and (max-width: 768px) {
+    .container {
+        padding: 10px;
+    }
+
+    .habit-grid {
+        height: auto;
+        gap: 1px;
+    }
+
+    .box {
+        width: 6px;  /* Smaller boxes on mobile */
+        height: 6px;
+    }
+
+    .habit-title {
+        font-size: 20px;  /* Slightly smaller title on mobile */
+    }
+
+    .progress-markers {
+        font-size: 10px;  /* Smaller markers text on mobile */
+    }
+
+    .progress-container {
+        max-width: 95%;  /* Slightly smaller width on mobile */
+    }
+}
+
+/* Even smaller screens */
+@media screen and (max-width: 480px) {
+    .box {
+        width: 4px;  /* Even smaller boxes on very small screens */
+        height: 4px;
+    }
+
+    .habit-title {
+        font-size: 18px;
+    }
+}
+
+.habit-header {
+    display: flex;
+    align-items: center;  /* This centers items vertically */
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.delete-button {
+    background: none;
+    border: none;
+    color: #666;
+    cursor: pointer;
+    font-size: 20px;
+    padding: 0 5px;
+    transition: color 0.3s;
+    line-height: 1;     /* Added to align text */
+    margin-top: 4px;    /* Slight adjustment to align with title */
+}
+
+.delete-button:hover {
+    color: white;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 100;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: #222;
+    padding: 20px;          /* Reduced padding */
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;             /* Reduced gap */
+    min-width: 250px;      /* Reduced width */
+    max-width: 300px;      /* Added max-width */
+}
+
+#habitInput {
+    background-color: #333;
+    border: none;
+    border-radius: 20px;
+    padding: 10px 15px;    /* Slightly reduced padding */
+    color: white;
+    font-family: 'Playfair Display', serif;
+    font-size: 14px;       /* Slightly smaller font */
+}
+
+.modal-buttons button {
+    background-color: #333;
+    color: white;
+    border: none;
+    padding: 8px 15px;     /* Reduced padding */
+    border-radius: 20px;
+    cursor: pointer;
+    font-family: 'Playfair Display', serif;
+    font-size: 14px;       /* Slightly smaller font */
+    transition: background-color 0.3s;
+}
+
+#habitInput:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px white;  /* White outline instead of blue */
+}
+
+
+.modal-buttons button {
+    background-color: #333;
+    color: white;
+    border: none;
+    padding: 8px 20px;    /* More horizontal padding */
+    border-radius: 20px;  /* Rounder corners */
+    cursor: pointer;
+    font-family: 'Playfair Display', serif;  /* Match site font */
+    transition: background-color 0.3s;
+}
+
+.modal-buttons button:hover {
+    background-color: #444;
+}
+
+#saveHabit {
+    background-color: white;  /* White instead of blue */
+    color: black;            /* Black text for contrast */
+}
+
+#saveHabit:hover {
+    background-color: #e0e0e0;  /* Slightly darker white on hover */
+}
