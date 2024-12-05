@@ -283,3 +283,7 @@ nav a:hover {
 #saveHabit:hover {
     background-color: #e0e0e0;  /* Slightly darker white on hover */
 }
+
+.container {
+    margin-top: 2rem;  /* This adds 2rem of space above the container */
+}
