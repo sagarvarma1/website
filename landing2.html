@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sagar Varma</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Baskerville&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            background: #FAF9F6;
+            font-family: 'Playfair Display', serif;
+            overflow-x: hidden;
+        }
+
+        .container {
+            min-height: 100vh;
+            width: 100vw;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            padding: 2rem;
+        }
+
+        .paint-stroke {
+            position: absolute;
+            width: 150%;
+            height: 180px;
+            pointer-events: none;
+            transform-origin: center;
+        }
+
+        .stroke1 { 
+            top: 5%; 
+            left: -25%;
+            transform: rotate(-4deg) scaleX(1.4);
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 200"><path d="M0,100 C200,40 400,160 600,60 S800,140 1200,70" stroke="%23B85C38" stroke-width="45" fill="none" stroke-linecap="round"/></svg>') no-repeat center;
+            opacity: 0.3;
+        }
+        .stroke2 { 
+            top: 25%; 
+            right: -30%;
+            transform: rotate(3deg) scaleX(1.3);
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 200"><path d="M0,100 C200,160 400,40 600,140 S800,60 1200,130" stroke="%23A45C40" stroke-width="40" fill="none" stroke-linecap="round"/></svg>') no-repeat center;
+            opacity: 0.25;
+        }
+        .stroke3 { 
+            top: 45%; 
+            left: -35%;
+            transform: rotate(-2deg) scaleX(1.5);
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 200"><path d="M0,100 C300,50 500,150 700,70 S900,130 1200,60" stroke="%23C17767" stroke-width="50" fill="none" stroke-linecap="round"/></svg>') no-repeat center;
+            opacity: 0.25;
+        }
+
+        .messy-stroke {
+            position: absolute;
+            width: 140%;
+            height: 160px;
+            pointer-events: none;
+            transform-origin: center;
+        }
+
+        .messy1 {
+            top: 10%;
+            left: 0;
+            transform: rotate(15deg) scaleX(1.2);
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 100"><path d="M0,50 Q100,0 200,80 T400,20 T600,70" stroke="%23E4B7A0" stroke-width="30" fill="none" stroke-linecap="round"/></svg>') no-repeat center;
+            opacity: 0.2;
+        }
+
+        .messy2 {
+            top: 35%;
+            right: -20%;
+            transform: rotate(-20deg) scaleX(1.1);
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 100"><path d="M0,50 Q100,90 200,20 T400,80 T600,30" stroke="%23B85C38" stroke-width="25" fill="none" stroke-linecap="round"/></svg>') no-repeat center;
+            opacity: 0.25;
+        }
+
+        .messy3 {
+            top: 60%;
+            left: -10%;
+            transform: rotate(25deg) scaleX(1.3);
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 100"><path d="M0,50 Q150,10 250,85 T450,15 T600,75" stroke="%23C17767" stroke-width="35" fill="none" stroke-linecap="round"/></svg>') no-repeat center;
+            opacity: 0.2;
+        }
+
+        .messy4 {
+            bottom: 15%;
+            right: -15%;
+            transform: rotate(-15deg) scaleX(1.2);
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 100"><path d="M0,50 Q120,10 220,80 T420,20 T600,70" stroke="%23A45C40" stroke-width="32" fill="none" stroke-linecap="round"/></svg>') no-repeat center;
+            opacity: 0.25;
+        }
+
+        .splash {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            pointer-events: none;
+        }
+
+        .splash1 {
+            top: 15%;
+            right: 10%;
+            transform: rotate(45deg) scale(1.2);
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M50,50 m-40,0 a40,40 0 1,0 80,0 a40,40 0 1,0 -80,0 Z" stroke="%23B85C38" stroke-width="8" fill="none" stroke-linecap="round" stroke-dasharray="20 10"/></svg>') no-repeat center;
+            opacity: 0.2;
+        }
+
+        .splash2 {
+            bottom: 20%;
+            left: 15%;
+            transform: rotate(-30deg) scale(1.4);
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M50,50 m-30,0 a30,30 0 1,0 60,0 a30,30 0 1,0 -60,0 Z" stroke="%23C17767" stroke-width="6" fill="none" stroke-linecap="round" stroke-dasharray="15 8"/></svg>') no-repeat center;
+            opacity: 0.25;
+        }
+
+        .splash3 {
+            top: 65%;
+            right: 25%;
+            transform: rotate(60deg) scale(1.1);
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M50,50 m-35,0 a35,35 0 1,0 70,0 a35,35 0 1,0 -70,0 Z" stroke="%23E4B7A0" stroke-width="7" fill="none" stroke-linecap="round" stroke-dasharray="18 9"/></svg>') no-repeat center;
+            opacity: 0.2;
+        }
+
+        .accent-stroke {
+            position: absolute;
+            width: 100%;
+            height: 120px;
+            pointer-events: none;
+            transform-origin: center;
+        }
+
+        .accent1 {
+            top: 30%;
+            left: -15%;
+            transform: rotate(-25deg) scaleX(1.2);
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 100"><path d="M0,50 C100,20 200,80 300,40 S400,60 500,30" stroke="%23C17767" stroke-width="20" fill="none" stroke-linecap="round"/></svg>') no-repeat center;
+            opacity: 0.25;
+        }
+
+        .accent2 {
+            top: 70%;
+            right: -20%;
+            transform: rotate(25deg) scaleX(1.3);
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 100"><path d="M0,50 C100,80 200,20 300,60 S400,40 500,70" stroke="%23B85C38" stroke-width="20" fill="none" stroke-linecap="round"/></svg>') no-repeat center;
+            opacity: 0.25;
+        }
+
+        .name-container {
+            position: relative;
+            margin-bottom: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .title {
+            font-family: 'Permanent Marker', cursive;
+            font-size: 4.5rem;
+            background: linear-gradient(45deg, #66101F, #B85C38);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: relative;
+            z-index: 2;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.2);
+            white-space: nowrap;
+            transform: rotate(-2deg);
+            display: inline-block;
+            margin: 0 0.2em;
+        }
+
+        .my {
+            font-size: 3.8rem;
+            opacity: 0.9;
+        }
+
+        .subtitle {
+            font-family: Baskerville, 'Baskerville Old Face', serif;
+            font-style: italic;
+            font-size: 1.2rem;
+            color: #B85C38;
+            opacity: 0.8;
+            margin-top: 0.5rem;
+            text-align: center;
+            transform: rotate(-1deg);
+        }
+
+        .menu {
+            display: flex;
+            gap: 2rem;
+            margin-top: 1rem;
+            z-index: 2;
+            position: relative;
+        }
+
+        .menu-item {
+            font-size: 1.8rem;
+            color: #66101F;
+            text-decoration: none;
+            position: relative;
+            padding: 0.3rem 1rem;
+            transition: all 0.3s ease;
+            transform: rotate(-1deg);
+        }
+
+        .menu-item::before {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 8px;
+            bottom: 0;
+            left: 0;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 10"><path d="M0,5 C20,0 30,10 50,5 S80,0 100,5" stroke="%23C17767" stroke-width="2" fill="none"/></svg>') repeat-x;
+            opacity: 0.4;
+            transition: width 0.3s ease;
+        }
+
+        .menu-item:hover::before {
+            width: 100%;
+        }
+
+        .menu-item:hover {
+            transform: rotate(0deg) scale(1.05);
+            color: #B85C38;
+        }
+
+        @media (max-width: 768px) {
+            .title {
+                font-size: 3.5rem;
+                display: block;
+                margin: 0;
+            }
+            .my {
+                font-size: 3rem;
+            }
+            .subtitle {
+                font-size: 1.2rem;
+            }
+            .menu-item {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="paint-stroke stroke1"></div>
+        <div class="paint-stroke stroke2"></div>
+        <div class="paint-stroke stroke3"></div>
+        <div class="messy-stroke messy1"></div>
+        <div class="messy-stroke messy2"></div>
+        <div class="messy-stroke messy3"></div>
+        <div class="messy-stroke messy4"></div>
+        <div class="splash splash1"></div>
+        <div class="splash splash2"></div>
+        <div class="splash splash3"></div>
+        <div class="accent-stroke accent1"></div>
+        <div class="accent-stroke accent2"></div>
+        
+        <div class="name-container">
+            <h1>
+                <span class="title my">My</span>
+                <span class="title">Musings</span>
+            </h1>
+            <p class="subtitle">A Collection of Thoughts and Ideas</p>
+        </div>
+        
+        <nav class="menu">
+            <a href="blog.html" class="menu-item">Blog</a>
+            <a href="about.html" class="menu-item">About</a>
+            <a href="contact.html" class="menu-item">Contact</a>
+        </nav>
+    </div>
+</body>
+</html>
