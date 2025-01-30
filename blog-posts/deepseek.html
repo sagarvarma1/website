@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Regarding DeepSeek</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lora:ital@0;1&display=swap" rel="stylesheet">
+    <script type="text/javascript" async
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+    </script>
+    <style>
+        body {
+            background-color: #F2E8CF;
+            color: #000000;
+            font-family: Baskerville, 'Baskerville Old Face', 'Hoefler Text', Garamond, 'Times New Roman', serif;
+            margin: 0;
+            line-height: 1.8;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1rem;
+            background-color: #F2E8CF;
+            z-index: 1000;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav a {
+            color: #000000;
+            text-decoration: none;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            padding: 0.5rem 1rem;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        nav a:hover {
+            border-color: #000000;
+            border-radius: 4px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 120px auto 0;
+            padding: 2rem;
+        }
+
+        .blog-header {
+            margin-bottom: 3rem;
+        }
+
+        .blog-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .blog-meta {
+            color: #000000;
+            opacity: 0.8;
+            margin-bottom: 2rem;
+        }
+
+        .featured-image {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            margin-bottom: 2rem;
+        }
+
+        .blog-content {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .blog-content p {
+            margin-bottom: 1.5rem;
+        }
+
+        .blog-content h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            margin: 2rem 0 1rem;
+        }
+
+        .blog-content a {
+            color: #000000;
+            text-decoration: underline;
+        }
+
+        .blog-content a:hover {
+            color: #000000;
+        }
+
+        blockquote {
+            border-left: 3px solid #000000;
+            margin: 2rem 0;
+            padding-left: 1.5rem;
+            font-style: italic;
+        }
+
+        @media (max-width: 768px) {
+            .blog-title {
+                font-size: 2rem;
+            }
+            
+            .container {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="../landing.html">Home</a></li>
+            <li><a href="../about.html">About</a></li>
+            <li><a href="../blog.html">Blog</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <article>
+            <header class="blog-header">
+                <h1 class="blog-title">Regarding DeepSeek</h1>
+                <div class="blog-meta">January 30, 2025 | Sagar Varma</div>
+            </header>
+
+            <img src="../images/whale.webp" alt="You may be right, I may be crazy" class="featured-image">
+
+            <div class="blog-content">
+                <p>In light of the DeepSeek API being down, I thought it would be a good idea to dive into how DeepSeek works and why it is causing such an uproar in the AI community.</p>
+
+                <p>DeepSeek is an impressive model that stands out for its exceptional affordability. While OpenAI's GPT-4o (O1) costs approximately $60 per million output tokens, DeepSeek is priced at just $2.20 per million output tokens—a staggering 30x reduction in cost. Though DeepSeek may not outperform O1 in every aspect, it delivers comparable performance across most tasks, making it an incredibly cost-effective alternative.</p>
+
+                <p>Even more remarkable is the claimed training cost. DeepSeek's developers state that they trained the model for just $6 million <sup>[1]</sup>, a fraction of what industry giants typically spend. For context, Claude 3.5 Sonnet required tens of millions of dollars to train, and GPT-4o likely exceeded that figure.</p>
+
+                <p>Additionally, DeepSeek offers effectively unlimited queries through its chat interface for free—a stark contrast to OpenAI's O1, which requires at least $20 per month for just 200 queries.</p>
+
+                <p>Given its drastic cost savings, strong performance, and generous free-tier access, DeepSeek is undeniably a game-changer in the AI space. While some of the excitement may be overhyped, much of it is well-deserved. The release of DeepSeek also shattered the more capex = better ai model narrative. Though this narrative was being questioned before <sup>[2]</sup>, DeepSeek completely blew it out of the water, and with it the stock prices of the companies that bet big on it (though the stocks have mostly rebounded from their Monday lows). Everyone knows now that scaling is not the only path to AGI. All if this combined with the fact that this came out of China, who are under heavy export controls, has lead to a perfect storm. While some of the hype is undeserved, most if it is justifiable - leading to many across the industry to call this the sputnik moment for AI.</p>
+
+                <p>Before diving into how the DeepSeek models work, it is important to understand reinforcement learning. It is important to understand some terms before we continue: Agent: The entity that learns some task by taking the actions in the environment. Policy: A function that maps the current state of the agent to the next action it should take. It is the primary component being optimized in RL. Environment: The world in which the agent operates. It determines how actions control the state and dictated rewards through a reward function. Reward function: The function that evaluates the agents actions by assigning rewards. It acts as a proxy for the task we want to get good at, so optimizing the agent for the reward function ends up leading to great performance on the actual task.</p>
+
+                <p>In AlphaGo, the agent was the model learning to play Go, while the policy, represented by the model's weights, processed the current game state and determined the best move to make next. The environment consisted of the Go board and the game rules, which dictated the legal moves, and the reward function was based on whether the model won or lost the game. Through millions of iterations, the model continuously refined its policy to maximize its expected reward, ultimately achieving world-class performance.</p>
+
+                <p>Humans also engage in reinforcement learning every day. The saying "practice makes perfect" reflects the same underlying principle—learning through repeated trial and feedback. Consider a student striving to land a prestigious internship. In this scenario, the student acts as the agent, with their mind functioning as the policy, guiding decisions on how to approach the application process. The environment is the job procurement process itself, including applications, interviews, and competition, while the reward function is determined by whether or not the student secures an offer. Over time, through repeated attempts and failures, the student refines their approach, learning from past experiences and improving their chances of success <sup>[3]</sup>.</p>
+
+                <p>In the machine learning context, there are a few flavors of reinforcement learning. Classic RL follows the exact process described above and was used to train systems like AlphaGo. Then there is RLHF, which stands for Reinforcement Learning from Human Feedback—the method currently used to align language models for human use <sup>[4]</sup>. Another approach is Trust Region Policy Optimization (TRPO), which led to the development of Proximal Policy Optimization (PPO), and ultimately Group Relative Policy Optimization (GRPO), the core of DeepSeek R1.</p>
+
+                <p>Before diving into TRPO, it's important to understand how reinforcement learning (RL) is traditionally applied in language modeling. Unlike in structured environments like Go or chess, where the reward function is well-defined, language models lack a clear reward signal. The reward can come from human feedback (as in RLHF) or methods like rejection sampling, but because these rewards are non-differentiable, we cannot use traditional backpropagation to update the model's weights. This limitation renders standard optimization techniques ineffective.</p>
+
+                <p>So, how do we update the weights? In the most basic form of RL, we use a version of Monte Carlo gradient optimization, or policy optimization, known as REINFORCE <sup>[5]</sup>. In this method, we assume that whatever prediction the policy produces is the correct one, regardless of its actual quality. This simplifies the loss function to:</p>
+
+                <p style="text-align: center;">log(π<sub>θ</sub>) × reward</p>
+
+                <p>where π<sub>θ</sub> represents the policy. The key effect of this formulation is that actions leading to higher rewards have a greater influence on updating the policy parameters than those leading to lower rewards. Over time, if all goes well, this should result in a reasonably effective policy.</p>
+
+                <p>However, REINFORCE suffers from several major issues. First, even if an action is neither particularly good nor bad, the parameters still get updated, leading to unnecessary noise in training. Second, the magnitude of updates is uncontrolled—they can be too large or too small. If updates are too large, the model may move away from a useful region, forgetting what it has learned. If they are too small, learning becomes painfully slow. Lastly, REINFORCE introduces high variance, making updates noisy and unstable, which is especially problematic for large-scale models with billions of parameters. These issues compound, leading to significant inefficiencies and instability during training.</p>
+
+                <p>Traditional policy optimization, while simple, is not particularly effective. To address its shortcomings, Trust Region Policy Optimization (TRPO) was introduced <sup>[6]</sup>. TRPO incorporates several key improvements to stabilize learning and improve efficiency.</p>
+
+                <p>One of the major additions is the advantage function, A, which refines the way updates are made. Instead of using log(π<sub>θ</sub>) × reward as in REINFORCE, TRPO modifies the update rule to log(π<sub>θ</sub>) × A. The advantage function is computed as A = reward - baseline, where the baseline is a value predicted by a separate model, known as the value network or critic. This baseline represents the expected or neutral reward, meaning that only actions leading to better-than-expected outcomes receive positive updates, while worse-than-expected actions receive negative updates. By incorporating this adjustment, TRPO eliminates the inefficiency of updating the policy for neutral actions, which was a major drawback in REINFORCE.</p>
+
+                <p>Enter PPO, or proximal policy optimization <sup>[7]</sup>. The core idea behind TRPO and PPO is the same but PPO is far lighter to implement mathematically. Whereas TRPO used second order differential equations, which are a nightmare to calculate, and used line search, PPO simply uses first order differential equations and a simple gradient descent method, as is used in vanilla policy optimization. It still keeps the same idea of clipping the gradient if it gets too high and keeping the advantage. The problem with PPO is that though it is lighter in terms of compute, it is still not enough. To get the advantage, you need a critic model to predict what the baseline will be. That means it needs to take in the same input the language model does and predict some number rather than the next word. This is very computationally heavy and is not feasible when we already have billions, soon to be trillions, of parameters.</p>
+
+                <p>Enter GRPO <sup>[8]</sup>. GRPO does everything PPO does but instead of using a dedicated value model, it just samples from the policy multiple times. It then averages the reward that it got from those samples, the group relative part, and uses that as a baseline for the advantage. This has the benefit of cutting compute required by almost half and makes it far more efficient and viable to train deep neural nets this way.</p>
+
+                
+                <p>With that out of the way, let's dive into how DeepSeek works. There are two models to consider: DeepSeek R1-Zero and DeepSeek R1. While R1 is the widely used model—capable of following instructions and engaging in natural, human-like conversation—R1-Zero is arguably the more impressive technical achievement.</p>
+
+                <p>Both models start with the same pre-trained model - DeepSeek V3 <sup>[9]</sup>. This model has around 650 billion parameters, on par with something like GPT 4o and uses the same training pipeline most LLM's today use: you get a lot of data, on the order of trillions of tokens <sup>[10]</sup>, then train a transformer based autoregressive model to predict the next word.</p>
+
+                <p>Once the pre-training phase was over, simple reinforcement learning was applied. They used GRPO to update the policy weights and for the reward, two kinds were provided: accuracy rewards that reward getting a question right and format rewards, which rewards having a chain of thought and reasoning things out. Over lots and lots of steps, it was seen that the model develops complex reasoning behaviors on its own, naturally.</p>
+
+                <p>Now there were some problems with this model, namely that it the text it produced was not human readable or really understandable. The reasoning was there but it was not a very good consumer facing product.</p>
+
+                <p>Enter DeepSeek R1. They essentially added some SFT to the mix with R1 and ended up with a model that is much more usable, but with the same reasoning capabilities as the model that was just trained using reinforcement learning.</p>
+
+                <p>The big learning with DeepSeek R1 is that you can just get rid of the entire post training pipeline and create a really good model by just using reinforcement leaning and nothing else. It goes to show how there are still so many algorithmic improvements left in AI and how this is just the beginning of what will be a complete rewriting of what it means to be a human. What a time to be alive!</p>
+        
+                <ol>
+                    <li>Dario Amodei points this figure out in his recent essay: <a href="https://darioamodei.com/on-deepseek-and-export-controls">https://darioamodei.com/on-deepseek-and-export-controls</a></li>
+                
+                    <li>An interesting analysis of the more capex narrative from sequoia: <a href="https://www.sequoiacap.com/article/ais-600b-question/">https://www.sequoiacap.com/article/ais-600b-question/</a></li>
+                
+                    <li>Interesting perspective on that rat race: <a href="https://space.ong.ac/escaping-flatland#user-content-fnref-1">https://space.ong.ac/escaping-flatland#user-content-fnref-1</a></li>
+                
+                    <li>Interesting X post from Karpathy detailing the issues with RLHF and why it is hardly a form of reinforcement learning <a href="https://x.com/karpathy/status/1821277264996352246?lang=en">https://x.com/karpathy/status/1821277264996352246?lang=en</a></li>
+                
+                    <li>A great deep dive into how policy optimization works, and how various algorithms, including REINFORCE, use it: <a href="https://lilianweng.github.io/posts/2018-04-08-policy-gradient/">https://lilianweng.github.io/posts/2018-04-08-policy-gradient/</a></li>
+                
+                    <li>The trust region policy optimization paper: <a href="https://arxiv.org/abs/1502.05477">https://arxiv.org/abs/1502.05477</a></li>
+                
+                    <li>The proximal policy optimization paper: <a href="https://arxiv.org/abs/1707.06347">https://arxiv.org/abs/1707.06347</a></li>
+                
+                    <li>Interestingly GRPO was invented by DeepSeek a few months ago. PPO has been around since 2018 and was pioneered by OAI. The elimination of the critic model probably led to some decrease in cost to train, since you are eliminating effectively billions of parameters in favor of a simple mean. Paper link: <a href="https://arxiv.org/abs/1707.06347">https://arxiv.org/abs/1707.06347</a></li>
+                
+                    <li>DeepSeek V3 paper: <a href="https://arxiv.org/abs/2412.19437">https://arxiv.org/abs/2412.19437</a></li>
+                
+                    <li>An interesting look at how dataset collection works and how they actually end up with trillions of tokens: <a href="https://huggingface.co/spaces/HuggingFaceFW/blogpost-fineweb-v1">https://huggingface.co/spaces/HuggingFaceFW/blogpost-fineweb-v1</a></li>
+                </ol>
+        </article>
+    </div>
+</body>
+</html>
