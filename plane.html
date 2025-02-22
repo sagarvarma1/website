@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>3D Flight Simulator</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+        }
+        #hud {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: rgba(0, 0, 50, 0.8);
+            color: white;
+            font-family: monospace;
+            padding: 15px;
+            border-radius: 5px;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        #controls {
+            position: absolute;
+            top: 200px;
+            left: 10px;
+            background: rgba(0, 0, 50, 0.8);
+            color: white;
+            font-family: monospace;
+            padding: 15px;
+            border-radius: 5px;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+    <div id="hud">
+        Time: <span id="time">00:00</span><br>
+        Altitude: <span id="altitude">0</span> ft<br>
+        Speed: <span id="speed">0</span> km/h (Need 99 km/h for takeoff)<br>
+        Pitch: <span id="pitch">0</span>°<br>
+        Roll: <span id="roll">0</span>°<br>
+        Heading: <span id="heading">0</span>°<br>
+        Wind: <span id="wind">20</span> km/h at <span id="windDir">180</span>°
+    </div>
+    <div id="controls">
+        Controls:<br>
+        W/S - Throttle Up/Down<br>
+        +/- or A/D - Turn Left/Right<br>
+        ↑/↓ - Pitch Up/Down<br>
+        SPACE - Shoot Foam Dart
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r159/three.min.js"></script>
+    <script src="plane.js"></script>
+</body>
+</html>
