@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hours Till I Am Old</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Orbitron', sans-serif;
+            background-color: #0a0a12;
+            color: #fdfdf7;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #fdfdf7;
+            text-shadow: 0 0 15px rgba(253, 253, 247, 0.7);
+            margin-bottom: 30px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        .hours-value {
+            font-size: 6rem;
+            font-weight: 700;
+            color: #fdfdf7;
+            text-shadow: 0 0 20px rgba(253, 253, 247, 0.7);
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="title">Hours Till I Am Old</div>
+    <div class="hours-value" id="hours">000000</div>
+
+    <script>
+        // Set the target date: January 1, 2050
+        const targetDate = new Date('January 1, 2050 00:00:00').getTime();
+        
+        function updateCountdown() {
+            // Get current date and time
+            const now = new Date().getTime();
+            
+            // Find the distance between now and the target date
+            const distance = targetDate - now;
+            
+            // Calculate total hours remaining
+            const totalHours = Math.floor(distance / (1000 * 60 * 60));
+            
+            // Display the result
+            document.getElementById('hours').textContent = totalHours.toString().padStart(6, '0');
+            
+            // If the countdown is over
+            if (distance < 0) {
+                clearInterval(countdownTimer);
+                document.getElementById('hours').textContent = '000000';
+            }
+        }
+        
+        // Update the countdown every second
+        const countdownTimer = setInterval(updateCountdown, 1000);
+        
+        // Initial update
+        updateCountdown();
+    </script>
+</body>
+</html> 
