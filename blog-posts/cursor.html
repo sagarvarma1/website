@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bricks In the Wall</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lora:ital@0;1&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #F2E8CF;
+            color: #000000;
+            font-family: Baskerville, 'Baskerville Old Face', 'Hoefler Text', Garamond, 'Times New Roman', serif;
+            margin: 0;
+            line-height: 1.8;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1rem;
+            background-color: #F2E8CF;
+            z-index: 1000;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav a {
+            color: #000000;
+            text-decoration: none;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            padding: 0.5rem 1rem;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        nav a:hover {
+            border-color: #000000;
+            border-radius: 4px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 120px auto 0;
+            padding: 2rem;
+        }
+
+        .blog-header {
+            margin-bottom: 3rem;
+        }
+
+        .blog-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .blog-meta {
+            color: #000000;
+            opacity: 0.8;
+            margin-bottom: 2rem;
+        }
+
+        .featured-image {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            margin-bottom: 2rem;
+        }
+
+        .blog-content {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .blog-content p {
+            margin-bottom: 1.5rem;
+        }
+
+        .blog-content h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            margin: 2rem 0 1rem;
+        }
+
+        .blog-content a {
+            color: #000000;
+            text-decoration: underline;
+        }
+
+        .blog-content a:hover {
+            color: #000000;
+        }
+
+        blockquote {
+            border-left: 3px solid #000000;
+            margin: 2rem 0;
+            padding-left: 1.5rem;
+            font-style: italic;
+        }
+
+        @media (max-width: 768px) {
+            .blog-title {
+                font-size: 2rem;
+            }
+            
+            .container {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="../landing.html">Home</a></li>
+            <li><a href="../about.html">About</a></li>
+            <li><a href="../blog.html">Blog</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <article>
+            <header class="blog-header">
+                <h1 class="blog-title">Cursor Best Practices</h1>
+                <div class="blog-meta">March 10, 2025 | Sagar Varma</div>
+            </header>
+
+            <img src="../images/cello.jpg" alt="Cellos" class="featured-image">
+
+            <div class="blog-content">
+                <p>Cursor best practices, for my future reference.</p>
+
+                    <ol>
+                        <li>Use Cursor Rules! This can get me to be a 10x vibe coder for little additional effort. Good cursor rules starting point: <a href="https://github.com/PatrickJS/awesome-cursorrules" target="_blank">https://github.com/PatrickJS/awesome-cursorrules</a></li>
+                        
+                        <li>Turn on YOLO mode - it can run commands and execute them which makes life a lot better</li>
+                        
+                        <li>Get it to write unit tests before starting to write code. Prompt it to write unit tests then write code and make sure the code passes all of the unit tests. Tests work better for backend tasks, gotta manually test front end</li>
+                        
+                        <li>Really lean into testing, get it to write tests for everything. The extra time inputted yields a result that is orders of magnitude better than not doing this</li>
+                        
+                        <li>Figma for designs is great - can use it to convert the design into code cause currently LLM vision is really bad at any front end (expect this to get better soon so this point will be moot)</li>
+                        
+                        <li>Give it lots of feedback - treat it like a junior intern that can do stuff but needs explicit instructions</li>
+                        
+                        <li>builder.io is like cursor for Figma</li>
+                        
+                        <li>Pre commit working flows before trying a new feature - especially for windsurf</li>
+                        
+                        <li>Accept often a mass rejection can really be a setback</li>
+                        
+                        <li>Command delete doesn't work idk what it does but it does not delete the line</li>
+                        
+                        <li>Add comments when I make manual changes so that claude knows what is happening</li>
+                        
+                        <li>Claude's signature move is saying "Ah, I see the issue now" when it doesn't actually know what is going on. To solve this, give it a "chain of thought" style prompt like "please link through 5 possibilities of what is going wrong. Write in detail about them and choose in detail what is the most likely cause (noting above you tried a few things that did not work, so do not try the again because it clearly did not work because we still get the same error) when you pick the most probable solution, write in detail how to implement the solution. Make it a thorough plan even a junior engineer or low level intern could solve successfully" makes it work like a reasoning model Doing this in ask mode is good</li>
+                        
+                        <li>Adding logos to the code works if the above does not work. Then submit the results of the logs back to the llm and let it do what it wants to do</li>
+                        
+                        <li>In the future, cursor should approach more of a Devin type vibe</li>
+                        
+                        <li>Voice coding is very cool - lots of tools for that</li>
+                        
+                        <li>Command K faster than command I (agent) and may work better</li>
+                        
+                        <li>Command k in the terminal works too, cool</li>
+                        
+                        <li>Bug finder is cool for finding bugs the above approach cannot find</li>
+                    </ol>
+
+                    <p>Best practices as of Noon on Monday, March 10, 2025. Probably will change in the coming days.</p>
+            </div>
+        </article>
+    </div>
+</body>
+</html>
