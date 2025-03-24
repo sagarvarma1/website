@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily Inspiration - Sagar Varma</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lora:ital@0;1&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            background-color: #000;
+            font-family: 'Lora', serif;
+            color: #fff;
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .quote-container {
+            max-width: 800px;
+            margin: 2rem;
+            padding: 2rem;
+            text-align: center;
+            background: rgba(59, 50, 50, 0.05);
+            border-radius: 12px;
+        }
+
+        .quote {
+            font-size: 2rem;
+            font-family: 'Playfair Display', serif;
+            margin-bottom: 1rem;
+        }
+
+        nav {
+            padding: 1rem;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 100;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #fff;
+            font-size: 1.5rem;
+            padding: 0.5rem 1rem;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+            font-family: 'Playfair Display', serif;
+        }
+
+        nav a:hover {
+            border-color: #fff;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="quote-container">
+        <div id="quote" class="quote"></div>
+    </div>
+
+    <script>
+        const quotes = [
+            "Be the change that you wish to see in the world. — Mahatma Gandhi",
+            "Do not go where the path may lead, go instead where there is no path and leave a trail. — Ralph Waldo Emerson",
+            "Success is not final, failure is not fatal: It is the courage to continue that counts. — Winston Churchill",
+            "Everything you've ever wanted is on the other side of fear. — George Addair",
+            "Believe you can and you're halfway there. — Theodore Roosevelt",
+            "It always seems impossible until it's done. — Nelson Mandela",
+            "The only way to do great work is to love what you do. — Steve Jobs",
+            "What lies behind us and what lies before us are tiny matters compared to what lies within us. — Ralph Waldo Emerson",
+            "Hardships often prepare ordinary people for an extraordinary destiny. — C.S. Lewis",
+            "Don't watch the clock; do what it does. Keep going. — Sam Levenson",
+            "In the middle of every difficulty lies opportunity. — Albert Einstein",
+            "Act as if what you do makes a difference. It does. — William James",
+            "The best way to predict the future is to create it. — Peter Drucker",
+            "Your time is limited, so don't waste it living someone else's life. — Steve Jobs",
+            "Start where you are. Use what you have. Do what you can. — Arthur Ashe",
+            "You miss 100% of the shots you don't take. — Wayne Gretzky",
+            "Dream big and dare to fail. — Norman Vaughan",
+            "Strive not to be a success, but rather to be of value. — Albert Einstein",
+            "Life isn't about finding yourself. It's about creating yourself. — George Bernard Shaw",
+            "With the new day comes new strength and new thoughts. — Eleanor Roosevelt",
+            "Keep your face always toward the sunshine—and shadows will fall behind you. — Walt Whitman",
+            "Turn your wounds into wisdom. — Oprah Winfrey",
+            "Success usually comes to those who are too busy to be looking for it. — Henry David Thoreau",
+            "Don't be pushed around by the fears in your mind. Be led by the dreams in your heart. — Roy T. Bennett",
+            "The harder the conflict, the greater the triumph. — George Washington",
+            "Fall seven times, stand up eight. — Japanese Proverb",
+            "You are never too old to set another goal or to dream a new dream. — C.S. Lewis",
+            "What you get by achieving your goals is not as important as what you become by achieving your goals. — Zig Ziglar",
+            "Great minds discuss ideas; average minds discuss events; small minds discuss people. — Eleanor Roosevelt",
+            "If you're going through hell, keep going. — Winston Churchill",
+            "The future belongs to those who believe in the beauty of their dreams. — Eleanor Roosevelt",
+            "Limit your 'always' and your 'nevers.' — Amy Poehler",
+            "You only live once, but if you do it right, once is enough. — Mae West",
+            "Life is 10% what happens to us and 90% how we react to it. — Charles R. Swindoll",
+            "I can't change the direction of the wind, but I can adjust my sails to always reach my destination. — Jimmy Dean",
+            "Do what you can, with what you have, where you are. — Theodore Roosevelt",
+            "Whether you think you can or you think you can't, you're right. — Henry Ford",
+            "Be yourself; everyone else is already taken. — Oscar Wilde",
+            "Try to be a rainbow in someone's cloud. — Maya Angelou",
+            "Never let the fear of striking out keep you from playing the game. — Babe Ruth",
+            "You don't have to be great to start, but you have to start to be great. — Zig Ziglar",
+            "The best dreams happen when you're awake. — Cherie Gilderbloom",
+            "A year from now you may wish you had started today. — Karen Lamb",
+            "You are braver than you believe, stronger than you seem, and smarter than you think. — A.A. Milne",
+            "What we think, we become. — Buddha",
+            "There is no passion to be found playing small. — Nelson Mandela",
+            "Opportunities don't happen. You create them. — Chris Grosser",
+            "Happiness is not something ready-made. It comes from your own actions. — Dalai Lama",
+            "If opportunity doesn't knock, build a door. — Milton Berle",
+            "Doubt kills more dreams than failure ever will. — Suzy Kassem",
+            "Make each day your masterpiece. — John Wooden",
+            "Do not wait to strike till the iron is hot; but make it hot by striking. — William Butler Yeats",
+            "Success is getting what you want. Happiness is wanting what you get. — Dale Carnegie",
+            "Work hard in silence, let success make the noise. — Frank Ocean",
+            "Live as if you were to die tomorrow. Learn as if you were to live forever. — Mahatma Gandhi",
+            "Only in the darkness can you see the stars. — Martin Luther King Jr.",
+            "If you want to lift yourself up, lift up someone else. — Booker T. Washington",
+            "It's not whether you get knocked down, it's whether you get up. — Vince Lombardi",
+            "The way to get started is to quit talking and begin doing. — Walt Disney",
+            "One person can make a difference, and everyone should try. — John F. Kennedy",
+            "Small deeds done are better than great deeds planned. — Peter Marshall",
+            "To live is the rarest thing in the world. Most people exist, that is all. — Oscar Wilde",
+            "Out of difficulties grow miracles. — Jean de La Bruyère",
+            "We can't help everyone, but everyone can help someone. — Ronald Reagan",
+            "Don't count the days, make the days count. — Muhammad Ali",
+            "If you can dream it, you can do it. — Walt Disney",
+            "He who is not courageous enough to take risks will accomplish nothing in life. — Muhammad Ali",
+            "To handle yourself, use your head; to handle others, use your heart. — Eleanor Roosevelt",
+            "Courage is resistance to fear, mastery of fear—not absence of fear. — Mark Twain",
+            "Success is how high you bounce when you hit bottom. — George S. Patton",
+            "Be so good they can't ignore you. — Steve Martin",
+            "The only limit to our realization of tomorrow is our doubts of today. — Franklin D. Roosevelt",
+            "The man who moves a mountain begins by carrying away small stones. — Confucius",
+            "Perseverance is not a long race; it is many short races one after the other. — Walter Elliot",
+            "We are what we repeatedly do. Excellence, then, is not an act, but a habit. — Aristotle",
+            "It's never too late to be what you might've been. — George Eliot",
+            "Inspiration exists, but it has to find you working. — Pablo Picasso",
+            "Shoot for the moon. Even if you miss, you'll land among the stars. — Norman Vincent Peale",
+            "A journey of a thousand miles begins with a single step. — Lao Tzu",
+            "Don't wait. The time will never be just right. — Napoleon Hill",
+            "Leap, and the net will appear. — John Burroughs",
+            "The only thing standing between you and your goal is the story you keep telling yourself. — Jordan Belfort",
+            "Nothing will work unless you do. — Maya Angelou",
+            "Sometimes the bravest and most important thing you can do is just show up. — Brené Brown",
+            "We rise by lifting others. — Robert Ingersoll",
+            "No one can make you feel inferior without your consent. — Eleanor Roosevelt",
+            "If you're not making mistakes, then you're not doing anything. — John Wooden",
+            "Go confidently in the direction of your dreams. — Henry David Thoreau",
+            "Do one thing every day that scares you. — Eleanor Roosevelt",
+            "Success is stumbling from failure to failure with no loss of enthusiasm. — Winston Churchill",
+            "Big journeys begin with small steps. — Unknown",
+            "Don't limit your challenges. Challenge your limits. — Jerry Dunn",
+            "Discipline is the bridge between goals and accomplishment. — Jim Rohn",
+            "Sometimes we're tested not to show our weaknesses, but to discover our strengths. — Unknown",
+            "You are the artist of your own life. Don't hand the paintbrush to anyone else. — Unknown",
+            "Push yourself, because no one else is going to do it for you. — Unknown",
+            "Wake up with determination. Go to bed with satisfaction. — Unknown",
+            "The dream is free. The hustle is sold separately. — Unknown",
+            "Don't be afraid to give up the good to go for the great. — John D. Rockefeller",
+            "Keep going. Everything you need will come to you at the perfect time. — Unknown"
+        ];
+
+        function loadAndDisplayQuote() {
+            const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
+            document.getElementById('quote').textContent = randomQuote;
+        }
+
+        // Load a quote when the page loads
+        loadAndDisplayQuote();
+    </script>
+</body>
+</html>
