@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Resizer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        button {
+            padding: 8px 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        #preview {
+            margin-top: 20px;
+        }
+        img {
+            max-width: 100%;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Image Resizer</h1>
+    <div class="form-group">
+        <label for="imageInput">Upload an image:</label>
+        <input type="file" id="imageInput" accept="image/*">
+    </div>
+    
+    <div class="form-group">
+        <label for="width">Width (pixels):</label>
+        <input type="number" id="width" min="1">
+    </div>
+    
+    <div class="form-group">
+        <label for="height">Height (pixels):</label>
+        <input type="number" id="height" min="1">
+    </div>
+    
+    <button id="resizeBtn">Resize Image</button>
+    
+    <div id="preview" class="hidden">
+        <h2>Resized Image</h2>
+        <p>Right-click on the image and select "Save image as..." to download</p>
+        <img id="resizedImage">
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const imageInput = document.getElementById('imageInput');
+            const widthInput = document.getElementById('width');
+            const heightInput = document.getElementById('height');
+            const resizeBtn = document.getElementById('resizeBtn');
+            const preview = document.getElementById('preview');
+            const resizedImage = document.getElementById('resizedImage');
+            
+            // Set default values when an image is selected
+            imageInput.addEventListener('change', (e) => {
+                if (e.target.files.length > 0) {
+                    const img = new Image();
+                    img.onload = () => {
+                        widthInput.value = img.width;
+                        heightInput.value = img.height;
+                    };
+                    img.src = URL.createObjectURL(e.target.files[0]);
+                }
+            });
+            
+            resizeBtn.addEventListener('click', () => {
+                const file = imageInput.files[0];
+                const width = parseInt(widthInput.value);
+                const height = parseInt(heightInput.value);
+                
+                if (!file) {
+                    alert('Please select an image first.');
+                    return;
+                }
+                
+                if (!width || !height || width <= 0 || height <= 0) {
+                    alert('Please enter valid dimensions.');
+                    return;
+                }
+                
+                resizeImage(file, width, height);
+            });
+            
+            function resizeImage(file, width, height) {
+                const reader = new FileReader();
+                
+                reader.onload = (e) => {
+                    const img = new Image();
+                    
+                    img.onload = () => {
+                        const canvas = document.createElement('canvas');
+                        const ctx = canvas.getContext('2d');
+                        
+                        canvas.width = width;
+                        canvas.height = height;
+                        
+                        // Draw the resized image
+                        ctx.drawImage(img, 0, 0, width, height);
+                        
+                        // Convert to data URL and set as source for preview
+                        const resizedDataUrl = canvas.toDataURL(file.type);
+                        resizedImage.src = resizedDataUrl;
+                        
+                        // Show the preview section
+                        preview.classList.remove('hidden');
+                    };
+                    
+                    img.src = e.target.result;
+                };
+                
+                reader.readAsDataURL(file);
+            }
+        });
+    </script>
+</body>
+</html> 
