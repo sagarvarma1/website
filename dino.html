@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dino Game</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f7f7f7;
+            margin: 0;
+            font-family: 'Press Start 2P', cursive; /* A typical pixel font */
+            overflow: hidden; /* Hide scrollbars */
+        }
+        .game-container {
+            position: relative;
+            width: 600px;
+            height: 200px;
+            border-bottom: 2px solid #666;
+            overflow: hidden; /* Crucial for containing elements */
+        }
+        canvas {
+            display: block; /* Remove extra space below canvas */
+        }
+        .instructions, .game-over, .score {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #666;
+            font-size: 16px;
+            text-align: center;
+            z-index: 10;
+            white-space: nowrap;
+        }
+        .instructions {
+            top: 30px;
+        }
+        .game-over {
+            top: 50px;
+            font-size: 24px;
+            display: none; /* Hidden by default */
+        }
+        .game-over span {
+             display: block;
+             font-size: 16px;
+             margin-top: 10px;
+        }
+        .score {
+            top: 10px;
+            right: 10px;
+            left: auto;
+            transform: none;
+            font-size: 16px;
+            text-align: right;
+        }
+
+        /* Optional: Add a pixel font */
+        @font-face {
+            font-family: 'Press Start 2P';
+            src: url('https://fonts.gstatic.com/s/pressstart2p/v9/e3t4euO8T-267NlaXloFSfweUM8 SmAk06CLMQw.woff2') format('woff2');
+            /* Find a reliable source or host it yourself */
+        }
+
+    </style>
+</head>
+<body>
+    <div class="game-container">
+        <div class="instructions">Press SPACE or Tap to Start</div>
+        <div class="game-over" id="gameOver">GAME OVER<span>Press SPACE or Tap to Restart</span></div>
+        <div class="score" id="score">0</div>
+        <canvas id="gameCanvas"></canvas>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('gameCanvas');
+        const ctx = canvas.getContext('2d');
+        const gameContainer = document.querySelector('.game-container');
+        const instructionsDiv = document.querySelector('.instructions');
+        const gameOverDiv = document.getElementById('gameOver');
+        const scoreDiv = document.getElementById('score');
+
+        let gameWidth = 600;
+        let gameHeight = 150; // Adjust canvas height to leave space for border etc.
+
+        canvas.width = gameWidth;
+        canvas.height = gameHeight;
+        gameContainer.style.height = `${gameHeight + 50}px`; // Adjust container height based on canvas
+
+        // Game Variables
+        let dino;
+        let gravity = 0.6;
+        let jumpForce = 11; // Adjusted jump force
+        let gameSpeed = 5;
+        let obstacles = [];
+        let score = 0;
+        let highScore = localStorage.getItem('dinoHighScore') || 0;
+        let frameCount = 0;
+        let obstacleTimer = 0;
+        let minObstacleInterval = 50; // Minimum frames between obstacles
+        let maxObstacleInterval = 100; // Maximum frames between obstacles
+        let nextObstacleInterval = 0;
+        let isGameOver = true;
+        let isJumping = false;
+        let startScreen = true;
+        let groundOffset = 0; // For scrolling ground
+        const scoreIncrement = 0.9; // Adjust score speed
+
+        const DINO_COLOR = '#666';
+        const OBSTACLE_COLOR = '#666';
+        const GROUND_COLOR = '#666';
+        const BIRD_COLOR = '#666';
+
+        class Dino {
+            constructor(x, y, w, h) {
+                this.x = x;
+                this.y = y;
+                this.startY = y;
+                this.w = w;
+                this.h = h;
+                this.dy = 0; // Vertical velocity
+                this.onGround = true;
+            }
+
+            draw() {
+                ctx.fillStyle = DINO_COLOR;
+                ctx.fillRect(this.x, this.y, this.w, this.h);
+                // Simple running animation (legs) - toggle based on frame count
+                 if (!this.onGround) return; // No leg animation when jumping
+
+                 const legHeight = 5;
+                 const legWidth = 5;
+                 const legY = this.y + this.h;
+
+                 ctx.fillStyle = DINO_COLOR;
+                 if (Math.floor(frameCount / 6) % 2 === 0) {
+                    // Leg position 1
+                    ctx.fillRect(this.x + 5, legY, legWidth, legHeight);
+                    ctx.fillRect(this.x + this.w - 15, legY, legWidth, legHeight);
+                 } else {
+                    // Leg position 2
+                     ctx.fillRect(this.x + 10, legY, legWidth, legHeight);
+                    ctx.fillRect(this.x + this.w - 10, legY, legWidth, legHeight);
+                 }
+            }
+
+            jump() {
+                if (this.onGround) {
+                    this.dy = -jumpForce;
+                    this.onGround = false;
+                    isJumping = true;
+                }
+            }
+
+            update() {
+                // Apply gravity
+                if (!this.onGround) {
+                    this.dy += gravity;
+                    this.y += this.dy;
+                }
+
+                // Check if landed
+                if (this.y >= this.startY) {
+                    this.y = this.startY;
+                    this.dy = 0;
+                    this.onGround = true;
+                    isJumping = false;
+                }
+
+                this.draw();
+            }
+        }
+
+        class Obstacle {
+            constructor(x, y, w, h, type = 'cactus') {
+                this.x = x;
+                this.y = y;
+                this.w = w;
+                this.h = h;
+                this.type = type; // 'cactus' or 'bird'
+                this.speedMultiplier = (type === 'bird') ? 1.1 : 1; // Birds slightly faster
+            }
+
+            draw() {
+                ctx.fillStyle = (this.type === 'bird') ? BIRD_COLOR : OBSTACLE_COLOR;
+                if (this.type === 'bird') {
+                    // Simple bird shape (rectangle for collision, maybe wing animation later)
+                     ctx.fillRect(this.x, this.y, this.w, this.h);
+                     // Basic wings based on frame count
+                     const wingHeight = 5;
+                     const wingWidth = 10;
+                      if (Math.floor(frameCount / 8) % 2 === 0) {
+                        // Wings up
+                        ctx.fillRect(this.x + this.w / 2 - wingWidth / 2, this.y - wingHeight, wingWidth, wingHeight);
+                      } else {
+                        // Wings down
+                        ctx.fillRect(this.x + this.w / 2 - wingWidth / 2, this.y + this.h, wingWidth, wingHeight);
+                      }
+                } else {
+                     ctx.fillRect(this.x, this.y, this.w, this.h);
+                }
+            }
+
+            update() {
+                this.x -= gameSpeed * this.speedMultiplier;
+                this.draw();
+            }
+        }
+
+        function drawGround() {
+            ctx.fillStyle = GROUND_COLOR;
+            const groundSegmentWidth = 15;
+            const gapWidth = 10;
+            const totalWidth = groundSegmentWidth + gapWidth;
+
+            // Calculate the starting offset based on game speed
+            groundOffset = (groundOffset - gameSpeed) % totalWidth;
+
+            // Draw repeating ground segments
+            for (let x = groundOffset; x < gameWidth; x += totalWidth) {
+                 ctx.fillRect(x, gameHeight - 2, groundSegmentWidth, 2);
+            }
+             // Draw the main ground line as well
+             // ctx.fillRect(0, gameHeight, gameWidth, 2); // Optional solid line underneath
+        }
+
+        function spawnObstacle() {
+            let spawnBird = false;
+            if (Math.floor(score) >= 800 && Math.random() < 0.3) { // 30% chance for bird after score 800
+                spawnBird = true;
+            }
+
+            if (spawnBird) {
+                const birdHeight = 15;
+                const birdWidth = 25;
+                // Randomly choose one of two flying heights
+                const birdY = (Math.random() < 0.5) ? gameHeight - 50 : gameHeight - 75;
+                obstacles.push(new Obstacle(gameWidth, birdY, birdWidth, birdHeight, 'bird'));
+            } else {
+                // Spawn cactus
+                const obstacleHeight = Math.random() < 0.5 ? 35 : 25; // Two sizes of cacti
+                const obstacleWidth = Math.random() < 0.7 ? 15 : 30; // Single or double cactus
+                const obstacleY = gameHeight - obstacleHeight;
+                obstacles.push(new Obstacle(gameWidth, obstacleY, obstacleWidth, obstacleHeight, 'cactus'));
+            }
+
+            // Set next interval randomly
+            nextObstacleInterval = Math.floor(Math.random() * (maxObstacleInterval - minObstacleInterval + 1)) + minObstacleInterval;
+            obstacleTimer = 0; // Reset timer
+        }
+
+        function checkCollision(dino, obstacle) {
+            // Simple AABB collision detection
+            return (
+                dino.x < obstacle.x + obstacle.w &&
+                dino.x + dino.w > obstacle.x &&
+                dino.y < obstacle.y + obstacle.h &&
+                dino.y + dino.h > obstacle.y
+            );
+        }
+
+        function updateScore() {
+            // Increase score based on the increment, floor for display
+            score += scoreIncrement;
+            const displayScore = Math.floor(score);
+            const displayHighScore = Math.floor(highScore); // Also floor high score for consistency
+            scoreDiv.textContent = `HI ${String(displayHighScore).padStart(5, '0')} ${String(displayScore).padStart(5, '0')}`;
+        }
+
+        function resetGame() {
+            dino = new Dino(50, gameHeight - 40, 30, 40); // Initial dino position and size
+            obstacles = [];
+            score = 0; // Reset score to 0
+            gameSpeed = 5;
+            frameCount = 0;
+            obstacleTimer = 0;
+            groundOffset = 0; // Reset ground offset
+            nextObstacleInterval = Math.floor(Math.random() * (maxObstacleInterval - minObstacleInterval + 1)) + minObstacleInterval; // Initial interval
+            isGameOver = false;
+            startScreen = false;
+            gameOverDiv.style.display = 'none';
+            instructionsDiv.style.display = 'none';
+            const displayHighScore = Math.floor(highScore);
+            scoreDiv.textContent = `HI ${String(displayHighScore).padStart(5, '0')} 00000`; // Reset score display
+            gameLoop();
+        }
+
+        function handleGameOver() {
+            isGameOver = true;
+            gameOverDiv.style.display = 'block';
+            // Use Math.floor for comparison and saving
+            const finalScore = Math.floor(score);
+            if (finalScore > highScore) {
+                highScore = finalScore; // Save the floored score as the new high score
+                localStorage.setItem('dinoHighScore', highScore);
+            }
+             // Update score display immediately to show final score and potentially new high score
+             const displayHighScore = Math.floor(highScore);
+             scoreDiv.textContent = `HI ${String(displayHighScore).padStart(5, '0')} ${String(finalScore).padStart(5, '0')}`;
+
+            // No need to call cancelAnimationFrame here, the loop condition handles it
+        }
+
+        function gameLoop() {
+            if (isGameOver) {
+                // Draw final frame or game over screen if needed
+                 ctx.clearRect(0, 0, gameWidth, gameHeight);
+                 drawGround(); // Draw ground in final position
+                 dino.draw(); // Draw dino in its final position
+                 obstacles.forEach(obstacle => obstacle.draw()); // Draw final obstacles
+                return;
+            }
+
+            requestAnimationFrame(gameLoop);
+            frameCount++;
+            ctx.clearRect(0, 0, gameWidth, gameHeight);
+
+            // Draw Ground
+            drawGround();
+
+            // Update and draw Dino
+            dino.update();
+
+            // Update and draw Obstacles
+            obstacleTimer++;
+            if (obstacleTimer >= nextObstacleInterval) {
+                spawnObstacle();
+            }
+
+            for (let i = obstacles.length - 1; i >= 0; i--) {
+                obstacles[i].update();
+
+                // Check for collisions
+                if (checkCollision(dino, obstacles[i])) {
+                    handleGameOver();
+                    return; // Stop the loop immediately on collision
+                }
+
+                // Remove obstacles that are off-screen
+                if (obstacles[i].x + obstacles[i].w < 0) {
+                    obstacles.splice(i, 1);
+                }
+            }
+
+            // Update score
+            updateScore();
+
+            // Increase difficulty (optional)
+            if (frameCount % 500 === 0 && frameCount > 0) { // Increase speed every 500 frames, avoid frame 0
+                 gameSpeed += 0.2;
+                 // Decrease interval slightly
+                 minObstacleInterval = Math.max(30, minObstacleInterval - 2);
+                 maxObstacleInterval = Math.max(60, maxObstacleInterval - 2);
+            }
+        }
+
+        // Event Listeners
+        function handleInput() {
+            if (startScreen) {
+                 resetGame();
+            } else if (isGameOver) {
+                resetGame();
+            } else if (!isJumping) {
+                dino.jump();
+            }
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.code === 'Space') {
+                e.preventDefault(); // Prevent page scrolling
+                handleInput();
+            }
+        });
+
+        // Touch input for mobile
+         gameContainer.addEventListener('touchstart', (e) => {
+             e.preventDefault(); // Prevent page scrolling/zooming
+             handleInput();
+         }, { passive: false }); // Need passive: false to call preventDefault
+
+        // Initial setup
+        const displayHighScore = Math.floor(highScore);
+        scoreDiv.textContent = `HI ${String(displayHighScore).padStart(5, '0')} 00000`;
+        dino = new Dino(50, gameHeight - 40, 30, 40); // Create dino initially for display
+        ctx.clearRect(0, 0, gameWidth, gameHeight); // Clear canvas initially
+        drawGround(); // Draw initial ground
+        dino.draw(); // Draw initial dino pose
+
+    </script>
+</body>
+</html> 
