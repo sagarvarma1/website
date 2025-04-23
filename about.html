@@ -42,10 +42,19 @@
             transition: all 0.3s ease;
         }
 
-        nav a:hover, nav a.active {
+        nav a:hover {
             border-color: #555;
             color: #222;
             border-radius: 4px;
+        }
+
+        nav a.active {
+            color: #222;
+        }
+
+        /* Hide the nav item for the current page */
+        nav ul li:has(a.active) {
+            display: none;
         }
 
         .container {

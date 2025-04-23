@@ -19,9 +19,13 @@
 
         body {
             min-height: 100vh;
-            background-color: #F2E8CF;
+            background-image: url('images/tree.png');
+            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
             font-family: 'Playfair Display', serif;
-            color: #333;
+            color: #fff;
         }
 
         nav {
@@ -38,7 +42,7 @@
 
         nav a {
             text-decoration: none;
-            color: #333;
+            color: #fff;
             font-size: 1.5rem;
             padding: 0.5rem 1rem;
             border: 2px solid transparent;
@@ -46,21 +50,19 @@
         }
 
         nav a:hover {
-            border-color: #333;
+            border-color: #fff;
             border-radius: 4px;
         }
 
-        h1 {
-            text-align: center;
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            color: #222;
+        /* Hide the nav item for the current page */
+        nav ul li:has(a.active) {
+            display: none;
         }
 
         .contact-details {
             text-align: center;
             margin-bottom: 2rem;
-            color: #555;
+            color: #fff;
             font-size: 1.1rem;
             line-height: 1.5;
         }
@@ -69,12 +71,20 @@
             margin-bottom: 0.3rem;
         }
 
+        .contact-details p:last-of-type {
+             margin-top: 1rem;
+             font-style: italic;
+             opacity: 0.9;
+        }
+
         .contact-details a {
             color: inherit;
             text-decoration: underline;
         }
 
         .contact-form {
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
             padding: 2rem;
             border-radius: 10px;
         }
@@ -87,18 +97,18 @@
             display: block;
             margin-bottom: 0.5rem;
             font-size: 1.2rem;
-            color: #444;
+            color: #eee;
         }
 
         input, textarea {
             width: 100%;
             padding: 0.8rem;
-            background: #fff;
-            border: 1px solid #ccc;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
             border-radius: 4px;
             font-family: 'Playfair Display', serif;
             font-size: 1rem;
-            color: #333;
+            color: #fff;
         }
 
         textarea {
@@ -107,9 +117,9 @@
         }
 
         button {
-            background: #555;
+            background: transparent;
             color: #fff;
-            border: none;
+            border: 2px solid #fff;
             padding: 1rem 2rem;
             font-size: 1.2rem;
             font-family: 'Playfair Display', serif;
@@ -120,22 +130,18 @@
         }
 
         button:hover {
-            background: #333;
+            background: rgba(255, 255, 255, 0.1);
             transform: translateY(-2px);
         }
 
         .container {
             max-width: 600px;
             width: 90%;
-            margin: 2rem auto;
+            margin: 2rem 5% 2rem auto;
             padding: 1.5rem;
         }
 
         @media screen and (max-width: 768px) {
-            h1 {
-                font-size: 2rem;
-            }
-
             nav ul {
                 gap: 1rem;
             }
@@ -157,11 +163,6 @@
                 padding: 1rem;
             }
 
-            h1 {
-                font-size: 1.8rem;
-                margin-bottom: 1rem;
-            }
-
             label {
                 font-size: 1rem;
             }
@@ -178,9 +179,9 @@
         }
 
         .success-message {
-            background: #dff0d8;
-            color: #3c763d;
-            border: 1px solid #d6e9c6;
+            background: transparent;
+            color: #fff;
+            border: 2px solid #4CAF50;
             padding: 1rem 2rem;
             font-size: 1.1rem;
             font-family: 'Playfair Display', serif;
@@ -210,12 +211,11 @@
     </nav>
 
     <div class="container">
-        <h1>Contact Me</h1>
-
         <div class="contact-details">
             <p>Email: sagarvarma351@gmail.com</p>
             <p>x.com/thesagarvarma</p>
             <p>instagram.com/thesagarvarma</p>
+            <p>Or use the form below</p>
         </div>
 
         <form class="contact-form" id="contact-form" action="https://formspree.io/f/mldeaopb" method="POST">
