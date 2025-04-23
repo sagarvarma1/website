@@ -7,7 +7,9 @@
     <nav>
         <ul>
             <li><a href="landing.html">Home</a></li>
-            <li><a href="blog.html">Blog</a></li>
+            <li><a href="about.html" class="active">About</a></li>
+            <li><a href="https://sagarvarma.substack.com" target="_blank">Blog</a></li>
+            <li><a href="images.html">Images</a></li>
             <li><a href="contact.html">Contact</a></li>
         </ul>
     </nav>
@@ -17,8 +19,8 @@
             top: 0;
             width: 100%;
             padding: 1rem;
-            background-color: black;
             z-index: 1000;
+            text-align: center;
         }
 
         nav ul {
@@ -32,7 +34,7 @@
 
         nav a {
             text-decoration: none;
-            color: #ffffff;
+            color: #555;
             font-family: 'Playfair Display', serif;
             font-size: 1.5rem;
             padding: 0.5rem 1rem;
@@ -40,22 +42,26 @@
             transition: all 0.3s ease;
         }
 
-        nav a:hover {
-            border-color: #ffffff;
+        nav a:hover, nav a.active {
+            border-color: #555;
+            color: #222;
             border-radius: 4px;
         }
 
         .container {
-            margin-top: 120px;  /* Increased from 80px */
-            max-width: 1200px;
-            margin: 120px auto 0;  /* Changed to include horizontal auto margins */
-            padding: 4rem 2rem;
-            background-color: black;
+            max-width: 650px; /* Further reduced max-width */
+            margin: 80px 2% 40px auto; /* Push further right (Top, Right 2%, Bottom, Left auto) */
+            padding: 3rem 2rem;
+            border-radius: 10px;
         }
 
         body {
-            background-color: black;
-            color: #ffffff;
+            background-image: url('images/about_background.png');
+            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            color: #333;
             font-family: 'Playfair Display', serif;
             margin: 0;
             padding: 0;
@@ -64,30 +70,45 @@
 
         .about-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
+            grid-template-columns: 1fr;
+            gap: 2rem;
             align-items: center;
+            text-align: center;
+        }
+
+        .about-content {
+            text-align: left; /* Default align text left */
         }
 
         .about-content h1 {
             font-size: 3rem;
             margin-bottom: 2rem;
             position: relative;
+            color: #333;
+            text-align: center; /* Center the heading itself */
         }
 
         .about-content h1::after {
             content: '';
             position: absolute;
             bottom: -10px;
-            left: 0;
+            left: 50%;
+            transform: translateX(-50%);
             width: 60px;
             height: 3px;
-            background-color: #ffffff;
+            background-color: #555;
         }
 
         .about-content p {
             font-size: 1.2rem;
             margin-bottom: 1.5rem;
+            color: #444;
+            text-align: left; /* Ensure paragraph is left-aligned */
+        }
+
+        .about-content p:nth-of-type(2) {
+             text-align: center; /* Center 'Interesting media:' text */
+             margin-top: 2rem; /* Add some space above */
         }
 
         .skills {
@@ -95,50 +116,32 @@
             flex-wrap: wrap;
             gap: 1rem;
             margin-top: 2rem;
+            justify-content: center;
         }
 
         .skill-tag {
-            text-decoration: none;  /* Removes underline from link */
-            display: inline-block;  /* Ensures proper padding/margins */
+            text-decoration: none;
+            display: inline-block;
             padding: 0.5rem 1rem;
-            border: 1px solid #ffffff;
+            border: 1px solid #555;
             border-radius: 20px;
             font-size: 0.9rem;
             transition: all 0.3s ease;
-            color: #ffffff;  /* Ensures link color matches other tags */
+            color: #444;
         }
 
         .skill-tag:hover {
-            background-color: #ffffff;
-            color: black;
-        }
-
-        .profile-image-container {
-            width: 100%;
-            max-width: 500px;
-            margin: 0 auto;
-        }
-
-        .profile-image {
-            width: 100%;
-            height: auto;
-            aspect-ratio: 1 / 1;
-            object-fit: cover;
-            border: 2px solid #ffffff;
-            transition: transform 0.3s ease;
-        }
-
-        .profile-image:hover {
-            transform: scale(1.02);
+            background-color: #444;
+            color: #fff;
+            border-color: #444;
         }
 
         @media (max-width: 768px) {
-            .profile-image-container {
-                max-width: 300px;
+            .about-content h1 {
+                font-size: 2.5rem;
             }
-            
-            .about-grid {
-                grid-template-columns: 1fr;
+             .about-content p {
+                font-size: 1.1rem;
             }
         }
         
@@ -147,27 +150,36 @@
 <body>
     <div class="container">
         <div class="about-grid">
-            <div class="profile-image-container">
-                <img 
-                    src="images/mountain.webp" 
-                    alt="Your Name" 
-                    class="profile-image"
-                >
-            </div>
             <div class="about-content">
                 <h1>About Me</h1>
-                <p>I am an enthuse who enjoys the interesection of art and literature. When not inspecting brushstrokes, you can find me amok in the smoke rings of a Paradise Lost.</p>
-\                <p>Intresting media:</p>
+                <p>japanese sumi enthuse who is a great music enjoyer. moving through the smoke rings of the mind one at a time whilst vibe creating the future. all in all, one mustn't be another brick in the wall</p>
+                <p>Interesting media:</p>
                 <div class="skills">
-                    <a href="https://en.wikipedia.org/wiki/Uncanny_valley" class="skill-tag">Uncanny Valley</a>  
-                    <a href="https://arxiv.org/abs/2411.10323" class="skill-tag">Fascinating Paper</a>  
-                    <a href="https://www.folger.edu/explore/shakespeares-works/king-lear/read/" class="skill-tag">King Lear</a> 
-                    <a href="https://www.folger.edu/explore/shakespeares-works/coriolanus/read/" class="skill-tag">Coriolanus</a>
-                    <a href="https://tolkiengateway.net/wiki/The_Road_Goes_Ever_On_(song)" class="skill-tag">The Road Goes Ever On</a>
-                    <a href="https://ia.samaltman.com/" class="skill-tag">Intelligence Age</a>
-                    <a href="https://darioamodei.com/machines-of-loving-grace" class="skill-tag">Machines of Loving Grace</a>
-                    <a href="https://www.poetryfoundation.org/poems/45134/ode-to-the-west-wind" class="skill-tag">Ode to the West</a>
-                    <a href="https://www.youtube.com/watch?v=OeP4FFr88SQ" class="skill-tag">Mr. Tambourine Man</a>
+                    <a href="https://en.wikipedia.org/wiki/Uncanny_valley" class="skill-tag" target="_blank">Uncanny Valley</a>  
+                    <a href="https://arxiv.org/abs/2411.10323" class="skill-tag" target="_blank">Fascinating Paper</a>  
+                    <a href="https://www.folger.edu/explore/shakespeares-works/king-lear/read/" class="skill-tag" target="_blank">King Lear</a> 
+                    <a href="https://www.folger.edu/explore/shakespeares-works/coriolanus/read/" class="skill-tag" target="_blank">Coriolanus</a>
+                    <a href="https://tolkiengateway.net/wiki/The_Road_Goes_Ever_On_(song)" class="skill-tag" target="_blank">The Road Goes Ever On</a>
+                    <a href="https://ia.samaltman.com/" class="skill-tag" target="_blank">Intelligence Age</a>
+                    <a href="https://darioamodei.com/machines-of-loving-grace" class="skill-tag" target="_blank">Machines of Loving Grace</a>
+                    <a href="https://www.poetryfoundation.org/poems/45134/ode-to-the-west-wind" class="skill-tag" target="_blank">Ode to the West</a>
+                    <a href="https://www.youtube.com/watch?v=OeP4FFr88SQ" class="skill-tag" target="_blank">Mr. Tambourine Man</a>
+                    
+                    <!-- Added New Links -->
+                    <a href="https://www.youtube.com/watch?v=B8C5sjjhsso" class="skill-tag" target="_blank">World a Better Place</a>
+                    <a href="https://en.wikipedia.org/wiki/Old_Stockholm_telephone_tower#/media/File:Telephone_Tower_with_hoarfrost_in_Stockholm.jpg" class="skill-tag" target="_blank">Stockholm Phone Tower</a>
+                    <a href="https://www.piratewires.com/p/agency-is-eating-the-world" class="skill-tag" target="_blank">Agency</a>
+                    <a href="https://www.piratewires.com/p/the-sad-state-of-affairs-at-apple-an-interview-with-david-heinemeier-hansson" class="skill-tag" target="_blank">DHH Apple</a>
+                    <a href="https://tomblomfield.com/post/1743528547367/the-age-of-abundance" class="skill-tag" target="_blank">Abundance</a>
+                    <a href="https://looksmapping.com" class="skill-tag" target="_blank">Looks Mapping</a>
+                    <a href="https://near.blog/try-a-thing-some-time/" class="skill-tag" target="_blank">Agency II</a>
+                    <a href="https://www.dwarkesh.com/p/ai-firm" class="skill-tag" target="_blank">AI Company</a>
+                    <a href="https://space.ong.ac/escaping-flatland#user-content-fnref-1" class="skill-tag" target="_blank">On Prestige</a>
+                    <a href="https://bbycroft.net/llm" class="skill-tag" target="_blank">LLM Visualized</a>
+                    <a href="https://www.youtube.com/watch?v=kCc8FmEb1nY&t=74s" class="skill-tag" target="_blank">Karpathy</a>
+                    <a href="https://www.youtube.com/watch?v=raIUQP71SBU&t=1011s" class="skill-tag" target="_blank">Chamath</a>
+                    <a href="https://www.youtube.com/watch?v=a1zDuOPkMSw" class="skill-tag" target="_blank">Hamming</a>
+                    <a href="https://www.youtube.com/watch?v=tkFOBx6j0l8" class="skill-tag" target="_blank">K. West</a>
                 </div>
             </div>
         </div>

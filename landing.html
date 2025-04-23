@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Blog</title>
+    <title>Sagar Varma - Home</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;700&family=Lora:wght@400;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -14,13 +14,16 @@
             box-sizing: border-box;
         }
 
-        .landing-page {
-            height: 100vh;
-            width: 100%;
-            background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8));
-            background-color: black; /* Added black background */
-            background-size: cover;
-            background-position: center;
+        body {
+            min-height: 100vh;
+            /* background-color: #000; */ /* Replaced with image */
+            background-image: url('images/background.png');
+            background-size: cover; /* Cover the entire viewport */
+            background-position: center center; /* Center the image */
+            background-repeat: no-repeat; /* Do not repeat the image */
+            background-attachment: fixed; /* Keep background fixed on scroll */
+            font-family: 'Lora', serif;
+            /* color: #fff; */ /* Adjusted text color below */
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -29,98 +32,72 @@
             padding: 2rem;
         }
 
-        .welcome-text {
-            font-family: 'Playfair Display', serif;
-            color: #ffffff; /* Changed to green */
-            font-size: 4rem;
-            margin-bottom: 2rem;
-            position: relative;
+        .name-heading {
+            font-family: 'EB Garamond', serif; /* Changed font to EB Garamond */
+            font-size: 6.5rem; /* Slightly increased size for Garamond */
+            font-weight: 400; /* Garamond typically looks better at normal weight */
+            margin-bottom: 2.5rem; /* Adjusted margin */
+            color: #4b3f37; /* Dark brown/grey from image */
+            line-height: 1.1;
+            letter-spacing: 0.05em; /* Add slight letter spacing */
         }
 
-        .cursor {
-            display: inline-block;
-            width: 3px;
-            height: 50px;
-            background-color: #ffffff; /* Changed cursor to green */
-            margin-left: 5px;
-            animation: blink 0.7s infinite;
+        .navigation-links {
+            display: flex;
+            gap: 1.5rem; /* Space between links */
         }
 
-        .cursor.hide {
-            display: none;
-        }
-
-        nav a {
+        .nav-link {
+            color: #6a5e56; /* Muted brown/grey from image */
             text-decoration: none;
-            color: #ffffff; /* Changed nav links to green */
-            font-family: 'Playfair Display', serif;
-            font-size: 1.5rem;
-            padding: 0.5rem 1rem;
-            border: 2px solid transparent;
-            transition: all 0.3s ease;
+            font-family: 'Lora', serif;
+            font-size: 1.1rem; /* Slightly smaller nav links */
+            transition: color 0.3s ease, border-bottom-color 0.3s ease;
+            padding: 0.5rem 0;
+            border-bottom: 2px solid transparent;
         }
 
-        nav ul {
-            list-style: none;
-            display: flex;  /* Added to make items horizontal */
-            gap: 2rem;     /* Added space between items */
+        .nav-link:hover {
+            color: #3b2f27; /* Darker brown/grey on hover */
+            border-bottom-color: #4b3f37; /* Match heading color on hover */
         }
 
-        nav li {
-            display: inline-block;  /* Added to ensure proper horizontal alignment */
+        /* Responsive adjustments */
+        @media screen and (max-width: 768px) {
+            .name-heading {
+                font-size: 4.5rem; /* Adjusted responsive size */
+            }
+            .nav-link {
+                font-size: 1.1rem;
+            }
         }
 
-        nav {
-            opacity: 0; /* Start with nav hidden */
-            transition: opacity 1s ease-in;
+        @media screen and (max-width: 480px) {
+            .name-heading {
+                font-size: 3.5rem; /* Adjusted responsive size */
+            }
+             .navigation-links {
+                flex-direction: column; /* Stack links vertically */
+                gap: 1rem;
+            }
+            .nav-link {
+                font-size: 1rem;
+                 padding: 0.3rem 0;
+            }
         }
 
-        nav a:hover {
-            border-color: #ffffff; /* Changed hover border to green */
-            border-radius: 4px;
-        }
-
-        @keyframes fadeIn {
-            to { opacity: 1; }
-        }
     </style>
 </head>
 <body>
-    <div class="landing-page">
-        <h1 class="welcome-text">
-            <span id="typed-text"></span>
-            <span class="cursor"></span>
-        </h1>
-        <nav>
-            <ul>
-                <li><a href="about.html">About</a></li>
-                <li><a href="blog.html">Blog</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-        </nav>
+
+    <h1 class="name-heading">SAGAR VARMA</h1>
+
+    <div class="navigation-links">
+        <a href="about.html" class="nav-link">About</a>
+        <a href="https://sagarvarma.substack.com" target="_blank" class="nav-link">Blog</a>
+        <a href="images.html" class="nav-link">Images</a>
+        <a href="contact.html" class="nav-link">Contact</a>
     </div>
 
-    <script>
-        const text = "welcome to my world";
-        const typedTextElement = document.getElementById("typed-text");
-        const cursorElement = document.querySelector(".cursor");
-        const navElement = document.querySelector("nav");
-        let charIndex = 0;
-    
-        function typeText() {
-            if (charIndex < text.length) {
-                typedTextElement.textContent += text.charAt(charIndex);
-                charIndex++;
-                setTimeout(typeText, 150);
-            } else {
-                // Hide cursor and show nav after typing is complete
-                cursorElement.classList.add('hide');
-                navElement.style.opacity = '1';
-            }
-        }
-    
-        // Start typing when page loads
-        window.onload = typeText;
-    </script>
 </body>
 </html>

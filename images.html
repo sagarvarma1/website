@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Images - Sagar Varma</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lora:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            background-color: #F2E8CF;
+            font-family: 'Lora', serif;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        nav {
+            padding: 1rem;
+            text-align: center;
+            background-color: #F2E8CF;
+            backdrop-filter: none;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #333;
+            font-size: 1.5rem;
+            padding: 0.5rem 1rem;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+            font-family: 'Playfair Display', serif;
+        }
+
+        nav a:hover, nav a.active {
+            border-color: #333;
+            border-radius: 4px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1.5rem;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .page-header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #222;
+        }
+
+        .image-grid {
+            column-count: 3;
+            column-gap: 0;
+            width: 100%;
+        }
+
+        .grid-item {
+            break-inside: avoid;
+            margin-bottom: 0;
+            display: inline-block;
+            width: 100%;
+        }
+
+        .grid-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Basic Responsive adjustments for nav similar to blog.html */
+        @media screen and (max-width: 768px) {
+            nav a {
+                font-size: 1.2rem;
+                padding: 0.4rem 0.8rem;
+            }
+            .page-header h1 {
+                font-size: 2.5rem;
+            }
+            .image-grid {
+                column-count: 2;
+            }
+        }
+        @media screen and (max-width: 480px) {
+             nav ul {
+                gap: 1rem;
+            }
+             .page-header h1 {
+                font-size: 2rem;
+            }
+            .image-grid {
+                 column-count: 1;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="landing.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="https://sagarvarma.substack.com" target="_blank">Blog</a></li>
+            <li><a href="images.html" class="active">Images</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <header class="page-header">
+            <h1>Images</h1>
+        </header>
+
+        <div class="image-grid">
+            <div class="grid-item">
+                <img src="images/sagar1.JPG" alt="Sagar Varma Image 1">
+            </div>
+            <div class="grid-item">
+                <img src="images/sagar2.JPG" alt="Sagar Varma Image 2">
+            </div>
+            <div class="grid-item">
+                <img src="images/sagar3.JPG" alt="Sagar Varma Image 3">
+            </div>
+            <!-- Added New Images -->
+            <div class="grid-item">
+                <img src="images/sagar4.jpeg" alt="Sagar Varma Image 4">
+            </div>
+            <div class="grid-item">
+                <img src="images/sagar5.jpg" alt="Sagar Varma Image 5">
+            </div>
+            <div class="grid-item">
+                <img src="images/saturn1.JPG" alt="Saturn Image 1">
+            </div>
+            <!-- Added Meme Image -->
+            <div class="grid-item">
+                <img src="images/meme1.jpg" alt="Meme 1">
+            </div>
+            <!-- Add more grid items for more images -->
+            <!-- Example:
+            <div class="grid-item">
+                <img src="images/sagar4.JPG" alt="Sagar Varma Image 4">
+            </div>
+            -->
+        </div>
+    </div>
+</body>
+</html> 
