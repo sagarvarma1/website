@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Media Links</title> <!-- Changed Title -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'EB Garamond', Garamond, serif;
+            line-height: 1.6;
+            background-color: #fff; /* Plain white background */
+            color: #333;
+            padding: 2rem; /* Add some padding around the content */
+        }
+
+        .back-button { /* Style reverted to simple link */
+            display: block; /* Back to block for spacing */
+            margin-bottom: 2rem;
+            font-size: 1.1rem; /* Reverted font size */
+            color: #000; /* Changed color to black */
+            text-decoration: none;
+            /* Removed tag styles: padding, border, border-radius, transition, specific color */
+        }
+
+        .back-button:hover { /* Style reverted to simple underline */
+             text-decoration: underline;
+             /* Removed tag hover styles: background, color, border */
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 2rem;
+            font-weight: normal; /* Use default font weight */
+            font-size: 2rem;
+        }
+
+        .media-list { /* Changed class name */
+            list-style: none; 
+            padding-left: 0;
+            max-width: 800px; /* Allow more width for tags */
+            margin: 0 auto; /* Center list */
+            /* Added flexbox for tag layout */
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem; /* Spacing between tags */
+            justify-content: center; /* Center tags */
+        }
+
+        .media-list li { /* Changed class name */
+            padding: 0; /* Remove padding from li */
+            /* font-size is inherited or set on <a> */
+        }
+
+        .media-list a { /* Styling for links */
+             /* Copied styles from .back-button / .skill-tag */
+            display: inline-block;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border: 1px solid #555;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            color: #444;
+        }
+        
+        .media-list a:hover {
+             /* Copied styles from .back-button:hover / .skill-tag:hover */
+            background-color: #444;
+            color: #fff;
+            border-color: #444;
+            text-decoration: none; 
+        }
+
+    </style>
+</head>
+<body>
+    <a href="about.html" class="back-button">&larr; Back to About Page</a>
+
+    <div class="container">
+        <h1>Interesting Media</h1> <!-- Changed Heading -->
+        <ul class="media-list">
+            <li><a href="https://en.wikipedia.org/wiki/Uncanny_valley" target="_blank">Uncanny Valley</a></li>
+            <li><a href="https://arxiv.org/abs/2411.10323" target="_blank">Fascinating Paper</a></li>
+            <li><a href="https://www.folger.edu/explore/shakespeares-works/king-lear/read/" target="_blank">King Lear</a></li>
+            <li><a href="https://www.folger.edu/explore/shakespeares-works/coriolanus/read/" target="_blank">Coriolanus</a></li>
+            <li><a href="https://tolkiengateway.net/wiki/The_Road_Goes_Ever_On_(song)" target="_blank">The Road Goes Ever On</a></li>
+            <li><a href="https://ia.samaltman.com/" target="_blank">Intelligence Age</a></li>
+            <li><a href="https://darioamodei.com/machines-of-loving-grace" target="_blank">Machines of Loving Grace</a></li>
+            <li><a href="https://www.poetryfoundation.org/poems/45134/ode-to-the-west-wind" target="_blank">Ode to the West</a></li>
+            <li><a href="https://www.youtube.com/watch?v=OeP4FFr88SQ" target="_blank">Mr. Tambourine Man</a></li>
+            <li><a href="https://www.youtube.com/watch?v=B8C5sjjhsso" target="_blank">World a Better Place</a></li>
+            <li><a href="https://en.wikipedia.org/wiki/Old_Stockholm_telephone_tower#/media/File:Telephone_Tower_with_hoarfrost_in_Stockholm.jpg" target="_blank">Stockholm Phone Tower</a></li>
+            <li><a href="https://www.piratewires.com/p/agency-is-eating-the-world" target="_blank">Agency</a></li>
+            <li><a href="https://www.piratewires.com/p/the-sad-state-of-affairs-at-apple-an-interview-with-david-heinemeier-hansson" target="_blank">DHH Apple</a></li>
+            <li><a href="https://tomblomfield.com/post/1743528547367/the-age-of-abundance" target="_blank">Abundance</a></li>
+            <li><a href="https://looksmapping.com" target="_blank">Looks Mapping</a></li>
+            <li><a href="https://near.blog/try-a-thing-some-time/" target="_blank">Agency II</a></li>
+            <li><a href="https://www.dwarkesh.com/p/ai-firm" target="_blank">AI Company</a></li>
+            <li><a href="https://space.ong.ac/escaping-flatland#user-content-fnref-1" target="_blank">On Prestige</a></li>
+            <li><a href="https://bbycroft.net/llm" target="_blank">LLM Visualized</a></li>
+            <li><a href="https://www.youtube.com/watch?v=kCc8FmEb1nY&t=74s" target="_blank">Karpathy</a></li>
+            <li><a href="https://www.youtube.com/watch?v=raIUQP71SBU&t=1011s" target="_blank">Chamath</a></li>
+            <li><a href="https://www.youtube.com/watch?v=a1zDuOPkMSw" target="_blank">Hamming</a></li>
+            <li><a href="https://www.youtube.com/watch?v=tkFOBx6j0l8" target="_blank">K. West</a></li>
+            <li><a href="https://www.piratewires.com/p/inside-palantirs-bet-on-high-school-grads" target="_blank">Palantir</a></li>
+            <li><a href="https://koomen.dev/essays/horseless-carriages/#horseless-carriages" target="_blank">Horseless Carriages</a></li>
+            <li><a href="https://near.blog/try-a-thing-some-time/" target="_blank">Do Things</a></li>
+            <li><a href="https://space.ong.ac/escaping-flatland#user-content-fnref-1" target="_blank">Flatland</a></li>
+            <li><a href="https://patrickcollison.com/advice" target="_blank">Collison</a></li>
+        </ul>
+    </div>
+
+</body>
+</html> 
