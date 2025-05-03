@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Me</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&display=swap" rel="stylesheet">
     
     <style>
         /* --- Desktop Nav Styles --- */
@@ -27,8 +30,8 @@
 
         .desktop-nav a { /* Changed from nav a */
             text-decoration: none;
-            color: #555;
-            font-family: 'Playfair Display', serif;
+            color: #4b3f37;
+            font-family: 'EB Garamond', serif;
             font-size: 1.5rem;
             padding: 0.5rem 1rem;
             border: 2px solid transparent;
@@ -36,13 +39,13 @@
         }
 
         .desktop-nav a:hover { /* Changed from nav a:hover */
-            border-color: #555;
-            color: #222;
+            border-color: #4b3f37;
+            color: #3b2f27;
             border-radius: 4px;
         }
 
         .desktop-nav a.active { /* Changed from nav a.active */
-            color: #222;
+            color: #3b2f27;
         }
 
         /* Hide the nav item for the current page */
@@ -52,19 +55,20 @@
 
         .container {
             max-width: 650px; /* Further reduced max-width */
-            margin: 80px 2% 40px auto; /* Push further right (Top, Right 2%, Bottom, Left auto) */
+            margin: 80px auto 40px auto; /* Center the container */
             padding: 3rem 2rem;
             border-radius: 10px;
         }
 
         body {
-            background-image: url('images/about_background.png');
-            background-size: cover;
-            background-position: center center;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-            color: #333;
-            font-family: 'Playfair Display', serif;
+            background-color: #fff;
+            /* background-image: url('images/about_background.png'); */ /* Removing background image */
+            /* background-size: cover; */ /* Not needed with white background */
+            /* background-position: center center; */ /* Not needed with white background */
+            /* background-repeat: no-repeat; */ /* Not needed with white background */
+            /* background-attachment: fixed; */ /* Not needed with white background */
+            color: #4b3f37;
+            font-family: 'EB Garamond', serif;
             margin: 0;
             padding: 0;
             line-height: 1.6;
@@ -86,7 +90,7 @@
             font-size: 3rem;
             margin-bottom: 2rem;
             position: relative;
-            color: #333;
+            color: #4b3f37;
             text-align: center; /* Center the heading itself */
         }
 
@@ -98,13 +102,13 @@
             transform: translateX(-50%);
             width: 60px;
             height: 3px;
-            background-color: #555;
+            background-color: #4b3f37;
         }
 
         .about-content p {
             font-size: 1.2rem;
             margin-bottom: 1.5rem;
-            color: #444;
+            color: #4b3f37;
             text-align: left; /* Ensure paragraph is left-aligned */
         }
 
@@ -125,17 +129,17 @@
             text-decoration: none;
             display: inline-block;
             padding: 0.5rem 1rem;
-            border: 1px solid #555;
+            border: 1px solid #4b3f37;
             border-radius: 20px;
             font-size: 0.9rem;
             transition: all 0.3s ease;
-            color: #444;
+            color: #4b3f37;
         }
 
         .skill-tag:hover {
-            background-color: #444;
+            background-color: #4b3f37;
             color: #fff;
-            border-color: #444;
+            border-color: #4b3f37;
         }
 
         @media (max-width: 768px) {
@@ -162,10 +166,10 @@
         }
 
         .logo-link {
-            font-family: 'Playfair Display', serif;
+            font-family: 'EB Garamond', serif;
             font-weight: bold;
             font-size: 1.8rem;
-            color: #333;
+            color: #4b3f37;
             text-decoration: none;
         }
 
@@ -174,7 +178,7 @@
             border: none;
             font-size: 2rem;
             cursor: pointer;
-            color: #333;
+            color: #4b3f37;
             padding: 0; /* Reduced padding */
             line-height: 1; /* Ensure consistent height */
             display: none; /* Hide icons by default */
@@ -207,7 +211,7 @@
             display: block; /* Make the close icon visible */
             background: none; /* Ensure no background */
             border: none; /* Ensure no border */
-            color: #333; /* Ensure color is set */
+            color: #4b3f37; /* Update color */
             cursor: pointer; /* Ensure cursor is pointer */
             padding: 0; /* Reset padding */
             line-height: 1; /* Reset line height */
@@ -226,21 +230,21 @@
         }
 
         .mobile-menu a {
-            font-family: 'Playfair Display', serif;
+            font-family: 'EB Garamond', serif;
             font-size: 2rem;
-            color: #333 !important; /* Ensure color override */
+            color: #4b3f37 !important; /* Update color with important */
             text-decoration: none !important; /* Ensure underline is removed */
             padding: 0.5rem;
             display: block;
         }
          
         .mobile-menu a:hover {
-             color: #555; /* Add a subtle hover effect */
+             color: #3b2f27; /* Update hover color */
         }
 
         .mobile-menu a.active {
             text-decoration: underline !important; /* Underline the active link */
-            text-decoration-color: #333 !important; /* Ensure underline color */
+            text-decoration-color: #4b3f37 !important; /* Update underline color */
             text-underline-offset: 5px; /* Optional: Adjust underline position */
         }
 
@@ -309,7 +313,7 @@
         <div class="about-grid">
             <div class="about-content">
                 <h1>About Me</h1>
-                <p>Enthusiastic bonsai tree enjoyer who likes reading, running and swimming in the ocean. Going to bike from Seattle to SF soon....</p>
+                <p>second year college student. enthusiastic vibe coder who likes running, swimming in the ocean and russian literature. Planing to bike from seattle to sf soon....</p>
                 <div class="skills">
                     <a href="media.html" class="skill-tag">Interesting Media</a> 
                     <a href="books.html" class="skill-tag">Books I Want to Read</a>

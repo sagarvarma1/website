@@ -6,7 +6,7 @@
     <title>Contact - My Blog</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&display=swap" rel="stylesheet">
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>   
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
     <style>
@@ -19,50 +19,149 @@
 
         body {
             min-height: 100vh;
-            background-image: url('images/tree.png');
-            background-size: cover;
-            background-position: center center;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-            font-family: 'Playfair Display', serif;
-            color: #fff;
+            background-color: #fff;
+            font-family: 'EB Garamond', serif;
+            color: #4b3f37;
         }
 
-        nav {
+        /* Desktop Nav Styles - renamed to match about.html */
+        .desktop-nav {
             padding: 1rem;
             text-align: center;
         }
 
-        nav ul {
+        .desktop-nav ul {
             list-style: none;
             display: flex;
             justify-content: center;
             gap: 2rem;
         }
 
-        nav a {
+        .desktop-nav a {
             text-decoration: none;
-            color: #fff;
+            color: #4b3f37;
             font-size: 1.5rem;
             padding: 0.5rem 1rem;
             border: 2px solid transparent;
             transition: all 0.3s ease;
         }
 
-        nav a:hover {
-            border-color: #fff;
+        .desktop-nav a:hover {
+            border-color: #4b3f37;
             border-radius: 4px;
         }
 
         /* Hide the nav item for the current page */
-        nav ul li:has(a.active) {
+        .desktop-nav ul li:has(a.active) {
             display: none;
+        }
+
+        /* --- Mobile Nav Styles --- */
+        .mobile-header {
+            display: none; /* Hidden by default */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 0.8rem 1rem; /* Reverted right padding */
+            z-index: 1000;
+            justify-content: space-between;
+            align-items: center;
+            box-sizing: border-box; /* Ensure padding is included in width calculation */
+            background-color: #fff; /* Add background color */
+        }
+
+        .logo-link {
+            font-family: 'EB Garamond', serif;
+            font-weight: bold;
+            font-size: 1.8rem;
+            color: #4b3f37;
+            text-decoration: none;
+        }
+
+        .hamburger-icon, .close-icon {
+            background: none;
+            border: none;
+            font-size: 2rem;
+            cursor: pointer;
+            color: #4b3f37;
+            padding: 0; /* Reduced padding */
+            line-height: 1; /* Ensure consistent height */
+        }
+        
+        .hamburger-icon {
+            display: none; /* Hide by default, will show in media query */
+            margin-left: auto; /* Push to the right */
+        }
+
+        .mobile-menu {
+            display: none; /* Hidden by default */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.98); /* Almost opaque white */
+            backdrop-filter: blur(10px);
+            z-index: 1100; /* Above mobile header */
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .mobile-menu.active {
+             display: flex; /* Show when active */
+        }
+
+        .mobile-menu .close-icon {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            font-size: 2.5rem;
+            display: block; /* Make the close icon visible */
+            background: none; /* Ensure no background */
+            border: none; /* Ensure no border */
+            color: #4b3f37; /* Update color */
+            cursor: pointer; /* Ensure cursor is pointer */
+            padding: 0; /* Reset padding */
+            line-height: 1; /* Reset line height */
+            outline: none; /* Remove focus outline */
+        }
+
+        .mobile-menu ul {
+            list-style: none !important; /* Ensure bullet points are removed */
+            padding: 0;
+            text-align: center;
+            width: 100%; /* Ensure ul takes width for centering text */
+        }
+
+        .mobile-menu li {
+            margin-bottom: 2rem;
+        }
+
+        .mobile-menu a {
+            font-family: 'EB Garamond', serif;
+            font-size: 2rem;
+            color: #4b3f37 !important; /* Update color with important */
+            text-decoration: none !important; /* Ensure underline is removed */
+            padding: 0.5rem;
+            display: block;
+        }
+         
+        .mobile-menu a:hover {
+             color: #3b2f27; /* Update hover color */
+        }
+
+        .mobile-menu a.active {
+            text-decoration: underline !important; /* Underline the active link */
+            text-decoration-color: #4b3f37 !important; /* Update underline color */
+            text-underline-offset: 5px; /* Optional: Adjust underline position */
         }
 
         .contact-details {
             text-align: center;
             margin-bottom: 2rem;
-            color: #fff;
+            color: #4b3f37;
             font-size: 1.1rem;
             line-height: 1.5;
         }
@@ -83,7 +182,7 @@
         }
 
         .contact-form {
-            background: rgba(0, 0, 0, 0.5);
+            background: rgba(240, 240, 240, 0.5);
             backdrop-filter: blur(5px);
             padding: 2rem;
             border-radius: 10px;
@@ -97,18 +196,18 @@
             display: block;
             margin-bottom: 0.5rem;
             font-size: 1.2rem;
-            color: #eee;
+            color: #4b3f37;
         }
 
         input, textarea {
             width: 100%;
             padding: 0.8rem;
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.7);
+            border: 1px solid rgba(0, 0, 0, 0.3);
             border-radius: 4px;
-            font-family: 'Playfair Display', serif;
+            font-family: 'EB Garamond', serif;
             font-size: 1rem;
-            color: #fff;
+            color: #4b3f37;
         }
 
         textarea {
@@ -116,49 +215,57 @@
             resize: vertical;
         }
 
-        button {
+        .contact-form button {
             background: transparent;
-            color: #fff;
-            border: 2px solid #fff;
+            color: #4b3f37;
+            border: 2px solid #4b3f37;
             padding: 1rem 2rem;
             font-size: 1.2rem;
-            font-family: 'Playfair Display', serif;
+            font-family: 'EB Garamond', serif;
             cursor: pointer;
             width: 100%;
             border-radius: 4px;
             transition: all 0.3s ease;
         }
 
-        button:hover {
-            background: rgba(255, 255, 255, 0.1);
-            transform: translateY(-2px);
+        button {
+            background: transparent;
+            color: inherit;
+            border: none;
+            font: inherit;
+            padding: 0;
+            margin: 0;
+            cursor: pointer;
         }
 
         .container {
             max-width: 600px;
             width: 90%;
-            margin: 2rem 5% 2rem auto;
+            margin: 2rem auto;
             padding: 1.5rem;
         }
 
-        @media screen and (max-width: 768px) {
-            nav ul {
-                gap: 1rem;
+        /* Media Query for Responsiveness */
+        @media (max-width: 768px) {
+            .desktop-nav {
+                display: none; /* Hide desktop nav on mobile */
             }
 
-            nav a {
-                font-size: 1.2rem;
-                padding: 0.4rem 0.8rem;
+            .mobile-header {
+                display: flex; /* Show mobile header */
+                padding: 0.8rem 1rem; /* Ensure consistent padding */
+                background-color: #fff;
+                justify-content: space-between;
+                align-items: center;
             }
-        }
-
-        @media screen and (max-width: 480px) {
+            
+            .hamburger-icon { display:block; }
+            
+            /* Adjust container margin-top to account for mobile header height */
             .container {
-                width: 95%;
-                padding: 1rem;
-                margin: 1rem auto;
+                margin-top: 80px; /* Adjust as needed */
             }
-
+            
             .contact-form {
                 padding: 1rem;
             }
@@ -172,19 +279,27 @@
                 font-size: 1rem;
             }
 
-            button {
+            .contact-form button {
                 padding: 0.7rem 1rem;
                 font-size: 1rem;
             }
         }
 
+        @media screen and (max-width: 480px) {
+            .container {
+                width: 95%;
+                padding: 1rem;
+                margin-top: 80px; /* Maintain the top margin */
+            }
+        }
+
         .success-message {
             background: transparent;
-            color: #fff;
+            color: #4b3f37;
             border: 2px solid #4CAF50;
             padding: 1rem 2rem;
             font-size: 1.1rem;
-            font-family: 'Playfair Display', serif;
+            font-family: 'EB Garamond', serif;
             width: 100%;
             border-radius: 4px;
             text-align: center;
@@ -200,7 +315,8 @@
 
 </head>
 <body>
-    <nav>
+    <!-- Desktop Navigation -->
+    <nav class="desktop-nav">
         <ul>
             <li><a href="landing.html">Home</a></li>
             <li><a href="about.html">About</a></li>
@@ -209,6 +325,24 @@
             <li><a href="contact.html" class="active">Contact</a></li>
         </ul>
     </nav>
+
+    <!-- Mobile Header -->
+    <div class="mobile-header">
+        <a href="landing.html" class="logo-link">SV</a>
+        <button class="hamburger-icon" aria-label="Open menu">&#9776;</button>
+    </div>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu">
+        <button class="close-icon" aria-label="Close menu">&times;</button>
+        <ul>
+            <li><a href="landing.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="https://sagarvarma.substack.com" target="_blank">Blog</a></li>
+            <li><a href="photos.html">Images</a></li>
+            <li><a href="contact.html" class="active">Contact</a></li>
+        </ul>
+    </div>
 
     <div class="container">
         <div class="contact-details">
@@ -277,6 +411,26 @@
                         const status = document.getElementById('form-status');
                         status.innerHTML = "<p style='color: #f44336;'>Oops! There was a problem submitting your form.</p>";
                     }
+                });
+            });
+            
+            // Mobile menu functionality
+            const hamburger = document.querySelector('.hamburger-icon');
+            const closeBtn = document.querySelector('.close-icon');
+            const mobileMenu = document.querySelector('.mobile-menu');
+
+            hamburger.addEventListener('click', () => {
+                mobileMenu.classList.add('active');
+            });
+
+            closeBtn.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+            });
+
+            // Optional: Close menu if a link is clicked
+            mobileMenu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.remove('active');
                 });
             });
         </script>

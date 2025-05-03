@@ -16,14 +16,14 @@
 
         body {
             min-height: 100vh;
-            /* background-color: #000; */ /* Replaced with image */
-            background-image: url('images/background.png');
-            background-size: cover; /* Cover the entire viewport */
-            background-position: center center; /* Center the image */
-            background-repeat: no-repeat; /* Do not repeat the image */
-            background-attachment: fixed; /* Keep background fixed on scroll */
-            font-family: 'Lora', serif;
-            /* color: #fff; */ /* Adjusted text color below */
+            background-color: #fff;
+            /* background-image: url('images/background.png'); */ /* Removing background image */
+            /* background-size: cover; */ /* Not needed with white background */
+            /* background-position: center center; */ /* Not needed with white background */
+            /* background-repeat: no-repeat; */ /* Not needed with white background */
+            /* background-attachment: fixed; */ /* Not needed with white background */
+            font-family: 'EB Garamond', serif;
+            color: #4b3f37;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -48,18 +48,18 @@
         }
 
         .nav-link {
-            color: #6a5e56; /* Muted brown/grey from image */
+            color: #4b3f37;
             text-decoration: none;
-            font-family: 'Lora', serif;
-            font-size: 1.1rem; /* Slightly smaller nav links */
+            font-family: 'EB Garamond', serif;
+            font-size: 1.1rem;
             transition: color 0.3s ease, border-bottom-color 0.3s ease;
             padding: 0.5rem 0;
             border-bottom: 2px solid transparent;
         }
 
         .nav-link:hover {
-            color: #3b2f27; /* Darker brown/grey on hover */
-            border-bottom-color: #4b3f37; /* Match heading color on hover */
+            color: #3b2f27;
+            border-bottom-color: #4b3f37;
         }
 
         /* Responsive adjustments */
