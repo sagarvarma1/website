@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Select Test</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'EB Garamond', serif;
+            margin: 0;
+            line-height: 1.6;
+            background-color: white;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            align-items: center;
+            padding-top: 80px; /* Space for header */
+        }
+        .dashboard-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: white;
+            padding: 15px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            box-sizing: border-box;
+            border-bottom: 1px solid #eee;
+        }
+        .menu-logo {
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+        .signout-btn {
+            text-decoration: none;
+            color: white;
+            background-color: #000;
+            padding: 8px 18px;
+            border-radius: 20px;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+        .signout-btn:hover {
+            background-color: #333;
+        }
+        .dashboard-content {
+            text-align: center;
+            padding: 20px;
+        }
+        .dashboard-heading {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #000;
+            margin-bottom: 30px;
+        }
+        .test-selection-form {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start; /* Align radio buttons to the left */
+            gap: 15px;
+            max-width: 300px;
+            margin: 0 auto;
+        }
+        .test-option {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+        .test-option input[type="radio"] {
+            /* Hide default radio button */
+            opacity: 0;
+            width: 0;
+            height: 0;
+            margin: 0;
+        }
+        .test-option label {
+            font-size: 1.2rem;
+            color: #333;
+            position: relative;
+            padding-left: 35px; /* Space for custom radio button */
+            cursor: pointer;
+        }
+        /* Custom radio button - circle */
+        .test-option label::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 20px;
+            height: 20px;
+            border: 2px solid #000; /* Black border */
+            border-radius: 50%;
+            background-color: white;
+        }
+        /* Custom radio button - dot when selected */
+        .test-option input[type="radio"]:checked + label::after {
+            content: '';
+            position: absolute;
+            left: 7px; /* (20px width + 2px border*2 - 10px dot width) / 2 + 2px border approx */
+            top: 50%;
+            transform: translateY(-50%);
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: #000; /* Black dot */
+        }
+        .test-option:hover label::before {
+            background-color: #f0f0f0; /* Slight hover effect */
+        }
+        /* Style for the Start Diagnostic button */
+        .start-diagnostic-btn {
+            background-color: #000;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-size: 1.2rem;
+            font-weight: 700; /* Make font bolder */
+            font-family: 'EB Garamond', serif; /* Ensure Garamond font */
+            border: none;
+            cursor: pointer;
+            margin-top: 30px; /* Space above the button */
+            display: none; /* Hidden by default */
+            width: auto; /* Auto width based on content */
+            align-self: center; /* Center button if form is flex-start */
+        }
+        .start-diagnostic-btn:hover {
+            background-color: #333;
+        }
+        /* Basic footer styling */
+        .site-footer {
+            margin-top: auto; /* Pushes footer to the bottom */
+            width: 100%;
+            background-color: #f8f9fa;
+            padding: 20px;
+            text-align: center;
+            border-top: 1px solid #eee;
+            font-size: 0.9rem;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <header class="dashboard-header">
+        <div class="menu-logo">The AI Test Prep Co.</div>
+        <button id="signOutButton" class="signout-btn">Sign Out</button>
+    </header>
+
+    <div class="dashboard-content">
+        <h1 class="dashboard-heading">Select Test</h1>
+        <form id="testSelectionForm" class="test-selection-form">
+            <div class="test-option">
+                <input type="radio" id="sat" name="test" value="SAT">
+                <label for="sat">SAT</label>
+            </div>
+            <div class="test-option">
+                <input type="radio" id="act" name="test" value="ACT">
+                <label for="act">ACT</label>
+            </div>
+            <div class="test-option">
+                <input type="radio" id="gre" name="test" value="GRE">
+                <label for="gre">GRE</label>
+            </div>
+            <div class="test-option">
+                <input type="radio" id="lsat" name="test" value="LSAT">
+                <label for="lsat">LSAT</label>
+            </div>
+            <div class="test-option">
+                <input type="radio" id="gmat" name="test" value="GMAT">
+                <label for="gmat">GMAT</label>
+            </div>
+            <div class="test-option">
+                <input type="radio" id="mcat" name="test" value="MCAT">
+                <label for="mcat">MCAT</label>
+            </div>
+            <div class="test-option">
+                <input type="radio" id="toefl" name="test" value="TOEFL">
+                <label for="toefl">TOEFL</label>
+            </div>
+            <div class="test-option">
+                <input type="radio" id="ap" name="test" value="AP Exams"> <!-- Changed to "AP Exams" for clarity -->
+                <label for="ap">AP Exams</label>
+            </div>
+            <div class="test-option">
+                <input type="radio" id="psat" name="test" value="PSAT">
+                <label for="psat">PSAT</label>
+            </div>
+            <!-- Add more tests here if needed -->
+        </form>
+
+        <button id="startDiagnosticButton" class="start-diagnostic-btn">Start Diagnostic</button>
+
+    </div>
+
+    <footer class="site-footer">
+        <p>&copy; The AI Test Prep Co. 2025. All Rights Reserved</p>
+    </footer>
+
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-auth-compat.js"></script>
+
+    <script>
+        // Your web app's Firebase configuration (should be same as signin.html)
+        const firebaseConfig = {
+            apiKey: "AIzaSyCIov0aEZS-6GFvuGTix3zP8DAMDnH3IPA",
+            authDomain: "testing-61207.firebaseapp.com",
+            projectId: "testing-61207",
+            storageBucket: "testing-61207.firebasestorage.app",
+            messagingSenderId: "1071492527517",
+            appId: "1:1071492527517:web:54e9f497821e2cc16f2b74",
+            measurementId: "G-4ZZNKM3FF0"
+        };
+
+        // Initialize Firebase
+        if (!firebase.apps.length) {
+            firebase.initializeApp(firebaseConfig);
+        }
+        const auth = firebase.auth();
+
+        // Auth state listener
+        auth.onAuthStateChanged(user => {
+            if (user) {
+                // User is signed in.
+                console.log('User is signed in on dashboard:', user.email);
+            } else {
+                // No user is signed in. Redirect to sign-in page.
+                console.log('No user signed in on dashboard, redirecting to signin.html');
+                window.location.href = 'signin.html';
+            }
+        });
+
+        // Sign out button logic
+        const signOutButton = document.getElementById('signOutButton');
+        if (signOutButton) {
+            signOutButton.addEventListener('click', () => {
+                auth.signOut().then(() => {
+                    // Sign-out successful.
+                    console.log('User signed out');
+                    window.location.href = 'signin.html';
+                }).catch((error) => {
+                    // An error happened.
+                    console.error('Sign out error:', error);
+                    alert('Error signing out. Please try again.');
+                });
+            });
+        }
+        
+        // Optional: Handle radio button selection (e.g., log or proceed)
+        const testSelectionForm = document.getElementById('testSelectionForm');
+        const startDiagnosticButton = document.getElementById('startDiagnosticButton');
+
+        if(testSelectionForm && startDiagnosticButton) {
+            testSelectionForm.addEventListener('change', (event) => {
+                if(event.target.type === 'radio' && event.target.name === 'test') {
+                    console.log('Selected test:', event.target.value);
+                    startDiagnosticButton.style.display = 'inline-block'; // Show the button
+                    // You can also update the button's text or add a data attribute for the selected test if needed:
+                    // startDiagnosticButton.textContent = `Start ${event.target.value} Diagnostic`;
+                    // startDiagnosticButton.setAttribute('data-test', event.target.value);
+                }
+            });
+        }
+
+        // Optional: Handle Start Diagnostic button click
+        if (startDiagnosticButton) {
+            startDiagnosticButton.addEventListener('click', () => {
+                const selectedTestRadio = document.querySelector('input[name="test"]:checked');
+                if (selectedTestRadio) {
+                    const selectedTestValue = selectedTestRadio.value;
+                    console.log(`Start Diagnostic button clicked for: ${selectedTestValue}`);
+                    // Navigate to diagnostic.html, passing the selected test as a URL parameter
+                    window.location.href = `diagnostic.html?test=${encodeURIComponent(selectedTestValue)}`;
+                } else {
+                    // This case should ideally not be reached if the button is only shown after selection
+                    alert('Please select a test first.');
+                }
+            });
+        }
+    </script>
+</body>
+</html> 

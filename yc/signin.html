@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Menu bar styles (copied from index.html) */
+        .menu-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: white;
+            padding: 15px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            box-sizing: border-box;
+            border-bottom: 1px solid #eee;
+        }
+        .menu-logo {
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-size: 1.1rem;
+        }
+        .nav-links a:hover {
+            text-decoration: underline;
+            text-decoration-color: black;
+            text-decoration-thickness: 2px;
+            text-underline-offset: 5px;
+        }
+        .auth-buttons {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+        .login-btn {
+            text-decoration: none;
+            color: #333;
+            font-size: 1.1rem;
+            margin-right: 10px;
+        }
+        .signup-btn {
+            text-decoration: none;
+            color: white;
+            background-color: #000;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+        }
+        .signup-btn svg {
+            margin-left: 5px;
+        }
+
+        body {
+            font-family: 'EB Garamond', serif;
+            margin: 0;
+            line-height: 1.6;
+            background-color: white;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        .content-wrapper {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+            padding-top: 120px; /* Account for navbar height */
+            text-align: center;
+        }
+        .signin-heading {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #000;
+            margin-bottom: 30px;
+        }
+        .signin-form input[type="email"],
+        .signin-form input[type="password"] {
+            padding: 12px 15px;
+            font-size: 1.1rem;
+            border: 2px solid #ccc; /* Lighter border for form fields */
+            border-radius: 8px;
+            width: 100%;
+            max-width: 400px;
+            box-sizing: border-box;
+            margin-bottom: 20px;
+            background-color: white;
+            color: #000;
+            font-family: 'EB Garamond', serif; /* Ensure Garamond font */
+        }
+        .signin-form input[type="email"]:focus,
+        .signin-form input[type="password"]:focus {
+            border-color: #000; /* Darken border on focus */
+            outline: none;
+        }
+        .signin-form .submit-button {
+            padding: 12px 35px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: white;
+            background-color: #000;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            width: 100%;
+            max-width: 400px; /* Match input field width */
+            font-family: 'EB Garamond', serif; /* Ensure Garamond font */
+        }
+        .signin-form .submit-button:hover {
+            background-color: #333;
+        }
+
+        /* Style for error messages */
+        .error-message {
+            color: red;
+            margin-top: 10px;
+            font-size: 0.9rem;
+            height: 1em; /* Reserve space to prevent layout shift */
+        }
+
+        /* Footer Styles (copied from other pages) */
+        .site-footer {
+            width: 100%;
+        }
+        .footer-tagline {
+            background-color: #000;
+            color: #fff;
+            padding: 30px 0;
+            text-align: center;
+            overflow-x: hidden;
+            width: 100%;
+        }
+        .footer-tagline p {
+            font-family: 'EB Garamond', serif;
+            font-size: 11vw;
+            font-weight: 700;
+            margin: 0;
+            white-space: nowrap;
+            line-height: 1;
+        }
+        .footer-content-area {
+            background-color: #000;
+            color: #fff;
+            padding: 40px 5%;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+        .footer-links-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .footer-left-col, .footer-right-col {
+            display: flex;
+            flex-direction: column;
+        }
+        .footer-left-col {
+            align-items: flex-start;
+        }
+        .footer-right-col {
+            align-items: flex-end;
+            text-align: right;
+        }
+        .footer-link-group {
+            margin-bottom: 20px;
+        }
+        .footer-link-group a, .copyright-text, .footer-right-col a {
+            color: #ccc;
+            text-decoration: none;
+            font-size: 0.9rem;
+            display: block;
+            margin-bottom: 8px;
+        }
+        .footer-link-group a:hover, .footer-right-col a:hover {
+            color: #fff;
+            text-decoration: underline;
+        }
+        .copyright-text {
+            font-size: 0.85rem;
+            color: #aaa;
+        }
+        .footer-right-col .main-links a {
+             margin-left: 15px;
+             display: inline;
+        }
+        .footer-right-col .back-to-top {
+            margin-top: 15px;
+            font-size: 0.9rem;
+        }
+
+        /* Hamburger Menu Icon */
+        .hamburger-menu {
+            display: none; /* Hidden by default, shown in mobile */
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 10px;
+            z-index: 1002; 
+        }
+        .hamburger-menu span {
+            display: block;
+            width: 25px;
+            height: 3px;
+            background-color: #333;
+            margin: 5px 0;
+            transition: all 0.3s ease-in-out;
+        }
+
+        /* Mobile Menu Container */
+        .mobile-menu {
+            display: none; /* Hidden by default */
+            position: fixed;
+            left: 0;
+            width: 100%;
+            background-color: white;
+            z-index: 1001; 
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start; 
+            padding-top: 30px; 
+            box-sizing: border-box;
+            overflow-y: auto; 
+        }
+
+        .mobile-menu.active {
+            display: flex;
+        }
+        .mobile-menu .mobile-nav-links, .mobile-menu .mobile-auth-buttons {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+        }
+        .mobile-menu a {
+            color: #333;
+            text-decoration: none;
+            font-size: 1.3rem; 
+            margin: 12px 0; 
+            padding: 10px 20px; 
+            width: 80%; 
+            text-align: center;
+            box-sizing: border-box;
+        }
+        .mobile-menu a:hover {
+            background-color: #f0f0f0; 
+            border-radius: 5px;
+        }
+        .mobile-menu .login-btn {
+             margin-bottom: 10px; 
+        }
+        .mobile-menu .signup-btn-mobile {
+            color: white;
+            background-color: #000;
+            padding: 12px 25px; 
+            border-radius: 25px;
+            font-size: 1.3rem;
+            display: inline-flex; 
+            align-items: center;
+            justify-content: center;
+            margin-top: 20px; 
+            width: auto; 
+        }
+        .mobile-menu .signup-btn-mobile:hover {
+             background-color: #333; 
+        }
+        .mobile-menu .signup-btn-mobile svg {
+            margin-left: 8px; 
+        }
+
+        /* Media Query for Mobile View */
+        @media (max-width: 768px) {
+            .nav-links,
+            .auth-buttons {
+                display: none; 
+            }
+            .hamburger-menu {
+                display: flex; 
+                flex-direction: column; 
+                align-items: center; 
+                justify-content: space-around; 
+            }
+            /* Hamburger animation to X */
+            .hamburger-menu.active span:nth-child(1) {
+                transform: translateY(8px) rotate(45deg);
+            }
+            .hamburger-menu.active span:nth-child(2) {
+                opacity: 0;
+            }
+            .hamburger-menu.active span:nth-child(3) {
+                transform: translateY(-8px) rotate(-45deg);
+            }
+             .menu-bar {
+                /* Potentially adjust padding for mobile if different from other pages */
+                /* padding: 10px 20px; */ 
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="menu-bar">
+        <div class="menu-logo">The AI Test Prep Co.</div>
+        <nav class="nav-links">
+            <a href="index.html#turning-point">How it Works</a>
+            <a href="index.html#generate-video">Use Cases</a>
+            <a href="index.html#waitlist">Pricing</a>
+            <a href="index.html#manifesto">About</a>
+        </nav>
+        <div class="auth-buttons">
+            <a href="signin.html" class="login-btn">Log in</a>
+            <a href="waitlist.html" class="signup-btn">Sign up <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg></a>
+        </div>
+        <button class="hamburger-menu" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </header>
+    <div class="mobile-menu" id="mobileMenu">
+        <nav class="mobile-nav-links">
+            <a href="index.html#turning-point">How it Works</a>
+            <a href="index.html#generate-video">Use Cases</a>
+            <a href="index.html#waitlist">Pricing</a>
+            <a href="index.html#manifesto">About</a>
+        </nav>
+        <div class="mobile-auth-buttons">
+            <a href="signin.html" class="login-btn">Log in</a>
+            <a href="waitlist.html" class="signup-btn-mobile">Sign up <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg></a>
+        </div>
+    </div>
+
+    <div class="content-wrapper">
+        <h1 class="signin-heading">Sign In</h1>
+        <form class="signin-form" id="signInForm">
+            <input type="email" id="email" placeholder="Email" required>
+            <input type="password" id="password" placeholder="Password" required>
+            <button type="submit" id="signInButton" class="submit-button">Sign In</button>
+            <p id="errorMessage" class="error-message"></p>
+        </form>
+    </div>
+
+    <footer class="site-footer">
+        <div class="footer-tagline">
+            <p>The AI Test Prep Co.</p>
+        </div>
+        <div class="footer-content-area">
+            <div class="footer-links-container">
+                <div class="footer-left-col">
+                    <div class="footer-link-group">
+                        <a href="terms.html">Terms & policies</a>
+                        <a href="privacy.html">Privacy policy</a>
+                    </div>
+                    <p class="copyright-text">© The AI Test Preperation Company 2025. All Rights Reserved</p>
+                </div>
+                <div class="footer-right-col">
+                    <div class="footer-link-group main-links">
+                        <a href="careers.html">Careers</a>
+                        <a href="index.html#manifesto">Manifesto</a>
+                        <a href="index.html#">Help Center</a> 
+                        <a href="#">Twitter</a>
+                        <a href="#">Instagram</a>
+                        <a href="#">GitHub</a>
+                    </div>
+                    <a href="#" class="back-to-top">Back to top</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-auth-compat.js"></script>
+
+    <script>
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+          apiKey: "AIzaSyCIov0aEZS-6GFvuGTix3zP8DAMDnH3IPA",
+          authDomain: "testing-61207.firebaseapp.com",
+          projectId: "testing-61207",
+          storageBucket: "testing-61207.firebasestorage.app",
+          messagingSenderId: "1071492527517",
+          appId: "1:1071492527517:web:54e9f497821e2cc16f2b74",
+          measurementId: "G-4ZZNKM3FF0"
+        };
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+
+        // Sign-in logic
+        const signInForm = document.getElementById('signInForm');
+        const emailInput = document.getElementById('email');
+        const passwordInput = document.getElementById('password');
+        const errorMessageElement = document.getElementById('errorMessage');
+
+        if (signInForm) {
+            signInForm.addEventListener('submit', (event) => {
+                event.preventDefault(); // Prevent default form submission
+                errorMessageElement.textContent = ''; // Clear previous errors
+
+                const email = emailInput.value;
+                const password = passwordInput.value;
+
+                if (!email || !password) {
+                    errorMessageElement.textContent = 'Please enter both email and password.';
+                    return;
+                }
+
+                auth.signInWithEmailAndPassword(email, password)
+                    .then((userCredential) => {
+                        // Signed in 
+                        console.log('User signed in:', userCredential.user);
+                        // Redirect to dashboard.html or another page
+                        window.location.href = 'dashboard.html'; 
+                    })
+                    .catch((error) => {
+                        console.error("Sign-in error:", error);
+                        // Handle common errors
+                        let message = 'An error occurred. Please try again.';
+                        if (error.code === 'auth/user-not-found' || error.code === 'auth/invalid-credential') {
+                            message = 'Invalid email or password.'; // More generic message for these two
+                        } else if (error.code === 'auth/wrong-password') {
+                            message = 'Incorrect password. Please try again.';
+                        } else if (error.code === 'auth/invalid-email') {
+                            message = 'The email address is not valid.';
+                        }
+                        errorMessageElement.textContent = message;
+                    });
+            });
+        }
+    </script>
+
+    <script>
+        const hamburger = document.querySelector('.hamburger-menu');
+        const mobileMenu = document.getElementById('mobileMenu'); // Assuming your mobile menu has id 'mobileMenu'
+        const body = document.body;
+        const menuBar = document.querySelector('.menu-bar');
+
+        if (hamburger && mobileMenu && menuBar) { // Check all elements exist
+            hamburger.addEventListener('click', () => {
+                const isExpanded = hamburger.getAttribute('aria-expanded') === 'true' || false;
+                hamburger.setAttribute('aria-expanded', !isExpanded);
+                hamburger.classList.toggle('active');
+                mobileMenu.classList.toggle('active');
+                
+                if (mobileMenu.classList.contains('active')) {
+                    body.style.overflow = 'hidden';
+                    const menuBarHeight = menuBar.offsetHeight;
+                    mobileMenu.style.top = menuBarHeight + 'px';
+                    mobileMenu.style.height = 'calc(100vh - ' + menuBarHeight + 'px)';
+                } else {
+                    body.style.overflow = 'auto';
+                }
+            });
+        }
+
+        if (mobileMenu) { // Check if mobileMenu exists
+            const mobileLinks = mobileMenu.querySelectorAll('a');
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    if (mobileMenu.classList.contains('active') && hamburger) { // Also check hamburger exists
+                        hamburger.setAttribute('aria-expanded', 'false');
+                        hamburger.classList.remove('active');
+                        mobileMenu.classList.remove('active');
+                        body.style.overflow = 'auto';
+                    }
+                });
+            });
+        }
+    </script>
+</body>
+</html> 

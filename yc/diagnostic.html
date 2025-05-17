@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diagnostic Test</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'EB Garamond', serif;
+            margin: 0;
+            line-height: 1.6;
+            background-color: white;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            align-items: center;
+            padding-top: 80px; /* Space for header */
+        }
+        .diagnostic-header { /* Similar to dashboard-header */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: white;
+            padding: 15px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            box-sizing: border-box;
+            border-bottom: 1px solid #eee;
+        }
+        .menu-logo {
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+        .signout-btn {
+            text-decoration: none;
+            color: white;
+            background-color: #000;
+            padding: 8px 18px;
+            border-radius: 20px;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+        .signout-btn:hover {
+            background-color: #333;
+        }
+        .diagnostic-container {
+            width: 90%;
+            max-width: 800px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            /* box-shadow: 0 2px 10px rgba(0,0,0,0.1); */
+            margin-top: 20px;
+        }
+        .diagnostic-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #000;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        .progress-indicator {
+            text-align: center;
+            font-size: 1rem;
+            color: #555;
+            margin-bottom: 20px;
+        }
+        .question-area {
+            margin-bottom: 20px;
+        }
+        .question-text {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 15px;
+        }
+        .options-list {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .option-item label {
+            display: block;
+            padding: 10px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.2s, border-color 0.2s;
+            font-size: 1.1rem;
+        }
+        .option-item input[type="radio"] {
+            display: none; /* Hide actual radio button */
+        }
+        .option-item input[type="radio"]:checked + label {
+            background-color: #e0e0e0; /* A light grey for selected */
+            border-color: #000;
+            font-weight: bold;
+        }
+        .option-item label:hover {
+            background-color: #f5f5f5;
+        }
+        .navigation-buttons {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+        }
+        .nav-btn, .submit-btn {
+            background-color: #000;
+            color: white;
+            padding: 10px 25px;
+            border-radius: 20px;
+            font-size: 1.1rem;
+            font-family: 'EB Garamond', serif;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .nav-btn:hover, .submit-btn:hover {
+            background-color: #333;
+        }
+        .nav-btn:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+        .submit-btn {
+            background-color: #28a745; /* Green for submit */
+        }
+        .submit-btn:hover {
+            background-color: #218838;
+        }
+        .site-footer {
+            margin-top: auto;
+            width: 100%;
+            background-color: #f8f9fa;
+            padding: 20px;
+            text-align: center;
+            border-top: 1px solid #eee;
+            font-size: 0.9rem;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <header class="diagnostic-header">
+        <div class="menu-logo">The AI Test Prep Co.</div>
+        <button id="signOutButton" class="signout-btn">Sign Out</button>
+    </header>
+
+    <div class="diagnostic-container" id="diagnosticContainer" style="display: none;"> <!-- Hidden initially -->
+        <h1 id="diagnosticTitle" class="diagnostic-title">Diagnostic Test</h1>
+        <p id="progressIndicator" class="progress-indicator">Question 1 of 10</p>
+        
+        <div id="questionArea" class="question-area">
+            <p id="questionText" class="question-text">Loading question...</p>
+            <ul id="optionsList" class="options-list">
+                <!-- Options will be populated by JavaScript -->
+            </ul>
+        </div>
+
+        <div class="navigation-buttons">
+            <button id="prevButton" class="nav-btn">Previous</button>
+            <button id="nextButton" class="nav-btn">Next</button>
+            <button id="submitButton" class="submit-btn" style="display: none;">Submit Quiz</button>
+        </div>
+    </div>
+     <div id="loadingMessage" style="text-align: center; margin-top: 50px; font-size: 1.2rem;">Loading diagnostic...</div>
+
+
+    <footer class="site-footer">
+        <p>&copy; The AI Test Prep Co. 2025. All Rights Reserved</p>
+    </footer>
+
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-auth-compat.js"></script>
+
+    <script>
+        // Firebase Configuration (should be same as other pages)
+        const firebaseConfig = {
+            apiKey: "AIzaSyCIov0aEZS-6GFvuGTix3zP8DAMDnH3IPA",
+            authDomain: "testing-61207.firebaseapp.com",
+            projectId: "testing-61207",
+            storageBucket: "testing-61207.firebasestorage.app",
+            messagingSenderId: "1071492527517",
+            appId: "1:1071492527517:web:54e9f497821e2cc16f2b74",
+            measurementId: "G-4ZZNKM3FF0"
+        };
+
+        if (!firebase.apps.length) {
+            firebase.initializeApp(firebaseConfig);
+        }
+        const auth = firebase.auth();
+
+        // Placeholder Questions Data
+        const allTestQuestions = {
+            "SAT": Array.from({length: 10}, (_, i) => ({ id: i + 1, text: `SAT Placeholder Question ${i + 1}: This is a sample question. What is the primary subject discussed?`, options: ["Literature", "Mathematics", "History", "Science"], correctAnswer: "Mathematics" })),
+            "ACT": Array.from({length: 10}, (_, i) => ({ id: i + 1, text: `ACT Placeholder Question ${i + 1}: Analyze the provided passage. What is the main idea?`, options: ["Topic A", "Topic B", "Topic C", "Topic D"], correctAnswer: "Topic A" })),
+            "GRE": Array.from({length: 10}, (_, i) => ({ id: i + 1, text: `GRE Placeholder Question ${i + 1}: Solve the quantitative problem: x + 5 = 10. What is x?`, options: ["3", "5", "7", "10"], correctAnswer: "5" })),
+            "LSAT": Array.from({length: 10}, (_, i) => ({ id: i + 1, text: `LSAT Placeholder Question ${i + 1}: Evaluate the logical argument presented. Is it valid?`, options: ["Valid", "Invalid", "Cannot Be Determined", "Partially Valid"], correctAnswer: "Valid" })),
+            "GMAT": Array.from({length: 10}, (_, i) => ({ id: i + 1, text: `GMAT Placeholder Question ${i + 1}: Assess the data sufficiency. Is statement (1) alone sufficient?`, options: ["Statement (1) ALONE is sufficient", "Statement (2) ALONE is sufficient", "BOTH statements TOGETHER are sufficient", "Statements are NOT sufficient"], correctAnswer: "Statement (1) ALONE is sufficient" })),
+            "MCAT": Array.from({length: 10}, (_, i) => ({ id: i + 1, text: `MCAT Placeholder Question ${i + 1}: This question relates to biological sciences. Which organelle is responsible for ATP production?`, options: ["Nucleus", "Ribosome", "Mitochondria", "Golgi Apparatus"], correctAnswer: "Mitochondria" })),
+            "TOEFL": Array.from({length: 10}, (_, i) => ({ id: i + 1, text: `TOEFL Placeholder Question ${i + 1}: Listen to the lecture excerpt. What is the speaker mainly discussing?`, options: ["Academic Topic 1", "Academic Topic 2", "Academic Topic 3", "Academic Topic 4"], correctAnswer: "Academic Topic 1" })),
+            "AP Exams": Array.from({length: 10}, (_, i) => ({ id: i + 1, text: `AP Exams Placeholder Question ${i + 1}: This question is representative of an AP Exam. Define a key term.`, options: ["Definition A", "Definition B", "Definition C", "Definition D"], correctAnswer: "Definition A" })),
+            "PSAT": Array.from({length: 10}, (_, i) => ({ id: i + 1, text: `PSAT Placeholder Question ${i + 1}: Similar to SAT, this question tests reading comprehension. What is implied?`, options: ["Implication 1", "Implication 2", "Implication 3", "Implication 4"], correctAnswer: "Implication 1" }))
+        };
+
+        let currentQuestions = [];
+        let currentQuestionIndex = 0;
+        let userAnswers = []; // To store user's answers
+
+        const diagnosticContainer = document.getElementById('diagnosticContainer');
+        const loadingMessage = document.getElementById('loadingMessage');
+        const diagnosticTitleEl = document.getElementById('diagnosticTitle');
+        const progressIndicatorEl = document.getElementById('progressIndicator');
+        const questionTextEl = document.getElementById('questionText');
+        const optionsListEl = document.getElementById('optionsList');
+        const prevButton = document.getElementById('prevButton');
+        const nextButton = document.getElementById('nextButton');
+        const submitButton = document.getElementById('submitButton');
+        const signOutButton = document.getElementById('signOutButton');
+
+        function loadQuestion(index) {
+            if (index < 0 || index >= currentQuestions.length) return;
+            
+            const question = currentQuestions[index];
+            questionTextEl.textContent = question.text;
+            optionsListEl.innerHTML = ''; // Clear previous options
+
+            question.options.forEach((option, i) => {
+                const li = document.createElement('li');
+                li.classList.add('option-item');
+                
+                const radioId = `q${index}_option${i}`;
+                const radioInput = document.createElement('input');
+                radioInput.type = 'radio';
+                radioInput.name = `question_${index}`;
+                radioInput.id = radioId;
+                radioInput.value = option;
+                if (userAnswers[index] === option) {
+                    radioInput.checked = true;
+                }
+                radioInput.addEventListener('change', () => {
+                    userAnswers[index] = option;
+                    // console.log(`Question ${index+1} answered:`, option);
+                });
+
+                const label = document.createElement('label');
+                label.htmlFor = radioId;
+                label.textContent = option;
+
+                li.appendChild(radioInput);
+                li.appendChild(label);
+                optionsListEl.appendChild(li);
+            });
+
+            progressIndicatorEl.textContent = `Question ${index + 1} of ${currentQuestions.length}`;
+            prevButton.disabled = index === 0;
+            nextButton.style.display = index === currentQuestions.length - 1 ? 'none' : 'inline-block';
+            submitButton.style.display = index === currentQuestions.length - 1 ? 'inline-block' : 'none';
+        }
+
+        function initializeDiagnostic(testName) {
+            if (allTestQuestions[testName]) {
+                currentQuestions = allTestQuestions[testName];
+                userAnswers = new Array(currentQuestions.length).fill(null); // Reset answers
+                currentQuestionIndex = 0;
+                diagnosticTitleEl.textContent = `${testName} Diagnostic`;
+                loadQuestion(currentQuestionIndex);
+                diagnosticContainer.style.display = 'block';
+                loadingMessage.style.display = 'none';
+            } else {
+                diagnosticTitleEl.textContent = 'Error';
+                questionTextEl.textContent = 'Could not load questions for the selected test. Please try again or select a different test.';
+                optionsListEl.innerHTML = '';
+                document.querySelector('.navigation-buttons').style.display = 'none';
+                 loadingMessage.style.display = 'none';
+                 diagnosticContainer.style.display = 'block'; // Show container to display error
+            }
+        }
+        
+        auth.onAuthStateChanged(user => {
+            if (user) {
+                // User is signed in. Proceed to get test from URL.
+                const urlParams = new URLSearchParams(window.location.search);
+                const testName = urlParams.get('test');
+                if (testName) {
+                    initializeDiagnostic(decodeURIComponent(testName));
+                } else {
+                     loadingMessage.textContent = 'No test selected. Please go back to the dashboard.';
+                     diagnosticContainer.style.display = 'none';
+                }
+            } else {
+                // No user is signed in. Redirect to sign-in page.
+                window.location.href = 'signin.html';
+            }
+        });
+
+        if (signOutButton) {
+            signOutButton.addEventListener('click', () => {
+                auth.signOut().then(() => {
+                    window.location.href = 'signin.html';
+                }).catch(error => console.error('Sign out error:', error));
+            });
+        }
+
+        if (prevButton) {
+            prevButton.addEventListener('click', () => {
+                if (currentQuestionIndex > 0) {
+                    currentQuestionIndex--;
+                    loadQuestion(currentQuestionIndex);
+                }
+            });
+        }
+
+        if (nextButton) {
+            nextButton.addEventListener('click', () => {
+                if (currentQuestionIndex < currentQuestions.length - 1) {
+                    // Optional: Check if current question is answered before proceeding
+                    // if (userAnswers[currentQuestionIndex] === null) {
+                    //     alert("Please select an answer before proceeding.");
+                    //     return;
+                    // }
+                    currentQuestionIndex++;
+                    loadQuestion(currentQuestionIndex);
+                }
+            });
+        }
+
+        if (submitButton) {
+            submitButton.addEventListener('click', () => {
+                // Optional: Check if all questions are answered
+                const unanswered = userAnswers.filter(ans => ans === null).length;
+                if (unanswered > 0) {
+                    if (!confirm(`You have ${unanswered} unanswered questions. Submit anyway?`)) {
+                        return;
+                    }
+                }
+                // For now, just an alert. Later, you can add grading logic or send data to Firebase.
+                console.log("User answers:", userAnswers);
+                alert('Diagnostic submitted! Thank you. (Results processing not yet implemented).');
+                // Potentially redirect or show a summary
+                 window.location.href = 'dashboard.html'; // Example: redirect back to dashboard
+            });
+        }
+
+    </script>
+</body>
+</html> 

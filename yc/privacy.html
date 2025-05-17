@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'EB Garamond', serif;
+            margin: 0; /* Changed from margin: 20px; */
+            line-height: 1.6;
+            background-color: white; /* Explicitly set background for content area */
+        }
+        h1, h2 {
+            font-family: 'EB Garamond', serif;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            padding-top: 40px; /* Added top padding */
+            padding-top: 100px; /* Adjusted padding-top for fixed navbar */
+            padding-left: 20px; /* Added side padding */
+            padding-right: 20px; /* Added side padding */
+            padding-bottom: 50px; /* Kept existing bottom padding */
+        }
+        .nav-buttons-container {
+            display: flex;
+            gap: 10px; /* Space between buttons */
+            margin-bottom: 25px; /* Space below buttons */
+        }
+        .nav-button {
+            display: inline-block;
+            padding: 8px 18px;
+            background-color: #000000;
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 20px; /* Pill shape */
+            font-size: 0.9em;
+            border: 1px solid #000000; /* Ensure border for consistency */
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .nav-button:hover {
+            background-color: #333333;
+            color: #ffffff;
+        }
+        .back-to-home-btn {
+            display: inline-block;
+            margin-bottom: 20px;
+            padding: 8px 15px;
+            background-color: #f0f0f0;
+            color: #333;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 0.9em;
+        }
+        .back-to-home-btn:hover {
+            background-color: #e0e0e0;
+        }
+        /* Styles from index.html for footer */
+        .site-footer {
+            width: 100%;
+            margin-top: 80px; /* Space above the footer */
+            /* Removed background-color, padding, text-align, font-size, color, border-top from here as they are handled by inner elements or not needed for the container */
+        }
+
+        .footer-tagline {
+            background-color: #000;
+            color: #fff;
+            padding: 30px 0; /* Adjusted padding */
+            text-align: center;
+            overflow-x: hidden; /* To clip overflowing text */
+            width: 100%; /* Ensure it spans full available width */
+        }
+
+        .footer-tagline p {
+            font-family: 'EB Garamond', serif; /* Ensure EB Garamond is used */
+            font-size: 11vw; /* Large responsive font size */
+            font-weight: 700; 
+            margin: 0;
+            white-space: nowrap; /* Prevent wrapping */
+            line-height: 1; /* Adjust line height */
+        }
+
+         .footer-content-area {
+            background-color: #000;
+            color: #fff;
+            padding: 40px 5%; /* Responsive padding */
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; /* Sans-serif for footer */
+        }
+
+        .footer-links-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap; /* Allow wrapping on smaller screens */
+            max-width: 1200px; /* Max width for content */
+            margin: 0 auto; /* Center the content */
+        }
+
+        .footer-left-col, .footer-right-col {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .footer-left-col {
+            align-items: flex-start;
+        }
+
+        .footer-right-col {
+            align-items: flex-end;
+            text-align: right; /* Align text to the right for this column */
+        }
+
+        .footer-link-group {
+            margin-bottom: 20px;
+        }
+        
+        .footer-link-group a, .copyright-text, .footer-right-col a {
+            color: #ccc; /* Lighter grey for less emphasis than pure white */
+            text-decoration: none;
+            font-size: 0.9rem;
+            display: block; /* Make links block for easier clicking / stacking */
+            margin-bottom: 8px;
+        }
+        
+        .footer-link-group a:hover, .footer-right-col a:hover {
+            color: #fff;
+            text-decoration: underline;
+        }
+
+        .copyright-text {
+            font-size: 0.85rem;
+            color: #aaa; /* Even lighter grey for copyright */
+        }
+
+        .footer-right-col .main-links a {
+             margin-left: 15px; /* Space between links in the right column if they were inline */
+             display: inline; /* For side-by-side main links */
+        }
+        .footer-right-col .back-to-top {
+            margin-top: 15px; /* Space above back to top */
+            font-size: 0.9rem;
+        }
+        /* Menu bar styles */
+        .menu-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: white;
+            padding: 15px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            box-sizing: border-box;
+            border-bottom: 1px solid #eee; /* Added a subtle border */
+        }
+        .menu-logo {
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-size: 1.1rem;
+        }
+        .nav-links a:hover {
+            text-decoration: underline;
+            text-decoration-color: black;
+            text-decoration-thickness: 2px;
+            text-underline-offset: 5px;
+        }
+        .auth-buttons {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+        .login-btn {
+            text-decoration: none;
+            color: #333;
+            font-size: 1.1rem;
+            margin-right: 10px;
+        }
+        .signup-btn {
+            text-decoration: none;
+            color: white;
+            background-color: #000;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+        }
+        .signup-btn svg {
+            margin-left: 5px;
+        }
+
+        /* Hamburger Menu Icon */
+        .hamburger-menu {
+            display: none; /* Hidden by default, shown in mobile */
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 10px;
+            z-index: 1002; 
+        }
+        .hamburger-menu span {
+            display: block;
+            width: 25px;
+            height: 3px;
+            background-color: #333;
+            margin: 5px 0;
+            transition: all 0.3s ease-in-out;
+        }
+
+        /* Mobile Menu Container */
+        .mobile-menu {
+            display: none; /* Hidden by default */
+            position: fixed;
+            left: 0;
+            width: 100%;
+            background-color: white;
+            z-index: 1001; 
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start; 
+            padding-top: 30px; 
+            box-sizing: border-box;
+            overflow-y: auto; 
+        }
+
+        .mobile-menu.active {
+            display: flex;
+        }
+        .mobile-menu .mobile-nav-links, .mobile-menu .mobile-auth-buttons {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+        }
+        .mobile-menu a {
+            color: #333;
+            text-decoration: none;
+            font-size: 1.3rem; 
+            margin: 12px 0; 
+            padding: 10px 20px; 
+            width: 80%; 
+            text-align: center;
+            box-sizing: border-box;
+        }
+        .mobile-menu a:hover {
+            background-color: #f0f0f0; 
+            border-radius: 5px;
+        }
+        .mobile-menu .login-btn {
+             margin-bottom: 10px; 
+        }
+        .mobile-menu .signup-btn-mobile {
+            color: white;
+            background-color: #000;
+            padding: 12px 25px; 
+            border-radius: 25px;
+            font-size: 1.3rem;
+            display: inline-flex; 
+            align-items: center;
+            justify-content: center;
+            margin-top: 20px; 
+            width: auto; 
+        }
+        .mobile-menu .signup-btn-mobile:hover {
+             background-color: #333; 
+        }
+        .mobile-menu .signup-btn-mobile svg {
+            margin-left: 8px; 
+        }
+
+        /* Media Query for Mobile View */
+        @media (max-width: 768px) {
+            .nav-links,
+            .auth-buttons {
+                display: none; 
+            }
+            .hamburger-menu {
+                display: flex; 
+                flex-direction: column; 
+                align-items: center; 
+                justify-content: space-around; 
+            }
+            /* Hamburger animation to X */
+            .hamburger-menu.active span:nth-child(1) {
+                transform: translateY(8px) rotate(45deg);
+            }
+            .hamburger-menu.active span:nth-child(2) {
+                opacity: 0;
+            }
+            .hamburger-menu.active span:nth-child(3) {
+                transform: translateY(-8px) rotate(-45deg);
+            }
+            .menu-bar {
+                /* Potentially adjust padding for mobile if different from other pages */
+                /* padding: 10px 20px; */ 
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="menu-bar">
+        <div class="menu-logo">The AI Test Prep Co.</div>
+        <nav class="nav-links">
+            <a href="index.html#turning-point">How it Works</a>
+            <a href="index.html#generate-video">Use Cases</a>
+            <a href="index.html#waitlist">Pricing</a>
+            <a href="index.html#manifesto">About</a>
+        </nav>
+        <div class="auth-buttons">
+            <a href="signin.html" class="login-btn">Log in</a>
+            <a href="waitlist.html" class="signup-btn">Sign up <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg></a>
+        </div>
+        <button class="hamburger-menu" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </header>
+    <div class="mobile-menu" id="mobileMenu">
+        <nav class="mobile-nav-links">
+            <a href="index.html#turning-point">How it Works</a>
+            <a href="index.html#generate-video">Use Cases</a>
+            <a href="index.html#waitlist">Pricing</a>
+            <a href="index.html#manifesto">About</a>
+        </nav>
+        <div class="mobile-auth-buttons">
+            <a href="signin.html" class="login-btn">Log in</a>
+            <a href="waitlist.html" class="signup-btn-mobile">Sign up <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg></a>
+        </div>
+    </div>
+    <div class="container">
+        <div class="nav-buttons-container">
+            <a href="index.html" class="nav-button">&larr; Back to Home</a>
+            <a href="terms.html" class="nav-button">Terms and Conditions</a>
+        </div>
+        <h1>Privacy Policy</h1>
+
+        <p><strong>The AI Testing Company</strong> (“Company”, “we”, “our”, or “us”) is committed to protecting your privacy. This Privacy Policy outlines how we collect, use, disclose, and safeguard your information when you visit or use our website, web application, and associated services (“Platform”).</p>
+
+        <p>By accessing or using the Platform, you agree to the collection and use of your information in accordance with this Privacy Policy. If you do not agree, please do not use the Platform.</p>
+
+        ---
+
+        <h2>1. Information We Collect</h2>
+
+        <p>We may collect and process the following types of personal information:</p>
+        <ul>
+            <li><strong>Account information</strong> (e.g., name, email address, password)</li>
+            <li><strong>Payment information</strong> (processed securely via Stripe)</li>
+            <li><strong>Usage data</strong> (e.g., quizzes taken, time spent on platform)</li>
+            <li><strong>Device & browser data</strong> (e.g., IP address, operating system)</li>
+            <li><strong>Generated content data</strong> (e.g., your questions, answers, study history)</li>
+        </ul>
+        <p>Some information may be generated or processed by AI models to personalize your experience.</p>
+
+        ---
+
+        <h2>2. How We Use Your Information</h2>
+
+        <p>We use your data to:</p>
+        <ul>
+            <li>Deliver and personalize learning experiences</li>
+            <li>Generate voice lectures, diagrams, and explanations</li>
+            <li>Provide 1:1 tutoring via AI avatars</li>
+            <li>Improve our models and product features</li>
+            <li>Communicate with you about updates or new features</li>
+            <li>Process payments for subscriptions or usage</li>
+        </ul>
+        <p>We may also use anonymized and aggregated data for analytics, product development, and research.</p>
+
+        ---
+
+        <h2>3. Technologies and Providers We Use</h2>
+
+        <p>Our product is built using AI technologies and services provided by external vendors. These include:</p>
+        <ul>
+            <li><strong>Large Language Models</strong> (LLMs): e.g., OpenAI GPT-4o, Claude, DeepSeek</li>
+            <li><strong>Text-to-Speech</strong>: ElevenLabs for voice lectures</li>
+            <li><strong>Image Generation</strong>: OpenAI API for custom diagrams</li>
+            <li><strong>Realtime Speech API</strong>: For speech-driven interfaces</li>
+            <li><strong>Video Generation</strong>: OmniHuman-1 (or similar SOTA models) for avatar lectures</li>
+            <li><strong>Payment Processing</strong>: Stripe</li>
+            <li><strong>Web Analytics and Hosting</strong>: Common JavaScript-based tools and services</li>
+        </ul>
+        <p>Each of these services may collect limited data for operational purposes. Please refer to their respective privacy policies for details:</p>
+        <ul>
+            <li>OpenAI: https://openai.com/privacy</li>
+            <li>ElevenLabs: https://www.elevenlabs.io/privacy</li>
+            <li>Stripe: https://stripe.com/privacy</li>
+            <li>[Insert others as needed]</li>
+        </ul>
+        <p><strong>Note</strong>: We actively monitor and may substitute technologies in our stack as the ecosystem evolves rapidly. Any change in third-party processors will be reflected in the “Last Updated” date of this Privacy Policy.</p>
+
+        ---
+
+        <h2>4. Sharing Your Information</h2>
+
+        <p>We do <strong>not</strong> sell your personal information. We only share your data:</p>
+        <ul>
+            <li>With service providers who help us run the Platform (e.g., cloud hosting, payments, AI APIs)</li>
+            <li>When legally required (e.g., law enforcement, legal compliance)</li>
+            <li>With your explicit consent</li>
+        </ul>
+
+        ---
+
+        <h2>5. Data Security</h2>
+
+        <p>We use technical and organizational measures to protect your information. While no system is 100% secure, we follow best practices, including encryption of data in transit and at rest, secure authentication, and access logging.</p>
+
+        ---
+
+        <h2>6. Data Retention</h2>
+
+        <p>We retain your information only as long as necessary for the purposes set out in this Privacy Policy. You may request deletion of your account or associated data by contacting us.</p>
+
+        ---
+
+        <h2>7. Children's Privacy</h2>
+
+        <p>The Platform is not intended for use by children under the age of 13 (or the age of digital consent in your jurisdiction). If we learn we have collected personal information from a child under that age, we will delete it promptly.</p>
+
+        ---
+
+        <h2>8. Your Rights</h2>
+
+        <p>Depending on your jurisdiction, you may have the right to:</p>
+        <ul>
+            <li>Access the personal data we hold about you</li>
+            <li>Request correction or deletion of your data</li>
+            <li>Object to processing or request data portability</li>
+        </ul>
+        <p>To exercise these rights, contact us through the form provided on our website.</p>
+
+        ---
+
+        <h2>9. Changes to This Privacy Policy</h2>
+
+        <p>We reserve the right to modify this Privacy Policy at any time. We will notify you of any material changes via the Platform or email. Continued use of the Platform after updates constitutes your acceptance of the revised terms.</p>
+
+        ---
+
+        <h2>10. Contact</h2>
+
+        <p>If you have questions about this Privacy Policy, please contact us via the contact form on our website or refer to the help center.</p>
+    </div>
+
+    <footer class="site-footer">
+        <div class="footer-tagline">
+            <p>The AI Test Prep Co.</p>
+        </div>
+        <div class="footer-content-area">
+            <div class="footer-links-container">
+                <div class="footer-left-col">
+                    <div class="footer-link-group">
+                        <a href="terms.html">Terms & policies</a>
+                        <a href="privacy.html">Privacy policy</a>
+                    </div>
+                    <p class="copyright-text">© The AI Test Preperation Company 2025. All Rights Reserved</p>
+                </div>
+                <div class="footer-right-col">
+                    <div class="footer-link-group main-links">
+                        <a href="careers.html">Careers</a>
+                        <a href="index.html#manifesto">Manifesto</a>
+                        <a href="#">Help Center</a>
+                        <a href="#">Twitter</a>
+                        <a href="#">Instagram</a>
+                        <a href="#">GitHub</a>
+                    </div>
+                    <a href="#" class="back-to-top">Back to top</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script>
+        const hamburger = document.querySelector('.hamburger-menu');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const body = document.body;
+        const menuBar = document.querySelector('.menu-bar');
+
+        hamburger.addEventListener('click', () => {
+            const isExpanded = hamburger.getAttribute('aria-expanded') === 'true' || false;
+            hamburger.setAttribute('aria-expanded', !isExpanded);
+            hamburger.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+            
+            if (mobileMenu.classList.contains('active')) {
+                body.style.overflow = 'hidden';
+                const menuBarHeight = menuBar.offsetHeight;
+                mobileMenu.style.top = menuBarHeight + 'px';
+                mobileMenu.style.height = 'calc(100vh - ' + menuBarHeight + 'px)';
+            } else {
+                body.style.overflow = 'auto';
+            }
+        });
+
+        const mobileLinks = mobileMenu.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                if (mobileMenu.classList.contains('active')) {
+                    hamburger.setAttribute('aria-expanded', 'false');
+                    hamburger.classList.remove('active');
+                    mobileMenu.classList.remove('active');
+                    body.style.overflow = 'auto';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
