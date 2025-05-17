@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Powered Test Prep</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      background-color: #080810;
+      color: #EAEAEA;
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+    }
+
+    .page-container {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .hero-section {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 3rem clamp(1.5rem, 5vw, 4rem);
+      background-color: #FFFFFF;
+      position: relative;
+      min-height: 100vh;
+      box-sizing: border-box;
+      z-index: 10;
+    }
+    
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 650px;
+      text-align: left;
+      margin-left: clamp(2rem, 8vw, 10rem);
+    }
+
+    .hero-content h1 {
+      font-family: 'Georgia', 'Times New Roman', serif;
+      font-size: clamp(2.8rem, 7vw, 5.5rem);
+      color: #080810;
+      font-weight: normal;
+      margin: 0 0 0.75rem 0;
+      text-transform: uppercase;
+      line-height: 1.1;
+    }
+
+    .hero-content h1 .line {
+      display: block;
+    }
+    
+    .hero-content h1 .line1 {
+        margin-bottom: 0.1em;
+    }
+
+    .hero-content .subtitle {
+      font-family: 'Inter', sans-serif;
+      font-size: clamp(1rem, 2.2vw, 1.3rem);
+      color: #333333;
+      font-weight: 400;
+      margin: 0 0 2rem 0;
+      line-height: 1.6;
+      max-width: 520px;
+    }
+
+    .cta-button {
+      display: inline-block;
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      font-size: clamp(0.9rem, 1.8vw, 1rem);
+      text-transform: uppercase;
+      color: #FFFFFF;
+      background-color: rgba(255, 255, 255, 0.1);
+      border: 1px solid #FFFFFF;
+      padding: 0.75rem 1.75rem;
+      border-radius: 30px;
+      text-decoration: none;
+      letter-spacing: 0.08em;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      margin-top: 1rem;
+      margin-right: 0.75rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .cta-button:last-of-type {
+        margin-right: 0;
+    }
+
+    .cta-button:hover {
+      background-color: #FFFFFF;
+      color: #0A0A10;
+    }
+    
+    /* Specific styles for CTA buttons in the hero section (now white background) */
+    .hero-section .cta-button {
+      color: #0A0A10;
+      background-color: transparent;
+      border: 1px solid #0A0A10;
+    }
+
+    .hero-section .cta-button:hover {
+      background-color: #0A0A10;
+      color: #FFFFFF;
+    }
+    
+    /* Sticky Wrapper for the AI Details Section */
+    .sticky-wrapper {
+        position: relative;
+        height: 200vh;
+        z-index: 5;
+    }
+
+    .ai-details-section {
+      height: 100vh;
+      width: 100%;
+      background-color: #1A2B2B; 
+      display: flex; 
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      box-sizing: border-box;
+      position: sticky; 
+      top: 0; 
+      overflow: hidden; 
+    }
+
+    .ai-details-content {
+      max-width: 70ch; 
+      width: calc(100% - clamp(4rem, 20vw, 16rem)); 
+      text-align: left;
+      margin-left: clamp(2rem, 10vw, 8rem);
+      margin-right: clamp(2rem, 10vw, 8rem);
+    }
+
+    .ai-details-section p {
+      font-family: 'Georgia', 'Times New Roman', serif;
+      font-size: clamp(1.5rem, 3.2vw, 2.3rem); 
+      line-height: 1.7;
+      margin-bottom: 1.8em;
+      color: transparent; 
+    }
+    
+    .ai-details-section p span.word-to-animate {
+      display: inline-block; 
+      color: #4a5c5c; 
+      opacity: 0.5;  
+      transition: color 0.1s linear, opacity 0.1s linear; 
+      white-space: pre-wrap; 
+    }
+
+    .ai-details-section p span.word-to-animate.lit-up {
+      color: #E0D8CC; 
+      opacity: 1;
+    }
+
+    .ai-details-section p:last-child {
+      margin-bottom: 0;
+    }
+    
+    .after-sticky-content {
+        background-color: #f0f0f0;
+        padding: 2rem;
+        min-height: 50vh;
+        color: #333;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="page-container">
+    <main class="hero-section">
+      <div class="hero-content">
+        <h1>Learn Better.</h1>
+        <p class="subtitle">Customized AI Powered Test Prep Made for YOU</p>
+        <div>
+            <a href="#" class="cta-button">SAT</a>
+            <a href="#" class="cta-button">ACT</a>
+            <a href="#" class="cta-button">MCAT</a>
+            <a href="#" class="cta-button">JEE</a>
+            <a href="#" class="cta-button">LSAT</a>
+        </div>
+      </div>
+    </main>
+
+    <div class="sticky-wrapper">
+        <section id="ai-details" class="ai-details-section">
+          <div class="ai-details-content">
+            <p data-animate-words="true">
+              Traditional test prep is broken. Outdated books, old YouTube videos and mindlessly begging ChatGPT for help cannot be the best we can do.
+            </p>
+            <p data-animate-words="true">
+              [COMPANY NAME HERE]'s new AI Test Prep Software will bring test prep into the AI age, with fully customized, ai generated lectures, practice tests, and other study meterials.
+            </p>
+          </div>
+        </section>
+    </div>
+    
+    <div class="after-sticky-content">
+        <h2>Content After Sticky Section</h2>
+        <p>This content appears normally after you have scrolled through the sticky animation.</p>
+    </div>
+
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const stickyWrapper = document.querySelector('.sticky-wrapper');
+      const detailSection = document.getElementById('ai-details');
+      const paragraphsToAnimate = detailSection.querySelectorAll('p[data-animate-words="true"]');
+      let allWordSpans = [];
+      let totalWords = 0;
+
+      if (!stickyWrapper || !detailSection) {
+        console.warn('Sticky wrapper or detail section not found. Animation will not run.');
+        return;
+      }
+
+      paragraphsToAnimate.forEach(p => {
+        const words = p.textContent.trim().split(/(\s+)/).filter(w => w.length > 0);
+        p.innerHTML = ''; 
+        p._wordSpans = []; 
+        words.forEach(wordToken => {
+          const span = document.createElement('span');
+          span.className = 'word-to-animate';
+          span.textContent = wordToken;
+          p.appendChild(span);
+          if (!wordToken.match(/^\s+$/)) {
+            allWordSpans.push(span);
+          }
+        });
+        totalWords = allWordSpans.length;
+      });
+
+      function setAllWordsLit(lit = true) {
+        allWordSpans.forEach(s => {
+            if (lit) s.classList.add('lit-up');
+            else s.classList.remove('lit-up');
+        });
+      }
+      
+      let sectionIsActiveForAnimation = false;
+      const wrapperObserverOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: [0, 0.001, 0.999, 1] // Fine-tuned thresholds for more precise detection
+      };
+
+      const wrapperObserverCallback = (entries, observer) => {
+        entries.forEach(entry => {
+          const wrapperRect = entry.boundingClientRect;
+          const viewportHeight = window.innerHeight;
+          let shouldBeActive = false;
+
+          // Condition for being active: top of wrapper is at/above viewport top,
+          // AND bottom of wrapper is at/below viewport bottom.
+          // This means the wrapper is currently controlling the scroll context for the sticky element.
+          if (wrapperRect.top <= 1 && wrapperRect.bottom >= viewportHeight -1 ) { // added small tolerance
+            shouldBeActive = true;
+          }
+
+          if (shouldBeActive !== sectionIsActiveForAnimation) {
+            sectionIsActiveForAnimation = shouldBeActive;
+            // Always call handleScroll after state change to immediately reflect it.
+            // If becoming active, words will be dimmed by handleScroll's initial check or progress calc.
+            // If becoming inactive, handleScroll will determine if they should be all lit or all dim.
+            handleScroll(); 
+          }
+        });
+      };
+
+      const wrapperObserver = new IntersectionObserver(wrapperObserverCallback, wrapperObserverOptions);
+      wrapperObserver.observe(stickyWrapper);
+      
+      function handleScroll() {
+        if (!stickyWrapper || totalWords === 0) return;
+
+        const wrapperRect = stickyWrapper.getBoundingClientRect();
+        const viewportHeight = window.innerHeight;
+
+        if (sectionIsActiveForAnimation) {
+            const scrollDistanceInWrapper = Math.max(0, -wrapperRect.top);
+            // Ensure wrapperScrollableHeight is not negative if wrapper is shorter than viewport (edge case)
+            const wrapperScrollableHeight = Math.max(1, stickyWrapper.offsetHeight - viewportHeight);
+            let progressRatio = 0;
+
+            progressRatio = Math.min(1, scrollDistanceInWrapper / wrapperScrollableHeight);
+            
+            const wordsToShow = Math.floor(progressRatio * totalWords);
+            for (let i = 0; i < totalWords; i++) {
+              if (i < wordsToShow) {
+                allWordSpans[i].classList.add('lit-up');
+              } else {
+                allWordSpans[i].classList.remove('lit-up');
+              }
+            }
+        } else {
+            // If section is not marked active for animation by the observer:
+            // Check if we are above the wrapper (words should be dim).
+            // Otherwise, we are likely past the active animation phase or fully past the wrapper (words should be lit).
+            if (wrapperRect.top >= 0 && wrapperRect.bottom > 1) { // stickyWrapper is at/above viewport top, and not scrolled completely past
+                setAllWordsLit(false);
+            } else {
+                setAllWordsLit(true);
+            }
+        }
+      }
+      
+      let scrollTimeout;
+      window.addEventListener('scroll', () => {
+        if (scrollTimeout) {
+            clearTimeout(scrollTimeout);
+        }
+        scrollTimeout = setTimeout(handleScroll, 5); 
+      }, { passive: true });
+      
+      // Call once on load. The observer might not have fired yet, 
+      // so sectionIsActiveForAnimation is likely false.
+      // handleScroll will then correctly set initial word states (likely all dim).
+      handleScroll(); 
+    });
+  </script>
+</body>
+</html>
