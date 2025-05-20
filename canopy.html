@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hey Canopy</title>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            margin: 0;
+            padding: 40px;
+            display: flex;
+            flex-direction: column; /* Allow stacking of text and image */
+            align-items: center;    /* Center items horizontally */
+            /* justify-content: center; */ /* Removed to keep text at top */
+            min-height: 90vh;
+            background-color: #ffffff;
+            color: #000000;
+            /* text-align: center; */ /* No longer needed on body if children are centered */
+        }
+
+        .statement-text {
+            font-size: 3em;
+            font-weight: bold;
+            line-height: 1.3;
+            text-align: center; /* Ensure text itself is centered if it wraps */
+        }
+
+        #svgImage {
+            margin-top: 30px; /* Space between text and SVG */
+            max-width: 37.5px; /* Changed from 150px to 25% of that */
+            height: auto;   /* Maintain aspect ratio */
+        }
+
+        #socialIconsContainer {
+            display: flex; /* Arrange icons horizontally */
+            justify-content: center; /* Center icons within the container */
+            align-items: center;
+            margin-top: 30px; /* Space between text and icons */
+        }
+
+        .social-icon {
+            max-width: 37.5px; /* Size for both icons */
+            height: auto;   /* Maintain aspect ratio */
+            margin-left: 8px; /* Space between icons */
+            margin-right: 8px; /* Space between icons */
+        }
+
+        .content-block {
+            margin-top: 20px; /* Reduced from 40px for less space between sections */
+            max-width: 600px;
+            width: 90%;
+            text-align: left;
+        }
+
+        .about-me-heading {
+            font-size: 1.5em;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .content-paragraph {
+            font-size: 1em;
+            font-weight: normal;
+            line-height: 1.6;
+            margin-bottom: 10px; /* Add some space below paragraphs/list items */
+        }
+
+        .content-block ul {
+            list-style-position: outside; /* Ensures bullets are outside the text flow */
+            padding-left: 20px; /* Indent for the bullets */
+            margin-top: 0; /* Remove default top margin for ul */
+        }
+
+        .content-block li {
+            font-size: 1em;
+            font-weight: normal;
+            line-height: 1.6;
+            margin-bottom: 10px; /* Space between list items */
+        }
+
+        .centered-final-heading {
+            font-size: 1.5em;    /* Same as about-me-heading */
+            font-weight: bold;   /* Same as about-me-heading */
+            text-align: center;
+            margin-top: 40px; /* More top margin for a closing statement */
+            margin-bottom: 20px; /* Space at the very bottom */
+        }
+
+        /* You can add more styles for paragraph text within #aboutMeContainer if needed */
+    </style>
+</head>
+<body>
+    <div class="statement-text">
+        hey canopy, i'm sagar
+    </div>
+    <div id="socialIconsContainer">
+        <a href="https://x.com/thesagarvarma" target="_blank" rel="noopener noreferrer">
+            <img class="social-icon" src="x.svg" alt="X logo" />
+        </a>
+        <a href="https://github.com/sagarvarma1" target="_blank" rel="noopener noreferrer">
+            <img class="social-icon" src="github-mark.svg" alt="GitHub logo" />
+        </a>
+        <a href="https://www.linkedin.com/in/sagar-varma-861372232/" target="_blank" rel="noopener noreferrer">
+            <img class="social-icon" src="LinkedIn_icon.svg" alt="LinkedIn logo" />
+        </a>
+    </div>
+
+    <div class="content-block">
+        <div class="about-me-heading">about me</div>
+        <p class="content-paragraph">my name is sagar varma. i love making things that have a positive impact on lives. my life goal is to change the world or die trying. email: sagarvarma351@gmail.com</p>
+    </div>
+
+    <div class="content-block">
+        <div class="about-me-heading">what i'm up to</div>
+        <p class="content-paragraph">second year computer engineering student at ucsb. currently building <a href="https://aitestprep.academy">aitestprep.academy</a></p>
+    </div>
+
+    <div class="content-block">
+        <div class="about-me-heading">what i've built in the past</div>
+        <ul>
+            <li><a href="https://aitestprep.academy">aitestprep.academy</a>: revolutionizing how test prep and learning is done through fully customized cirriclums, personalized videos, articles, lectures, and more all in one place. it takes the impetus off of you to structure and find the content and lets you just focus on learning</li>
+            <li><a href="https://gettingmejob.com">gettingmejob.com</a>, ai agent that automatically applies to any job for you given a link. uses computer use in a sandboxed envrionment</li>
+            <li><a href="https://wherely.xyz">wherely.xyz</a>, ai tool that automatically pinpoints where any photos were taken</li>
+            <li>ai transcriber, similar to granola for transcribing and watching lectures</li>
+            <li>10 week shred, app that uses ai to develop a 10 week plan for you to workout</li>
+            <li>plus a lot more. check out my github!</li>
+        </ul>
+    </div>
+
+    <div class="content-block">
+        <div class="about-me-heading">where i've worked</div>
+        <p class="content-paragraph">intel. automation engineer intern responsible for creating tools to update graphics drivers</p>
+    </div>
+
+    <div class="content-block">
+        <div class="about-me-heading">why should canopy labs take me</div>
+        <p class="content-paragraph">because i work like hell and am hungry to learn. i am very good at python and lov
+            e reading ML research papers (was just reading the alpha evlove paper!). i think i could contribute a lot to the caon
+            py team and the core model development. i can ship reallyyyy fast and am experienced with cloud platforms. i've also 
+            trained my own neural net, sagarGPT, based on gpt2, which kinda talks like me. i am willing to work 18 hour days, sle
+            ep in the office, do whatever it takes to build the product and create something meaningful. if you want someone who 
+            works like hell, will do almost anything to help the team, and knows his stuff, i'm your guy</p>
+    </div>
+
+    <div class="content-block">
+        <div class="about-me-heading">why i want to work at canopy labs</div>
+        <p class="content-paragraph">i think i could learn a lot from the team at canopy. i hope to create a startup o
+            f my own one day, and i think i could learn a lot of the foundational skills interning at canopy. the product you're 
+            building is also cool as hell, and is something i would love to have in my life. it would work so well in my ai tutor
+            ing app that i am building, aitestprep.academy, and in so many other areas, and i would love to contribute to it. i w
+            ant to take on a challange, climb a huge mountain, do something great, and i think canopy provides those opportunitie
+            s. and i really, really want to join the sf startup scene :)</p>
+
+    <div class="content-block">
+        <div class="about-me-heading">in person:</div>
+        <p class="content-paragraph">of course.</p>
+    </div>
+
+    <div class="content-block">
+        <div class="about-me-heading">us citizen?:</div>
+        <p class="content-paragraph">yes.</p>
+    </div>
+
+    <div class="content-block">
+        <div class="about-me-heading">disability?</div>
+        <p class="content-paragraph">no.</p>
+    </div>
+
+    <div class="content-block">
+        <div class="about-me-heading">when am i free from</div>
+        <p class="content-paragraph">june 16th onwards</p>
+    </div>
+
+    <div class="centered-final-heading">
+        thank you for considering me! i hope we can talk soon!
+    </div>
+</body>
+</html>
