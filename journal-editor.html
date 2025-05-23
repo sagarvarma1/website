@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Entry - Notes</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'EB Garamond', serif;
+            background-color: white;
+            color: black;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .editor-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            min-height: 100vh;
+        }
+
+        .editor-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .back-button {
+            background: none;
+            border: none;
+            font-family: 'EB Garamond', serif;
+            font-size: 1.1rem;
+            cursor: pointer;
+            color: #666;
+            text-decoration: underline;
+        }
+
+        .back-button:hover {
+            color: black;
+        }
+
+        .save-actions {
+            display: flex;
+            gap: 15px;
+        }
+
+        .save-button, .publish-button {
+            padding: 8px 20px;
+            border: 2px solid black;
+            font-family: 'EB Garamond', serif;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .save-button {
+            background-color: black;
+            color: white;
+        }
+
+        .save-button:hover {
+            background-color: #333;
+        }
+
+        .publish-button {
+            background-color: black;
+            color: white;
+        }
+
+        .publish-button:hover {
+            background-color: #333;
+        }
+
+        .title-input {
+            width: 100%;
+            border: none;
+            outline: none;
+            font-family: 'EB Garamond', serif;
+            font-size: 3rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 15px;
+            background: transparent;
+            color: black;
+            resize: none;
+            overflow: hidden;
+        }
+
+        .title-input::placeholder {
+            color: #999;
+        }
+
+        .subtitle-input {
+            width: 100%;
+            border: none;
+            outline: none;
+            font-family: 'EB Garamond', serif;
+            font-size: 1.5rem;
+            line-height: 1.4;
+            margin-bottom: 30px;
+            background: transparent;
+            color: #666;
+            resize: none;
+            overflow: hidden;
+        }
+
+        .subtitle-input::placeholder {
+            color: #ccc;
+        }
+
+        .content-textarea {
+            width: 100%;
+            min-height: 400px;
+            border: none;
+            outline: none;
+            font-family: 'EB Garamond', serif;
+            font-size: 1.3rem;
+            line-height: 1.8;
+            background: transparent;
+            color: black;
+            resize: none;
+        }
+
+        .content-textarea::placeholder {
+            color: #999;
+        }
+
+        .toolbar {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: white;
+            border: 2px solid black;
+            padding: 10px 20px;
+            display: none;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .toolbar.visible {
+            display: flex;
+        }
+
+        .toolbar-button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-family: 'EB Garamond', serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            padding: 5px 10px;
+        }
+
+        .toolbar-button:hover {
+            background-color: #f0f0f0;
+        }
+
+        .word-count {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.9);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .loading-text {
+            font-size: 1.2rem;
+            color: #666;
+        }
+
+        /* Editor Loading Overlay */
+        .editor-loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: white;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1001;
+        }
+
+        .editor-loading-content {
+            text-align: center;
+        }
+
+        .editor-loading-title {
+            font-family: 'EB Garamond', serif;
+            font-size: 1.5rem;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .editor-loading-spinner {
+            width: 40px;
+            height: 40px;
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #333;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Auto-resize textareas */
+        .auto-resize {
+            overflow: hidden;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .editor-container {
+                padding: 20px 15px;
+            }
+
+            .title-input {
+                font-size: 2.5rem;
+            }
+
+            .subtitle-input {
+                font-size: 1.3rem;
+            }
+
+            .content-textarea {
+                font-size: 1.2rem;
+            }
+
+            .editor-header {
+                flex-direction: column;
+                gap: 15px;
+                align-items: stretch;
+            }
+
+            .save-actions {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="editor-container">
+        <header class="editor-header">
+            <button class="back-button" onclick="goBack()">← Back to Notes</button>
+            <div class="save-actions">
+                <button class="save-button" id="saveButton">Save</button>
+            </div>
+        </header>
+
+        <main class="editor-content">
+            <textarea 
+                class="title-input auto-resize" 
+                id="titleInput" 
+                placeholder="Title"
+                rows="1"
+            ></textarea>
+
+            <textarea 
+                class="subtitle-input auto-resize" 
+                id="subtitleInput" 
+                placeholder="Add a subtitle..."
+                rows="1"
+            ></textarea>
+
+            <textarea 
+                class="content-textarea" 
+                id="contentTextarea" 
+                placeholder="Start writing..."
+            ></textarea>
+        </main>
+    </div>
+
+    <div class="toolbar" id="toolbar">
+        <button class="toolbar-button" onclick="formatText('bold')"><strong>B</strong></button>
+        <button class="toolbar-button" onclick="formatText('italic')"><em>I</em></button>
+        <button class="toolbar-button" onclick="formatText('underline')"><u>U</u></button>
+    </div>
+
+    <div class="word-count" id="wordCount">0 words</div>
+
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-text">Saving...</div>
+    </div>
+
+    <div class="editor-loading-overlay" id="editorLoadingOverlay">
+        <div class="editor-loading-content">
+            <div class="editor-loading-title">Loading...</div>
+            <div class="editor-loading-spinner"></div>
+        </div>
+    </div>
+
+    <script type="module" src="journal-editor.js"></script>
+</body>
+</html> 

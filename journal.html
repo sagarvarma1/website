@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Journal - The AI Test Prep Co.</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'EB Garamond', serif;
+            background-color: white;
+            color: black;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        /* Authentication Screen */
+        .auth-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .auth-box {
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        .auth-title {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: black;
+        }
+
+        .auth-subtitle {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            color: #666;
+        }
+
+        .input-group {
+            margin-bottom: 1rem;
+            text-align: left;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            font-size: 1.1rem;
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid black;
+            background: transparent;
+            font-family: 'EB Garamond', serif;
+            font-size: 1.1rem;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .input-field:focus {
+            border-color: #333;
+        }
+
+        .auth-button {
+            width: 100%;
+            padding: 12px;
+            background-color: black;
+            color: white;
+            border: none;
+            font-family: 'EB Garamond', serif;
+            font-size: 1.1rem;
+            font-weight: 500;
+            cursor: pointer;
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .auth-button:hover {
+            background-color: #333;
+        }
+
+        .auth-button:disabled {
+            background-color: #999;
+            cursor: not-allowed;
+        }
+
+        .auth-switch {
+            color: #666;
+            font-size: 1rem;
+            margin-top: 1rem;
+        }
+
+        .auth-switch a {
+            color: black;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+
+        .error-message {
+            color: #d32f2f;
+            font-size: 1rem;
+            margin-top: 0.5rem;
+            text-align: center;
+        }
+
+        /* Security Lockout Screen */
+        .security-lockout {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #CC0000;
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .lockout-message {
+            font-family: 'EB Garamond', serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: white;
+            text-align: center;
+            margin-bottom: 50px;
+            line-height: 1.2;
+            max-width: 90%;
+        }
+
+        .microsoft-logo {
+            font-family: Arial, sans-serif;
+            font-size: 3rem;
+            font-weight: bold;
+            color: white;
+            text-shadow: 3px 3px 0px #000080;
+            letter-spacing: 3px;
+            background: linear-gradient(45deg, #FF0000, #00FF00, #0000FF, #FFFF00);
+            background-size: 400% 400%;
+            animation: rainbow 2s ease-in-out infinite;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-align: center;
+        }
+
+        @keyframes rainbow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Fallback for browsers that don't support background-clip: text */
+        @supports not (-webkit-background-clip: text) {
+            .microsoft-logo {
+                background: none;
+                color: #FFFF00;
+                text-shadow: 3px 3px 0px #000080, 6px 6px 0px #FF0000;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Security Lockout Screen -->
+    <div id="securityLockout" class="security-lockout">
+        <div class="lockout-message">
+            TOO MANY FAILED SIGN IN ATTEMPTS.<br>
+            THE AUTHORITIES HAVE BEEN NOTIFIED.
+        </div>
+        <div class="microsoft-logo">
+            SAGAR-VARMA.COM
+        </div>
+    </div>
+
+    <!-- Authentication Screen -->
+    <div id="authContainer" class="auth-container">
+        <div class="auth-box">
+            <h1 class="auth-title">Journal</h1>
+            
+            <form id="authForm">
+                <div class="input-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" class="input-field" required>
+                </div>
+                
+                <div class="input-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" class="input-field" required>
+                </div>
+                
+                <button type="submit" id="authButton" class="auth-button">Sign In</button>
+                
+                <div id="errorMessage" class="error-message"></div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Firebase SDK -->
+    <script type="module" src="journal-login.js"></script>
+</body>
+</html> 
