@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real-time Gender Detection</title>
+    <link rel="stylesheet" href="faces.css">
+    <script src="https://cdn.jsdelivr.net/npm/face-api.js@0.22.2/dist/face-api.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Gender Detection</h1>
+        </header>
+        
+        <div class="video-container">
+            <video id="input_video" autoplay muted playsinline></video>
+            <canvas id="output_canvas"></canvas>
+            <div id="loading" class="loading">
+                <div class="spinner"></div>
+                <p>Loading AI models...</p>
+            </div>
+        </div>
+        
+        <div class="controls">
+            <button id="start-btn" class="btn primary">Start Camera</button>
+            <button id="stop-btn" class="btn secondary" disabled>Stop Camera</button>
+        </div>
+        
+        <div class="results">
+            <div class="result-card">
+                <h3>Gender Detection</h3>
+                <div id="detection-info">
+                    <p class="status">Click "Start Camera" to begin</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="faces.js"></script>
+</body>
+</html> 
