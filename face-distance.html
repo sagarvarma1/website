@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Face Distance Detection</title>
+    <link rel="stylesheet" href="face-distance.css">
+    <!-- MediaPipe Face Mesh -->
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/control_utils/control_utils.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/face_mesh/face_mesh.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>3D Face Distance Detection</h1>
+        </header>
+        
+        <div class="video-container">
+            <video id="input_video" autoplay muted playsinline></video>
+            <canvas id="output_canvas"></canvas>
+            <div id="loading" class="loading">
+                <div class="spinner"></div>
+                <p>Loading AI models...</p>
+            </div>
+        </div>
+        
+        <div class="controls">
+            <button id="start-btn" class="btn primary">Start Camera</button>
+            <button id="stop-btn" class="btn secondary" disabled>Stop Camera</button>
+        </div>
+        
+        <div class="results">
+            <div class="result-card">
+                <h3>Distance from Camera</h3>
+                <div id="distance-info">
+                    <div class="distance-display">
+                        <span class="distance-value">--</span>
+                        <span class="distance-unit">cm</span>
+                    </div>
+                    <p class="status">Click "Start Camera" to begin</p>
+                </div>
+            </div>
+            
+            <div class="result-card">
+                <h3>Face Analysis</h3>
+                <div id="face-info">
+                    <div class="face-metrics">
+                        <div class="metric">
+                            <label>Face Width:</label>
+                            <span id="face-width">-- px</span>
+                        </div>
+                        <div class="metric">
+                            <label>Eye Distance:</label>
+                            <span id="eye-distance">-- px</span>
+                        </div>
+                        <div class="metric">
+                            <label>Confidence:</label>
+                            <span id="detection-confidence">--%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="face-distance.js"></script>
+</body>
+</html> 
