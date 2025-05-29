@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Sign Language Detection</title>
+    <link rel="stylesheet" href="signlanguage.css">
+    <!-- MediaPipe Hands -->
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/control_utils/control_utils.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js" crossorigin="anonymous"></script>
+    
+    <!-- Initialization script -->
+    <script>
+        // Check if all MediaPipe components are loaded
+        function checkMediaPipeLoaded() {
+            return typeof Hands !== 'undefined' && 
+                   typeof Camera !== 'undefined' && 
+                   typeof drawConnectors !== 'undefined' && 
+                   typeof drawLandmarks !== 'undefined';
+        }
+        
+        // Add global error handling for script loading
+        window.addEventListener('error', function(e) {
+            if (e.target.src && e.target.src.includes('mediapipe')) {
+                console.error('Failed to load MediaPipe component:', e.target.src);
+            }
+        });
+        
+        console.log('MediaPipe libraries loading...');
+    </script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>AI Sign Language Detection</h1>
+        </header>
+        
+        <div class="video-container">
+            <video id="input_video" autoplay muted playsinline></video>
+            <canvas id="output_canvas"></canvas>
+            <div id="loading" class="loading">
+                <div class="spinner"></div>
+                <p>Loading AI models...</p>
+            </div>
+        </div>
+        
+        <div class="controls">
+            <button id="start-btn" class="btn primary">Start Camera</button>
+            <button id="stop-btn" class="btn secondary" disabled>Stop Camera</button>
+        </div>
+        
+        <div class="results">
+            <div class="result-card">
+                <h3>Gesture Recognition</h3>
+                <div id="gesture-info">
+                    <div class="gesture-display">
+                        <span class="gesture-text">No gesture detected</span>
+                        <span class="confidence-badge">0%</span>
+                    </div>
+                    <p class="status">Click "Start Camera" to begin</p>
+                </div>
+            </div>
+            
+            <div class="result-card">
+                <h3>Hand Analysis</h3>
+                <div id="hand-count">
+                    <div class="hand-metrics">
+                        <div class="metric">
+                            <label>Hands Detected:</label>
+                            <span id="hand-count-value">0</span>
+                        </div>
+                        <div class="metric">
+                            <label>Detection Mode:</label>
+                            <span id="detection-mode">Loading...</span>
+                        </div>
+                        <div class="metric">
+                            <label>Frame Rate:</label>
+                            <span id="frame-rate">-- fps</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="result-card">
+                <h3>Hand Details</h3>
+                <div id="landmark-info">
+                    <div class="hand-details">
+                        <div class="metric">
+                            <label>Hand Size:</label>
+                            <span id="hand-size">-- px²</span>
+                        </div>
+                        <div class="metric">
+                            <label>Distance:</label>
+                            <span id="hand-distance">-- cm</span>
+                        </div>
+                        <div class="metric">
+                            <label>Finger Spread:</label>
+                            <span id="finger-spread">--%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="signlanguage.js"></script>
+</body>
+</html> 
