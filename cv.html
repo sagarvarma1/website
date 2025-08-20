@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV - Sagar Varma</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'EB Garamond', Garamond, serif;
+            line-height: 1.6;
+            background-color: #fff;
+            color: #333;
+            padding: 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 2rem;
+            border-bottom: 2px solid #333;
+            padding-bottom: 1rem;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .header .contact {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 1rem;
+        }
+
+        .header .website {
+            font-size: 1.1rem;
+            margin-top: 0.5rem;
+        }
+
+        .section {
+            margin-bottom: 2rem;
+        }
+
+        .section h2 {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            text-decoration: underline;
+        }
+
+        .section h3 {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .job-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .job-title {
+            font-size: 1.1rem;
+            font-weight: bold;
+        }
+
+        .date {
+            font-size: 1rem;
+            font-weight: bold;
+        }
+
+        .skills-section {
+            margin-bottom: 1rem;
+        }
+
+        .skills-category {
+            margin-bottom: 0.5rem;
+        }
+
+        .skills-category strong {
+            font-weight: bold;
+        }
+
+        ul {
+            margin-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        li {
+            margin-bottom: 0.3rem;
+        }
+
+        .project {
+            margin-bottom: 1.5rem;
+        }
+
+        .project h4 {
+            font-weight: bold;
+            margin-bottom: 0.3rem;
+        }
+
+        .education {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .classes {
+            margin-top: 0.5rem;
+        }
+
+        a {
+            color: #333;
+            text-decoration: underline;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .header .contact {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            
+            .job-header, .education {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="contact">
+            <span>sagarvarma351@gmail.com</span>
+            <h1>Sagar Varma</h1>
+            <span><a href="https://github.com/sagarvarma1" target="_blank">github.com/sagarvarma1</a></span>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Technical Skills</h2>
+        <div class="skills-section">
+            <div class="skills-category">
+                <strong>LANGUAGES:</strong> Python • C++ • JavaScript/TypeScript • Swift • Java
+            </div>
+            <div class="skills-category">
+                <strong>FULL STACK:</strong> FastAPI • PostgreSQL • Flask • Redis • Django • SQL Alchemy •
+            </div>
+            <div class="skills-category">
+                <strong>DEV OPS/TOOLS:</strong> Git • Docker • Linux • GDB • Xcode • Claude Code • LangChain • Hugging Face • PyTorch
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Experience</h2>
+        
+        <div class="job-header">
+            <div class="job-title">Summer Intern - Avora AI</div>
+            <div class="date">06/2025 - 09/2025</div>
+        </div>
+        <ul>
+            <li>YC Backed Startup creating AI agents to improve case acceptance and patient care in dentistry</li>
+            <li>Scaled FastAPI + SQL Alchemy backend to accommodate 1k+ practices using the product concurrently</li>
+            <li>Designed and shipped many new features to improve the core product and user experience</li>
+            <li>Tech Learned: Python, TypeScript, Remix, PostgreSQL, FastAPI, SQL Alchemy, GCP BigQuery, AssemblyAI</li>
+        </ul>
+
+        <div class="job-header">
+            <div class="job-title">Summer Intern - Intel Corporation</div>
+            <div class="date">06/2022 - 08/2022</div>
+        </div>
+        <ul>
+            <li>Wrote driver code for the latest generation of Intel Arc Series Graphics Cards</li>
+            <li>Created tool to automate updating millions of lines of code, resulting in a reduction of 99% in conflicts</li>
+            <li>Shipped software updates for previous generations of graphics drivers to patch security vulnerabilities</li>
+            <li>Tech Learned: Python, C, how to work with a large, legacy codebase</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>Projects</h2>
+        
+        <div class="project">
+            <h4>AI Powered Job Agent:</h4>
+            <ul>
+                <li><a href="https://www.gettingmejob.com/" target="_blank">https://www.gettingmejob.com/</a></li>
+                <li>Automatically applies to any job using computer use with just a link</li>
+                <li>Scrapes thousands of job websites for latest job data and lets users one click apply</li>
+                <li>Used Firebase, OpenAI, GCP, Python, JavaScript, Flask, React</li>
+                <li>~1000 MAU</li>
+            </ul>
+        </div>
+
+        <div class="project">
+            <h4>AI Test Prep Academy:</h4>
+            <ul>
+                <li><a href="https://www.aitestprep.academy/" target="_blank">https://www.aitestprep.academy/</a></li>
+                <li>AI Test Prep service that prevents learning through fully personalized test prep</li>
+                <li>Provides fully customized curriculum with ai generated lectures, videos, slides, practice questions, etc.</li>
+                <li>~1000 people on waitlist</li>
+            </ul>
+        </div>
+
+        <div class="project">
+            <h4>10 Week Shred - AI Powered Weight Loss Program:</h4>
+            <ul>
+                <li><a href="https://apps.apple.com/us/app/10-week-shred/id6744427174" target="_blank">https://apps.apple.com/us/app/10-week-shred/id6744427174</a></li>
+                <li>Developed service which uses AI to create custom workout plans</li>
+                <li>Lets users submit photos and get the progress feedback from AI</li>
+                <li>Uses AI to analyze nutrients and give personalized recommendations</li>
+                <li>Aid automatically sent users daily summary texts with the nutrition info of that day</li>
+            </ul>
+        </div>
+
+        <div class="project">
+            <h4>AI Location Analyzer</h4>
+            <ul>
+                <li><a href="https://wherely.xyz/" target="_blank">https://wherely.xyz/</a></li>
+                <li>Custom tuned AI model to automatically guess where <em>any</em> photo was taken</li>
+                <li>95% accurate on most pictures</li>
+                <li>~1500 MAU</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Education</h2>
+        <div class="education">
+            <div>
+                <strong>Bachelors of Science, Computer Engineering</strong><br>
+                <span>2023-2027</span>
+            </div>
+            <div><strong>University of California, Santa Barbara</strong></div>
+        </div>
+        <div class="classes">
+            <strong>Classes:</strong> Computer Architecture, Networking, Circuits, Communication Protocols, Operating Systems, DSA
+        </div>
+    </div>
+
+</body>
+</html> 
