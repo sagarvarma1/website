@@ -20,33 +20,26 @@
             background-color: #fff;
             color: #333;
             padding: 2rem;
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
         }
 
         .header {
-            text-align: center;
-            margin-bottom: 2rem;
-            border-bottom: 2px solid #333;
-            padding-bottom: 1rem;
-        }
-
-        .header h1 {
-            font-size: 2.5rem;
-            font-weight: bold;
-            margin-bottom: 0.5rem;
-        }
-
-        .header .contact {
             display: flex;
             justify-content: space-between;
-            align-items: center;
-            font-size: 1rem;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
         }
 
-        .header .website {
-            font-size: 1.1rem;
-            margin-top: 0.5rem;
+        .name-block h1 {
+            font-size: 3rem;
+            font-weight: 700;
+        }
+
+        .contact-block {
+            text-align: right;
+            font-size: 0.95rem;
+            line-height: 1.4;
         }
 
         .section {
@@ -54,104 +47,60 @@
         }
 
         .section h2 {
-            font-size: 1.5rem;
-            font-weight: bold;
-            margin-bottom: 1rem;
-            text-decoration: underline;
+            font-size: 1.35rem;
+            font-weight: 700;
+            margin-bottom: 0.6rem;
         }
 
-        .section h3 {
-            font-size: 1.2rem;
-            font-weight: bold;
-            margin-bottom: 0.5rem;
+        .skills-category {
+            margin-bottom: 0.35rem;
         }
+
+        .skills-category strong {
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        ul {
+            margin-left: 1.2rem;
+            margin-bottom: 0.6rem;
+        }
+
+        li { margin-bottom: 0.25rem; }
 
         .job-header {
             display: flex;
             justify-content: space-between;
-            align-items: center;
-            margin-bottom: 0.5rem;
-        }
-
-        .job-title {
-            font-size: 1.1rem;
-            font-weight: bold;
-        }
-
-        .date {
-            font-size: 1rem;
-            font-weight: bold;
-        }
-
-        .skills-section {
-            margin-bottom: 1rem;
-        }
-
-        .skills-category {
-            margin-bottom: 0.5rem;
-        }
-
-        .skills-category strong {
-            font-weight: bold;
-        }
-
-        ul {
-            margin-left: 1.5rem;
-            margin-bottom: 1rem;
-        }
-
-        li {
+            align-items: baseline;
+            margin-top: 0.8rem;
             margin-bottom: 0.3rem;
         }
 
-        .project {
-            margin-bottom: 1.5rem;
-        }
+        .job-title { font-weight: 700; }
+        .job-meta { font-weight: 700; }
 
-        .project h4 {
-            font-weight: bold;
-            margin-bottom: 0.3rem;
-        }
+        .project { margin-bottom: 1rem; }
 
-        .education {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 0.5rem;
-        }
-
-        .classes {
-            margin-top: 0.5rem;
-        }
-
-        a {
-            color: #333;
-            text-decoration: underline;
-        }
-
-        a:hover {
-            text-decoration: underline;
-        }
+        a { color: #333; text-decoration: underline; }
+        a:hover { text-decoration: underline; }
 
         @media (max-width: 768px) {
-            .header .contact {
-                flex-direction: column;
-                gap: 0.5rem;
-            }
-            
-            .job-header, .education {
-                flex-direction: column;
-                align-items: flex-start;
-            }
+            .header { flex-direction: column; gap: 0.5rem; }
+            .contact-block { text-align: left; }
+            .job-header { flex-direction: column; gap: 0.2rem; }
         }
     </style>
 </head>
 <body>
     <div class="header">
-        <div class="contact">
-            <span>sagarvarma351@gmail.com</span>
+        <div class="name-block">
             <h1>Sagar Varma</h1>
-            <span><a href="https://github.com/sagarvarma1" target="_blank">github.com/sagarvarma1</a></span>
+        </div>
+        <div class="contact-block">
+            <div>Website: <a href="https://sagar-varma.com" target="_blank">sagar-varma.com</a></div>
+            <div>Email: sagarvarma351@gmail.com</div>
+            <div>Github: <a href="https://github.com/sagarvarma1" target="_blank">github.com/sagarvarma1</a></div>
+            <div>Phone: (916) 990 3758</div>
         </div>
     </div>
 
@@ -159,53 +108,62 @@
         <h2>Technical Skills</h2>
         <div class="skills-section">
             <div class="skills-category">
-                <strong>LANGUAGES:</strong> Python • C++ • JavaScript/TypeScript • Swift • Java
+                <strong>LANGUAGES:</strong> Python, C, C++, JavaScript, TypeScript, Swift, Java, Ruby, Rust
             </div>
             <div class="skills-category">
-                <strong>FULL STACK:</strong> FastAPI • PostgreSQL • Flask • Redis • Django • SQL Alchemy •
+                <strong>BACKEND:</strong> FastAPI, SQLAlchemy, Pydantic, Django, Flask, <em>asyncio</em>, <em>uvicorn</em>, REST, OAuth2, JWT
             </div>
             <div class="skills-category">
-                <strong>DEV OPS/TOOLS:</strong> Git • Docker • Linux • GDB • Xcode • Claude Code • LangChain • Hugging Face • PyTorch
+                <strong>DATA & INFRA:</strong> <span>PostgreSQL</span>, Redis (cache/queues), Docker, AWS, GitHub Actions (CI/CD)
+            </div>
+            <div class="skills-category">
+                <strong>AI & LLM:</strong> PyTorch, LangChain, LlamaIndex, TensorFlow, RAG, Claude Code, OpenAI API
             </div>
         </div>
     </div>
 
     <div class="section">
         <h2>Experience</h2>
-        
+
         <div class="job-header">
-            <div class="job-title">Summer Intern - Avora AI</div>
-            <div class="date">06/2025 - 09/2025</div>
+            <div class="job-title">Avora AI - Intern</div>
+            <div class="job-meta">San Francisco, CA | Jun 2025 - Sep 2025</div>
         </div>
         <ul>
-            <li>YC Backed Startup creating AI agents to improve case acceptance and patient care in dentistry</li>
-            <li>Scaled FastAPI + SQL Alchemy backend to accommodate 1k+ practices using the product concurrently</li>
-            <li>Designed and shipped many new features to improve the core product and user experience</li>
-            <li>Tech Learned: Python, TypeScript, Remix, PostgreSQL, FastAPI, SQL Alchemy, GCP BigQuery, AssemblyAI</li>
+            <li>Scaled FastAPI + SQLAlchemy backend to accommodate 1k+ practices using the product concurrently</li>
+            <li>Designed and shipped practice telemetry features and quality of life improvements, increasing retention by 55%</li>
+            <li>Technologies: Python, TypeScript, Remix, PostgreSQL, FastAPI, SQLAlchemy, GCP BigQuery, AssemblyAI</li>
         </ul>
 
         <div class="job-header">
-            <div class="job-title">Summer Intern - Intel Corporation</div>
-            <div class="date">06/2022 - 08/2022</div>
+            <div class="job-title">Intel - Intern</div>
+            <div class="job-meta">Folsom, CA | Jun 2022 - Sep 2022</div>
         </div>
         <ul>
-            <li>Wrote driver code for the latest generation of Intel Arc Series Graphics Cards</li>
-            <li>Created tool to automate updating millions of lines of code, resulting in a reduction of 99% in conflicts</li>
+            <li>Created tool to automate manually updating millions of lines of code, reducing merge conflicts by 99%</li>
             <li>Shipped software updates for previous generations of graphics drivers to patch security vulnerabilities</li>
-            <li>Tech Learned: Python, C, how to work with a large, legacy codebase</li>
+            <li>Technologies: Python, C, Perl, Ruby</li>
+        </ul>
+
+        <div class="job-header">
+            <div class="job-title">Perplexity - Intern</div>
+            <div class="job-meta">Santa Barbara, CA | Sep 2025 - Dec 2025</div>
+        </div>
+        <ul>
+            <li>Responsible for driving growth across the Perplexity product suite on college campuses</li>
         </ul>
     </div>
 
     <div class="section">
         <h2>Projects</h2>
-        
+
         <div class="project">
             <h4>AI Powered Job Agent:</h4>
             <ul>
                 <li><a href="https://www.gettingmejob.com/" target="_blank">https://www.gettingmejob.com/</a></li>
                 <li>Automatically applies to any job using computer use with just a link</li>
                 <li>Scrapes thousands of job websites for latest job data and lets users one click apply</li>
-                <li>Used Firebase, OpenAI, GCP, Python, JavaScript, Flask, React</li>
+                <li>Technologies: Firebase, OpenAI, GCP, Python, JavaScript, Flask, React</li>
                 <li>~1000 MAU</li>
             </ul>
         </div>
@@ -214,7 +172,7 @@
             <h4>AI Test Prep Academy:</h4>
             <ul>
                 <li><a href="https://www.aitestprep.academy/" target="_blank">https://www.aitestprep.academy/</a></li>
-                <li>AI Test Prep service that prevents learning through fully personalized test prep</li>
+                <li>AI Test Prep service that reinvents learning through fully personalized test prep</li>
                 <li>Provides fully customized curriculum with ai generated lectures, videos, slides, practice questions, etc.</li>
                 <li>~1000 people on waitlist</li>
             </ul>
@@ -227,7 +185,7 @@
                 <li>Developed service which uses AI to create custom workout plans</li>
                 <li>Lets users submit photos and get the progress feedback from AI</li>
                 <li>Uses AI to analyze nutrients and give personalized recommendations</li>
-                <li>Aid automatically sent users daily summary texts with the nutrition info of that day</li>
+                <li>App automatically sends users daily summary texts with the info/improvement tips for the day</li>
             </ul>
         </div>
 
@@ -235,8 +193,7 @@
             <h4>AI Location Analyzer</h4>
             <ul>
                 <li><a href="https://wherely.xyz/" target="_blank">https://wherely.xyz/</a></li>
-                <li>Custom tuned AI model to automatically guess where <em>any</em> photo was taken</li>
-                <li>95% accurate on most pictures</li>
+                <li>Custom tuned AI model to automatically predict where <em>any</em> photo was taken</li>
                 <li>~1500 MAU</li>
             </ul>
         </div>
@@ -246,15 +203,14 @@
         <h2>Education</h2>
         <div class="education">
             <div>
-                <strong>Bachelors of Science, Computer Engineering</strong><br>
+                <strong>Bachelor of Science, Computer Engineering</strong><br>
                 <span>2023-2027</span>
             </div>
             <div><strong>University of California, Santa Barbara</strong></div>
         </div>
         <div class="classes">
-            <strong>Classes:</strong> Computer Architecture, Networking, Circuits, Communication Protocols, Operating Systems, DSA
+            <strong>Classes:</strong> Computer Architecture, Networking, Circuits, Operating Systems, Data Structures and Algorithms, Compilers
         </div>
     </div>
-
 </body>
 </html> 
