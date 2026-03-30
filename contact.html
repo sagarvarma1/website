@@ -7,10 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&display=swap" rel="stylesheet">
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>   
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
     <style>
-
         * {
             margin: 0;
             padding: 0;
@@ -20,13 +17,17 @@
         body {
             min-height: 100vh;
             background-color: #fff;
-            font-family: 'EB Garamond', serif;
             color: #4b3f37;
+            font-family: 'EB Garamond', serif;
+            line-height: 1.6;
         }
 
-        /* Desktop Nav Styles - renamed to match about.html */
         .desktop-nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
             padding: 1rem;
+            z-index: 1000;
             text-align: center;
         }
 
@@ -35,6 +36,8 @@
             display: flex;
             justify-content: center;
             gap: 2rem;
+            margin: 0;
+            padding: 0;
         }
 
         .desktop-nav a {
@@ -51,24 +54,25 @@
             border-radius: 4px;
         }
 
-        /* Hide the nav item for the current page */
+        .desktop-nav a.active {
+            color: #3b2f27;
+        }
+
         .desktop-nav ul li:has(a.active) {
             display: none;
         }
 
-        /* --- Mobile Nav Styles --- */
         .mobile-header {
-            display: none; /* Hidden by default */
+            display: none;
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            padding: 0.8rem 1rem; /* Reverted right padding */
+            padding: 0.8rem 1rem;
             z-index: 1000;
             justify-content: space-between;
             align-items: center;
-            box-sizing: border-box; /* Ensure padding is included in width calculation */
-            background-color: #fff; /* Add background color */
+            background-color: #fff;
         }
 
         .logo-link {
@@ -79,38 +83,38 @@
             text-decoration: none;
         }
 
-        .hamburger-icon, .close-icon {
+        .hamburger-icon,
+        .close-icon {
             background: none;
             border: none;
             font-size: 2rem;
             cursor: pointer;
             color: #4b3f37;
-            padding: 0; /* Reduced padding */
-            line-height: 1; /* Ensure consistent height */
+            padding: 0;
+            line-height: 1;
         }
-        
+
         .hamburger-icon {
-            display: none; /* Hide by default, will show in media query */
-            margin-left: auto; /* Push to the right */
+            display: none;
         }
 
         .mobile-menu {
-            display: none; /* Hidden by default */
+            display: none;
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(255, 255, 255, 0.98); /* Almost opaque white */
+            background-color: rgba(255, 255, 255, 0.98);
             backdrop-filter: blur(10px);
-            z-index: 1100; /* Above mobile header */
+            z-index: 1100;
             flex-direction: column;
             justify-content: center;
             align-items: center;
         }
 
         .mobile-menu.active {
-             display: flex; /* Show when active */
+            display: flex;
         }
 
         .mobile-menu .close-icon {
@@ -118,21 +122,13 @@
             top: 1.5rem;
             right: 1.5rem;
             font-size: 2.5rem;
-            display: block; /* Make the close icon visible */
-            background: none; /* Ensure no background */
-            border: none; /* Ensure no border */
-            color: #4b3f37; /* Update color */
-            cursor: pointer; /* Ensure cursor is pointer */
-            padding: 0; /* Reset padding */
-            line-height: 1; /* Reset line height */
-            outline: none; /* Remove focus outline */
         }
 
         .mobile-menu ul {
-            list-style: none !important; /* Ensure bullet points are removed */
+            list-style: none;
             padding: 0;
             text-align: center;
-            width: 100%; /* Ensure ul takes width for centering text */
+            width: 100%;
         }
 
         .mobile-menu li {
@@ -142,38 +138,47 @@
         .mobile-menu a {
             font-family: 'EB Garamond', serif;
             font-size: 2rem;
-            color: #4b3f37 !important; /* Update color with important */
-            text-decoration: none !important; /* Ensure underline is removed */
+            color: #4b3f37;
+            text-decoration: none;
             padding: 0.5rem;
             display: block;
         }
-         
-        .mobile-menu a:hover {
-             color: #3b2f27; /* Update hover color */
-        }
 
         .mobile-menu a.active {
-            text-decoration: underline !important; /* Underline the active link */
-            text-decoration-color: #4b3f37 !important; /* Update underline color */
-            text-underline-offset: 5px; /* Optional: Adjust underline position */
+            text-decoration: underline;
+            text-underline-offset: 5px;
+        }
+
+        .container {
+            max-width: 650px;
+            margin: 88px auto 40px auto;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        h1::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background-color: #4b3f37;
         }
 
         .contact-details {
-            text-align: center;
-            margin-bottom: 2rem;
-            color: #4b3f37;
-            font-size: 1.1rem;
-            line-height: 1.5;
-        }
-
-        .contact-details p {
-            margin-bottom: 0.3rem;
-        }
-
-        .contact-details p:last-of-type {
-             margin-top: 1rem;
-             font-style: italic;
-             opacity: 0.9;
+            margin-top: 1.5rem;
+            font-size: 1.3rem;
+            display: grid;
+            gap: 0.8rem;
         }
 
         .contact-details a {
@@ -181,257 +186,84 @@
             text-decoration: underline;
         }
 
-        .contact-form {
-            background: rgba(240, 240, 240, 0.5);
-            backdrop-filter: blur(5px);
-            padding: 2rem;
-            border-radius: 10px;
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-size: 1.2rem;
-            color: #4b3f37;
-        }
-
-        input, textarea {
-            width: 100%;
-            padding: 0.8rem;
-            background: rgba(255, 255, 255, 0.7);
-            border: 1px solid rgba(0, 0, 0, 0.3);
-            border-radius: 4px;
-            font-family: 'EB Garamond', serif;
-            font-size: 1rem;
-            color: #4b3f37;
-        }
-
-        textarea {
-            height: 150px;
-            resize: vertical;
-        }
-
-        .contact-form button {
-            background: transparent;
-            color: #4b3f37;
-            border: 2px solid #4b3f37;
-            padding: 1rem 2rem;
-            font-size: 1.2rem;
-            font-family: 'EB Garamond', serif;
-            cursor: pointer;
-            width: 100%;
-            border-radius: 4px;
-            transition: all 0.3s ease;
-        }
-
-        button {
-            background: transparent;
-            color: inherit;
-            border: none;
-            font: inherit;
-            padding: 0;
-            margin: 0;
-            cursor: pointer;
-        }
-
-        .container {
-            max-width: 600px;
-            width: 90%;
-            margin: 2rem auto;
-            padding: 1.5rem;
-        }
-
-        /* Media Query for Responsiveness */
         @media (max-width: 768px) {
             .desktop-nav {
-                display: none; /* Hide desktop nav on mobile */
+                display: none;
             }
 
             .mobile-header {
-                display: flex; /* Show mobile header */
-                padding: 0.8rem 1rem; /* Ensure consistent padding */
-                background-color: #fff;
-                justify-content: space-between;
-                align-items: center;
+                display: flex;
             }
-            
-            .hamburger-icon { display:block; }
-            
-            /* Adjust container margin-top to account for mobile header height */
+
+            .hamburger-icon {
+                display: block;
+            }
+
             .container {
-                margin-top: 80px; /* Adjust as needed */
-            }
-            
-            .contact-form {
-                padding: 1rem;
+                margin-top: 80px;
             }
 
-            label {
-                font-size: 1rem;
+            h1 {
+                font-size: 2.5rem;
             }
 
-            input, textarea {
-                padding: 0.6rem;
-                font-size: 1rem;
-            }
-
-            .contact-form button {
-                padding: 0.7rem 1rem;
-                font-size: 1rem;
+            .contact-details {
+                font-size: 1.15rem;
             }
         }
-
-        @media screen and (max-width: 480px) {
-            .container {
-                width: 95%;
-                padding: 1rem;
-                margin-top: 80px; /* Maintain the top margin */
-            }
-        }
-
-        .success-message {
-            background: transparent;
-            color: #4b3f37;
-            border: 2px solid #4CAF50;
-            padding: 1rem 2rem;
-            font-size: 1.1rem;
-            font-family: 'EB Garamond', serif;
-            width: 100%;
-            border-radius: 4px;
-            text-align: center;
-            animation: fadeIn 0.5s ease-in;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
     </style>
-
 </head>
 <body>
-    <!-- Desktop Navigation -->
-    <nav class="desktop-nav">
+    <nav class="desktop-nav" aria-label="Primary">
         <ul>
             <li><a href="landing.html">Home</a></li>
             <li><a href="about.html">About</a></li>
-            <li><a href="https://sagarvarma.substack.com" target="_blank">Writings</a></li>
+            <li><a href="https://sagarvarma.substack.com" target="_blank" rel="noopener noreferrer">Writings</a></li>
             <li><a href="contact.html" class="active">Contact</a></li>
         </ul>
     </nav>
 
-    <!-- Mobile Header -->
     <div class="mobile-header">
         <a href="landing.html" class="logo-link">SV</a>
         <button class="hamburger-icon" aria-label="Open menu">&#9776;</button>
     </div>
 
-    <!-- Mobile Menu Overlay -->
     <div class="mobile-menu">
         <button class="close-icon" aria-label="Close menu">&times;</button>
         <ul>
             <li><a href="landing.html">Home</a></li>
             <li><a href="about.html">About</a></li>
-            <li><a href="https://sagarvarma.substack.com" target="_blank">Writings</a></li>
+            <li><a href="https://sagarvarma.substack.com" target="_blank" rel="noopener noreferrer">Writings</a></li>
             <li><a href="contact.html" class="active">Contact</a></li>
         </ul>
     </div>
 
-    <div class="container">
+    <main class="container">
+        <h1>Contact</h1>
         <div class="contact-details">
-            <p>Email: sagarvarma351@gmail.com</p>
-            <p>DM: x.com/thesagarvarma</p>
-            <p>DM: instagram.com/thesagarvarma</p>
-            <p>Or use the form below</p>
+            <p>Email Me: <a href="mailto:sagarvarma351@gmail.com">sagarvarma351@gmail.com</a></p>
+            <p>DM Me: <a href="https://x.com/thesagarvarma" target="_blank" rel="noopener noreferrer">x.com/thesagarvarma</a></p>
         </div>
+    </main>
 
-        <form class="contact-form" id="contact-form" action="https://formspree.io/f/mldeaopb" method="POST">
-            <div class="form-group">
-                <label for="name">Name</label>
-                <input type="text" id="name" name="name" required>
-            </div>
-            
-            <div class="form-group">
-                <label for="email">Email</label>
-                <input type="email" id="email" name="email" required>
-            </div>
-            
-            <div class="form-group">
-                <label for="message">Message</label>
-                <textarea id="message" name="message" required></textarea>
-            </div>
-            
-            <button type="submit">Send Message</button>
-        </form>
+    <script>
+        const hamburger = document.querySelector('.hamburger-icon');
+        const closeBtn = document.querySelector('.close-icon');
+        const mobileMenu = document.querySelector('.mobile-menu');
 
-        <div id="form-status" style="margin-top: 1rem; text-align: center;"></div>
+        hamburger.addEventListener('click', () => {
+            mobileMenu.classList.add('active');
+        });
 
-        <script>
-            window.addEventListener('load', function() {
-                const form = document.getElementById('contact-form');
-                const submitButton = form.querySelector('button[type="submit"]');
-                
-                form.addEventListener('submit', async function(e) {
-                    e.preventDefault();
-                    
-                    try {
-                        submitButton.disabled = true;
-                        const formData = new FormData(form);
-                        const response = await fetch(form.action, {
-                            method: 'POST',
-                            body: formData,
-                            headers: {
-                                'Accept': 'application/json'
-                            }
-                        });
+        closeBtn.addEventListener('click', () => {
+            mobileMenu.classList.remove('active');
+        });
 
-                        const data = await response.json();
-                        if (response.ok) {
-                            const successMessage = document.createElement('div');
-                            successMessage.className = 'success-message';
-                            successMessage.textContent = 'Message sent successfully!';
-                            
-                            submitButton.parentNode.replaceChild(successMessage, submitButton);
-                            
-                            form.reset();
-                            grecaptcha.reset();
-                        } else {
-                            throw new Error('Form submission failed');
-                        }
-                    } catch (error) {
-                        console.error('Error:', error);
-                        submitButton.disabled = false;
-                        const status = document.getElementById('form-status');
-                        status.innerHTML = "<p style='color: #f44336;'>Oops! There was a problem submitting your form.</p>";
-                    }
-                });
-            });
-            
-            // Mobile menu functionality
-            const hamburger = document.querySelector('.hamburger-icon');
-            const closeBtn = document.querySelector('.close-icon');
-            const mobileMenu = document.querySelector('.mobile-menu');
-
-            hamburger.addEventListener('click', () => {
-                mobileMenu.classList.add('active');
-            });
-
-            closeBtn.addEventListener('click', () => {
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
                 mobileMenu.classList.remove('active');
             });
-
-            // Optional: Close menu if a link is clicked
-            mobileMenu.querySelectorAll('a').forEach(link => {
-                link.addEventListener('click', () => {
-                    mobileMenu.classList.remove('active');
-                });
-            });
-        </script>
-    </div>
+        });
+    </script>
 </body>
 </html>
