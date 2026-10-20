@@ -131,13 +131,6 @@
             font-size: 1rem;
         }
 
-        .summary {
-            margin-top: 2rem;
-            font-size: 1.2rem;
-            line-height: 1.55;
-            max-width: 40em;
-            text-wrap: pretty;
-        }
 
         /* --- Sections --- */
         section { margin-top: 3.5rem; }
@@ -254,7 +247,6 @@
             .topbar { margin-bottom: 2.5rem; }
             header h1 { font-size: 2.9rem; }
             .tagline { font-size: 1.15rem; }
-            .summary { font-size: 1.1rem; }
             section { margin-top: 2.75rem; }
             .entry, .skill { display: block; }
             .when { padding-top: 0; }
@@ -292,7 +284,7 @@
             a { text-decoration: none; }
             header h1 { font-size: 20pt; font-weight: 700; letter-spacing: 0; }
             .tagline { font-size: 10pt; font-style: normal; margin-top: 0.1rem; }
-            .contact { margin-top: 0.3rem; font-size: 9pt; gap: 0 1rem; }
+            .contact { margin-top: 0.3rem; font-size: 8.5pt; gap: 0 0.55rem; }
             section { margin-top: 0.5rem; }
             section > h2 {
                 font-size: 8pt;
@@ -353,7 +345,7 @@
 
         <header>
             <h1>Sagar Varma</h1>
-            <p class="tagline">Computer Engineering at UC Santa Barbara. I build AI agents and the systems that check them.</p>
+            <p class="tagline">AI Engineer building agents and evals | Computer Engineering at UCSB</p>
             <div class="contact">
                 <span>Santa Barbara, CA</span>
                 <a href="mailto:sagarvarma351@gmail.com">sagarvarma351@gmail.com</a>
@@ -362,12 +354,6 @@
                 <a href="https://github.com/sagarvarma1" target="_blank" rel="noopener">github.com/sagarvarma1</a>
                 <a class="print-only" href="https://sagar-varma.com" target="_blank" rel="noopener">sagar-varma.com</a>
             </div>
-            <p class="summary screen-only">
-                I built the research agents behind SemiAnalysis's map of every semiconductor fab in the world,
-                and the agents that checked their work. Before that: backend at Avora AI (Y Combinator) and
-                graphics drivers at Intel. Now building Bardie, which texts college students before they miss
-                things, and Appetite Pal, a paid food log for people on GLP&#8209;1s.
-            </p>
         </header>
 
         <section>
@@ -379,10 +365,10 @@
                     <h3>SemiAnalysis</h3>
                     <div class="role">Machine Learning Engineer, Remote</div>
                     <ul>
-                        <li>Built deep research AI agents that mapped every semiconductor fab in the world, down to site-level details</li>
+                        <li>Built deep research AI agents that mapped thousands of semiconductor fabs at site level, saving hundreds of research hours</li>
                         <li>Researched fabs by hand to build ground-truth data, then automated it into LLM evaluations (evals)</li>
                         <li>Designed verifier agents that catch hallucinations before they reach the dataset</li>
-                        <li>Built internal AI tools to visualize and query research data</li>
+                        <li>Built internal AI tools that researchers across the company used to query and visualize research data</li>
                     </ul>
                 </div>
             </div>
@@ -439,7 +425,7 @@
                     <h3><a href="https://textbardie.com" target="_blank" rel="noopener">Bardie</a> <span class="url">textbardie.com</span></h3>
                     <div class="role">AI assistant that texts college students before they miss deadlines</div>
                     <ul>
-                        <li>Built the agent harness and Canvas LMS connectors; launching with paid plans</li>
+                        <li>Built the agent harness and Canvas LMS connectors; launched at UCSB with a few dozen users and first paying Pro subscribers</li>
                     </ul>
                 </div>
             </div>
@@ -452,7 +438,7 @@
                     <div class="role">AI food log for people on GLP-1 medications</div>
                     <ul>
                         <li>Built and shipped the iOS app; AI tracks calories and every macronutrient</li>
-                        <li>Sells subscriptions at $14.99/month or $169.99/year; marketed in person at UCSB and to older adults in Santa Barbara</li>
+                        <li>Sells subscriptions at $14.99/month or $169.99/year</li>
                     </ul>
                 </div>
             </div>
@@ -461,7 +447,6 @@
                 <div class="when"></div>
                 <div>
                     <h3><a href="https://americantimeuse.com" target="_blank" rel="noopener">American Time Use Explorer</a> <span class="url">americantimeuse.com</span></h3>
-                    <div class="role">What Americans do, minute by minute</div>
                     <ul>
                         <li>Turned the Bureau of Labor Statistics' American Time Use Survey into interactive visualizations</li>
                     </ul>
@@ -497,7 +482,7 @@
             <p class="skill"><span class="skill-label">Frameworks<span class="colon">:</span></span> <span>Claude Agent SDK, OpenAI Agents SDK, LangGraph, LangChain, LlamaIndex, Claude and OpenAI APIs, Claude Code</span></p>
             <p class="skill"><span class="skill-label">Languages<span class="colon">:</span></span> <span>Python, TypeScript, JavaScript, Swift, Java, C, C++, SQL</span></p>
             <p class="skill"><span class="skill-label">Web &amp; Mobile<span class="colon">:</span></span> <span>FastAPI, Django, Flask, Node.js, React (React.js), Remix, SQLAlchemy, Pydantic, REST APIs, OAuth 2.0, SwiftUI (iOS)</span></p>
-            <p class="skill"><span class="skill-label">Infrastructure<span class="colon">:</span></span> <span>PostgreSQL, Redis, vector databases, BigQuery, Docker, Kubernetes, Amazon Web Services (AWS), Google Cloud Platform (GCP), GitHub Actions (CI/CD)</span></p>
+            <p class="skill"><span class="skill-label">Infrastructure<span class="colon">:</span></span> <span>PostgreSQL, Redis, vector databases, BigQuery, Docker, Kubernetes, AWS, GCP, GitHub Actions (CI/CD)</span></p>
             <p class="skill"><span class="skill-label">Hardware<span class="colon">:</span></span> <span>Verilog, VLSI design, Cadence Virtuoso, Cadence SKILL, electronic design automation (EDA), computer architecture</span></p>
         </section>
 
@@ -527,7 +512,7 @@
             <div class="entry">
                 <div class="when">Sep 2025 &ndash; Dec 2025</div>
                 <div>
-                    <span class="compact-line"><strong>Perplexity</strong>, Campus Growth Ambassador at UCSB</span>
+                    <span class="compact-line"><strong>Perplexity</strong>, Campus Growth Ambassador at UCSB; drove ~500 signups</span>
                 </div>
             </div>
         </section>
