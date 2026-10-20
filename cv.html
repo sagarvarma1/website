@@ -3,11 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CV - Sagar Varma</title>
+    <!-- Chrome uses the title as the saved PDF's filename -->
+    <title>Sagar Varma Resume</title>
+    <meta name="description" content="Sagar Varma, Computer Engineering at UC Santa Barbara. Built the research and verifier agents behind SemiAnalysis's map of every semiconductor fab in the world; previously Avora AI (Y Combinator) and Intel.">
+    <meta property="og:type" content="profile">
+    <meta property="og:title" content="Sagar Varma - Resume">
+    <meta property="og:description" content="Computer Engineering at UC Santa Barbara. AI agents at SemiAnalysis, previously Avora AI (Y Combinator) and Intel.">
+    <meta property="og:url" content="https://sagar-varma.com/cv">
+    <meta name="twitter:card" content="summary">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='10' fill='%231c1a17'/%3E%3Ctext x='32' y='43' font-family='Garamond,Georgia,serif' font-size='30' fill='%23fdfcfa' text-anchor='middle'%3ESV%3C/text%3E%3C/svg%3E">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --paper: #fdfcfa;
+            --ink: #1c1a17;
+            --muted: #6f675f;
+            --faint: #a49b91;
+            --rule: #e6e0d8;
+            --accent: #9a3b1e;
+            --gutter: 9.5rem;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --paper: #141311;
+                --ink: #ebe6df;
+                --muted: #a0978d;
+                --faint: #6e665e;
+                --rule: #2b2824;
+                --accent: #e08b62;
+            }
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -15,206 +44,493 @@
         }
 
         body {
-            font-family: 'EB Garamond', Garamond, serif;
-            line-height: 1.6;
-            background-color: #fff;
-            color: #333;
-            padding: 2rem;
-            max-width: 900px;
+            font-family: 'EB Garamond', Garamond, Georgia, serif;
+            font-size: 18.5px;
+            line-height: 1.5;
+            font-variant-numeric: oldstyle-nums;
+            background-color: var(--paper);
+            color: var(--ink);
+            -webkit-font-smoothing: antialiased;
+            text-rendering: optimizeLegibility;
+        }
+
+        .page {
+            max-width: 860px;
             margin: 0 auto;
+            padding: 2.25rem 1.5rem 5rem;
         }
 
-        .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 1.5rem;
+        a {
+            color: inherit;
+            text-decoration: underline;
+            text-decoration-color: var(--rule);
+            text-decoration-thickness: 1px;
+            text-underline-offset: 0.2em;
+            transition: text-decoration-color 0.2s ease, color 0.2s ease;
         }
 
-        .name-block h1 {
-            font-size: 3rem;
-            font-weight: 700;
+        a:hover {
+            color: var(--accent);
+            text-decoration-color: currentColor;
         }
 
-        .contact-block {
-            text-align: right;
-            font-size: 0.95rem;
-            line-height: 1.4;
+        ::selection {
+            background: var(--accent);
+            color: var(--paper);
         }
 
-        .section {
-            margin-bottom: 2rem;
+        a:focus-visible {
+            outline: none;
+            color: var(--accent);
+            text-decoration-color: currentColor;
+            text-decoration-thickness: 2px;
         }
 
-        .section h2 {
-            font-size: 1.35rem;
-            font-weight: 700;
-            margin-bottom: 0.6rem;
+        h1, h3 { text-wrap: balance; }
+
+        .print-only { display: none; }
+
+        .smallcaps {
+            font-variant-caps: all-small-caps;
+            letter-spacing: 0.06em;
         }
 
-        .skills-category {
-            margin-bottom: 0.35rem;
-        }
-
-        .skills-category strong {
-            font-weight: 700;
-            text-transform: uppercase;
-        }
-
-        ul {
-            margin-left: 1.2rem;
-            margin-bottom: 0.6rem;
-        }
-
-        li { margin-bottom: 0.25rem; }
-
-        .job-header {
+        .topbar {
             display: flex;
             justify-content: space-between;
             align-items: baseline;
-            margin-top: 0.8rem;
-            margin-bottom: 0.3rem;
+            margin-bottom: 3.5rem;
+            font-size: 1rem;
+            color: var(--muted);
         }
 
-        .job-title { font-weight: 700; }
-        .job-meta { font-weight: 700; }
+        .topbar a { text-decoration: none; }
+        .topbar .pdf { color: var(--accent); }
+        .topbar .pdf:hover { text-decoration: underline; }
 
-        .project { margin-bottom: 1rem; }
+        /* --- Header --- */
+        header h1 {
+            font-size: 3.75rem;
+            font-weight: 500;
+            line-height: 1;
+            letter-spacing: -0.015em;
+        }
 
-        a { color: #333; text-decoration: underline; }
-        a:hover { text-decoration: underline; }
+        .tagline {
+            margin-top: 0.6rem;
+            font-size: 1.3rem;
+            font-style: italic;
+            color: var(--muted);
+        }
 
-        @media (max-width: 768px) {
-            .header { flex-direction: column; gap: 0.5rem; }
-            .contact-block { text-align: left; }
-            .job-header { flex-direction: column; gap: 0.2rem; }
+        .contact {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.2rem 1.4rem;
+            margin-top: 1.25rem;
+            font-size: 1rem;
+        }
+
+        .summary {
+            margin-top: 2rem;
+            font-size: 1.2rem;
+            line-height: 1.55;
+            max-width: 40em;
+            text-wrap: pretty;
+        }
+
+        /* --- Sections --- */
+        section { margin-top: 3.5rem; }
+
+        section > h2 {
+            font-size: 1.05rem;
+            font-weight: 500;
+            font-variant-caps: all-small-caps;
+            letter-spacing: 0.1em;
+            color: var(--accent);
+            padding-bottom: 0.45rem;
+            border-bottom: 1px solid var(--rule);
+            margin-bottom: 1.6rem;
+        }
+
+        /* Dates sit in a left margin column, content in the right */
+        .entry {
+            display: grid;
+            grid-template-columns: var(--gutter) 1fr;
+            column-gap: 2rem;
+            margin-bottom: 2rem;
+            break-inside: avoid;
+        }
+
+        .entry:last-child { margin-bottom: 0; }
+
+        .when {
+            padding-top: 0.2rem;
+            font-size: 0.95rem;
+            color: var(--muted);
+            font-variant-numeric: oldstyle-nums tabular-nums;
+        }
+
+        .entry h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            line-height: 1.3;
+        }
+
+        .entry h3 .url {
+            font-weight: 400;
+            font-size: 1rem;
+            color: var(--muted);
+            margin-left: 0.4rem;
+        }
+
+        .role {
+            font-style: italic;
+            color: var(--muted);
+        }
+
+        .entry ul {
+            margin: 0.5rem 0 0 1.05rem;
+        }
+
+        .entry li {
+            margin-bottom: 0.3rem;
+            padding-left: 0.2rem;
+            text-wrap: pretty;
+        }
+
+        .entry li::marker { color: var(--faint); }
+
+        /* Screen: a quiet italic line. Print: "Technologies: a, b, c" */
+        .tags {
+            margin-top: 0.45rem;
+            font-size: 0.95rem;
+            font-style: italic;
+            color: var(--muted);
+        }
+
+        .tag:not(:last-child)::after {
+            content: "  \00b7  ";
+            white-space: pre;
+            color: var(--faint);
+        }
+
+        /* --- Earlier projects, additional experience --- */
+        .entry ul.compact { list-style: none; margin-left: 0; }
+
+        .compact li {
+            padding-left: 0;
+            margin-bottom: 0.35rem;
+        }
+
+        .compact .name { font-weight: 600; }
+        .compact .desc { color: var(--muted); }
+        .compact .meta {
+            color: var(--muted);
+            font-size: 0.95rem;
+            margin-left: 0.4rem;
+        }
+
+        /* --- Skills: label in the margin column --- */
+        .skill {
+            display: grid;
+            grid-template-columns: var(--gutter) 1fr;
+            column-gap: 2rem;
+            margin-bottom: 0.55rem;
+        }
+
+        .skill-label {
+            font-variant-caps: all-small-caps;
+            letter-spacing: 0.06em;
+            color: var(--muted);
+            padding-top: 0.05rem;
+        }
+
+        .skill .colon { display: none; }
+
+        @media (max-width: 700px) {
+            body { font-size: 17.5px; }
+            .page { padding: 1.25rem 1rem 3rem; }
+            .topbar { margin-bottom: 2.5rem; }
+            header h1 { font-size: 2.9rem; }
+            .tagline { font-size: 1.15rem; }
+            .summary { font-size: 1.1rem; }
+            section { margin-top: 2.75rem; }
+            .entry, .skill { display: block; }
+            .when { padding-top: 0; }
+            .skill { margin-bottom: 0.8rem; }
+            .skill-label { display: block; }
+        }
+
+        /* --- Print / Save as PDF: one page, ATS-safe --- */
+        @media print {
+            @page { size: letter; margin: 0.35in 0.45in; }
+
+            :root {
+                --paper: #fff;
+                --ink: #000;
+                --muted: #444;
+                --faint: #777;
+                --rule: #bbb;
+                --accent: #000;
+            }
+
+            /* Web-font kerning splits words in extracted PDF text ("agen ts"), so print uses a system font */
+            body {
+                font-family: Arial, Helvetica, sans-serif;
+                font-kerning: none;
+                font-variant-ligatures: none;
+                font-feature-settings: "kern" 0, "liga" 0;
+                font-variant-numeric: normal;
+                font-size: 9pt;
+                line-height: 1.25;
+            }
+
+            .page { max-width: none; padding: 0; }
+            .topbar, .screen-only { display: none !important; }
+            .print-only { display: inline; }
+            a { text-decoration: none; }
+            header h1 { font-size: 20pt; font-weight: 700; letter-spacing: 0; }
+            .tagline { font-size: 10pt; font-style: normal; margin-top: 0.1rem; }
+            .contact { margin-top: 0.3rem; font-size: 9pt; gap: 0 1rem; }
+            section { margin-top: 0.5rem; }
+            section > h2 {
+                font-size: 8pt;
+                font-weight: 700;
+                font-variant-caps: normal;
+                text-transform: uppercase;
+                letter-spacing: 0.08em;
+                padding-bottom: 0.1rem;
+                margin-bottom: 0.3rem;
+            }
+
+            /* Date floats to the right of the title line */
+            .entry { display: block; position: relative; margin-bottom: 0.3rem; }
+            .when { position: absolute; top: 0; right: 0; padding: 0; font-size: 9pt; }
+            .entry h3 { font-size: 10pt; font-weight: 700; padding-right: 9rem; }
+            .entry h3 .url { font-size: 10pt; font-weight: 400; color: var(--ink); margin-left: 0; }
+            .entry h3 .url::before { content: "| "; }
+            .role { font-size: 9pt; }
+            .entry ul { margin: 0.15rem 0 0 1.1rem; }
+            .entry li { margin-bottom: 0.05rem; }
+
+            .tags { margin-top: 0.1rem; font-size: 8.5pt; font-style: normal; }
+            .tags::before { content: attr(data-label) ": "; font-weight: 700; }
+            .tag:not(:last-child)::after { content: ", "; color: inherit; white-space: normal; }
+
+            .compact li { margin-bottom: 0.05rem; font-size: 9pt; }
+            .compact .meta { position: absolute; right: 0; font-size: 9pt; }
+            .compact li { position: relative; }
+
+            .earlier-label { display: inline; font-style: normal; font-weight: 700; color: var(--ink); }
+            .earlier-label::after { content: ": "; }
+            ul.earlier, ul.earlier li { display: inline; }
+            ul.earlier .desc { display: none; }
+            ul.earlier .name { font-weight: 400; }
+            ul.earlier .meta { position: static; margin-left: 0; }
+            ul.earlier .meta::before { content: " ("; }
+            ul.earlier .meta::after { content: ")"; }
+            ul.earlier li:not(:last-child)::after { content: ", "; }
+            .skill { display: block; margin-bottom: 0.1rem; font-size: 9pt; }
+            .skill-label {
+                display: inline;
+                font-variant-caps: normal;
+                letter-spacing: 0;
+                font-weight: 700;
+                color: var(--ink);
+            }
+            .skill .colon { display: inline; }
         }
     </style>
 </head>
 <body>
-    <div class="header">
-        <div class="name-block">
+    <div class="page">
+        <div class="topbar">
+            <a href="/">&larr; sagar-varma.com</a>
+            <!-- Regenerate after edits: Chrome headless --print-to-pdf=Sagar_Varma_Resume.pdf cv.html -->
+            <a class="pdf" href="Sagar_Varma_Resume.pdf" download>Download PDF</a>
+        </div>
+
+        <header>
             <h1>Sagar Varma</h1>
-        </div>
-        <div class="contact-block">
-            <div>Website: <a href="https://sagar-varma.com" target="_blank">sagar-varma.com</a></div>
-            <div>Email: sagarvarma351@gmail.com</div>
-            <div>Github: <a href="https://github.com/sagarvarma1" target="_blank">github.com/sagarvarma1</a></div>
-            <div>Phone: (916) 990 3758</div>
-        </div>
-    </div>
-
-    <div class="section">
-        <h2>Technical Skills</h2>
-        <div class="skills-section">
-            <div class="skills-category">
-                <strong>LANGUAGES:</strong> Python, C, C++, JavaScript, TypeScript, Swift, Java, Ruby, Rust, SQL, Tableau
+            <p class="tagline">Computer Engineering at UC Santa Barbara. I build AI agents and the systems that check them.</p>
+            <div class="contact">
+                <span>Santa Barbara, CA</span>
+                <a href="mailto:sagarvarma351@gmail.com">sagarvarma351@gmail.com</a>
+                <a href="tel:+19169903758">(916) 990-3758</a>
+                <a href="https://www.linkedin.com/in/thesagarvarma" target="_blank" rel="noopener">linkedin.com/in/thesagarvarma</a>
+                <a href="https://github.com/sagarvarma1" target="_blank" rel="noopener">github.com/sagarvarma1</a>
+                <a class="print-only" href="https://sagar-varma.com" target="_blank" rel="noopener">sagar-varma.com</a>
             </div>
-            <div class="skills-category">
-                <strong>BACKEND:</strong> FastAPI, SQLAlchemy, Pydantic, Django, Flask, asyncio, uvicorn, REST, OAuth2, JWT
+            <p class="summary screen-only">
+                I built the research agents behind SemiAnalysis's map of every semiconductor fab in the world,
+                and the agents that checked their work. Before that: backend at Avora AI (Y Combinator) and
+                graphics drivers at Intel. Now building Bardie, which texts college students before they miss
+                things, and Appetite Pal, a paid food log for people on GLP&#8209;1s.
+            </p>
+        </header>
+
+        <section>
+            <h2>Experience</h2>
+
+            <div class="entry">
+                <div class="when">Oct 2025 &ndash; Sep 2026</div>
+                <div>
+                    <h3>SemiAnalysis</h3>
+                    <div class="role">Machine Learning Engineer, Remote</div>
+                    <ul>
+                        <li>Built deep research AI agents that mapped every semiconductor fab in the world, down to site-level details</li>
+                        <li>Researched fabs by hand to build ground-truth data, then automated it into LLM evaluations (evals)</li>
+                        <li>Designed verifier agents that catch hallucinations before they reach the dataset</li>
+                        <li>Built internal AI tools to visualize and query research data</li>
+                    </ul>
+                </div>
             </div>
-            <div class="skills-category">
-                <strong>DATA & INFRA:</strong> <span>PostgreSQL</span>, Redis (cache/queues), Docker, AWS, GitHub Actions (CI/CD)
+
+            <div class="entry">
+                <div class="when">Jun 2025 &ndash; Sep 2025</div>
+                <div>
+                    <h3>Avora AI (Y Combinator)</h3>
+                    <div class="role">Software Engineering Intern, San Francisco, CA</div>
+                    <ul>
+                        <li>Scaled the FastAPI backend to 1,000+ dental practices using the product concurrently</li>
+                        <li>Shipped practice telemetry and quality-of-life features that raised retention 55%</li>
+                    </ul>
+                    <div class="tags" data-label="Technologies">
+                        <span class="tag">Python</span>
+                        <span class="tag">TypeScript</span>
+                        <span class="tag">React</span>
+                        <span class="tag">Remix</span>
+                        <span class="tag">PostgreSQL</span>
+                        <span class="tag">FastAPI</span>
+                        <span class="tag">SQLAlchemy</span>
+                        <span class="tag">Kubernetes</span>
+                        <span class="tag">GCP BigQuery</span>
+                        <span class="tag">AssemblyAI</span>
+                    </div>
+                </div>
             </div>
-            <div class="skills-category">
-                <strong>AI & LLM:</strong> PyTorch, LangChain, LlamaIndex, TensorFlow, RAG, Claude Code, OpenAI API
+
+            <div class="entry">
+                <div class="when">Jun 2022 &ndash; Sep 2022</div>
+                <div>
+                    <h3>Intel</h3>
+                    <div class="role">Software Engineering Intern, Folsom, CA</div>
+                    <ul>
+                        <li>Automated manual code updates across millions of lines, cutting merge conflicts 99%</li>
+                        <li>Shipped security patches for legacy graphics drivers</li>
+                    </ul>
+                    <div class="tags" data-label="Technologies">
+                        <span class="tag">Python</span>
+                        <span class="tag">C</span>
+                        <span class="tag">Perl</span>
+                        <span class="tag">Ruby</span>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
+        </section>
 
-    <div class="section">
-        <h2>Experience</h2>
+        <section>
+            <h2>Projects</h2>
 
-        <div class="job-header">
-            <div class="job-title">ML at SemiAnalysis</div>
-            <div class="job-meta">Remote | October 2025 - Present</div>
-        </div>
-        <ul>
-            <li>Machine Learning at SemiAnalysis</li>
-        </ul>
-
-        <div class="job-header">
-            <div class="job-title">Avora AI - Software Engineering Intern</div>
-            <div class="job-meta">San Francisco, CA | Jun 2025 - Sep 2025</div>
-        </div>
-        <ul>
-            <li>YC Backed startup creating AI agents for dentists</li>
-            <li>Scaled FastAPI + SQLAlchemy backend to accommodate 1k+ practices using the product concurrently</li>
-            <li>Designed and shipped practice telemetry features and quality of life improvements, increasing retention by 55%</li>
-            <li>Technologies: Python, TypeScript, Remix, PostgreSQL, FastAPI, SQLAlchemy, GCP BigQuery, AssemblyAI</li>
-        </ul>
-
-        <div class="job-header">
-            <div class="job-title">Intel - Software Engineering Intern</div>
-            <div class="job-meta">Folsom, CA | Jun 2022 - Sep 2022</div>
-        </div>
-        <ul>
-            <li>Created tool to automate manually updating millions of lines of code, reducing merge conflicts by 99%</li>
-            <li>Shipped software updates for previous generations of graphics drivers to patch security vulnerabilities</li>
-            <li>Technologies: Python, C, Perl, Ruby</li>
-        </ul>
-
-        <div class="job-header">
-            <div class="job-title">Perplexity - Growth Ambassador</div>
-            <div class="job-meta">Santa Barbara, CA | Sep 2025 - Dec 2025</div>
-        </div>
-        <ul>
-            <li>Responsible for driving growth across the Perplexity product suite on college campuses</li>
-        </ul>
-    </div>
-
-    <div class="section">
-        <h2>Projects</h2>
-
-        <div class="project">
-            <h4>AI Job Application Agent:</h4>
-            <ul>
-                <li><a href="https://www.gettingmejob.com/" target="_blank">https://www.gettingmejob.com/</a></li>
-                <li>AI Job Application agent that automatically applies to any job the user wants through computer use in a sandbox</li>
-            </ul>
-        </div>
-
-        <div class="project">
-            <h4>AI Test Prep Academy:</h4>
-            <ul>
-                <li><a href="https://www.aitestprep.academy/" target="_blank">https://www.aitestprep.academy/</a></li>
-                <li>AI test prep service that provides fully customized content to streamline learning</li>
-                <li>AI generated lectures, videos, slides, practice questions, etc.</li>
-                <li>~1000 people on waitlist</li>
-            </ul>
-        </div>
-
-        <div class="project">
-            <h4>10 Week Shred - AI Powered Weight Loss Program:</h4>
-            <ul>
-                <li><a href="https://apps.apple.com/us/app/10-week-shred/id6744427174" target="_blank">https://apps.apple.com/us/app/10-week-shred/id6744427174</a></li>
-                <li>Developed photo based app which uses AI to create custom workout plans after a quick survey</li>
-                <li>App automatically sends users daily summary texts with the info/improvement tips for the day</li>
-            </ul>
-        </div>
-
-        <div class="project">
-            <h4>AI Location Analyzer</h4>
-            <ul>
-                <li><a href="https://wherely.xyz/" target="_blank">https://wherely.xyz/</a></li>
-                <li>Custom tuned AI model to automatically predict where <em>any</em> photo was taken</li>
-                <li>~1500 MAU</li>
-            </ul>
-        </div>
-    </div>
-
-    <div class="section">
-        <h2>Education</h2>
-        <div class="education">
-            <div>
-                <strong>Bachelor of Science, Computer Engineering</strong><br>
-                <span>2023-2027</span>
+            <div class="entry">
+                <div class="when"></div>
+                <div>
+                    <h3><a href="https://textbardie.com" target="_blank" rel="noopener">Bardie</a> <span class="url">textbardie.com</span></h3>
+                    <div class="role">AI assistant that texts college students before they miss deadlines</div>
+                    <ul>
+                        <li>Built the agent harness and Canvas LMS connectors; launching with paid plans</li>
+                    </ul>
+                </div>
             </div>
-            <div><strong>University of California, Santa Barbara</strong></div>
-        </div>
-        <div class="classes">
-            <strong>Classes:</strong> Computer Architecture, Networking, DSA, Compilers, FAB Technology, Manufacturing, Industrial Design
-        </div>
+
+            <div class="entry">
+                <div class="when"></div>
+                <div>
+                    <!-- TODO: link App Store listing once review is done -->
+                    <h3>Appetite Pal: GLP-1 Food Log <span class="url">iOS App Store</span></h3>
+                    <div class="role">AI food log for people on GLP-1 medications</div>
+                    <ul>
+                        <li>Built and shipped the iOS app; AI tracks calories and every macronutrient</li>
+                        <li>Sells subscriptions at $14.99/month or $169.99/year; marketed in person at UCSB and to older adults in Santa Barbara</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="entry">
+                <div class="when"></div>
+                <div>
+                    <h3><a href="https://americantimeuse.com" target="_blank" rel="noopener">American Time Use Explorer</a> <span class="url">americantimeuse.com</span></h3>
+                    <div class="role">What Americans do, minute by minute</div>
+                    <ul>
+                        <li>Turned the Bureau of Labor Statistics' American Time Use Survey into interactive visualizations</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="entry">
+                <div class="when"></div>
+                <div>
+                    <h3><a href="https://www.gettingmejob.com/" target="_blank" rel="noopener">AI Job Application Agent</a> <span class="url">gettingmejob.com</span></h3>
+                    <div class="role">Computer-use agent that applies to jobs from a sandboxed browser</div>
+                </div>
+            </div>
+
+            <div class="entry">
+                <div class="when"></div>
+                <div>
+                    <div class="role earlier-label">Earlier projects</div>
+                    <ul class="compact earlier">
+                        <li><a class="name" href="https://wheretowatch.fun" target="_blank" rel="noopener">wheretowatch.fun</a><span class="desc"> finds where to stream any movie or TV show</span></li>
+                        <li><span class="name">Wherely</span><span class="desc"> predicts where any photo was taken with a fine-tuned computer vision model</span><span class="meta">~1,500 MAU</span></li>
+                        <li><span class="name">AI Test Prep Academy</span><span class="desc"> generates lectures, slides and practice questions</span><span class="meta">~1,000 waitlist</span></li>
+                        <li><span class="name">10 Week Shred</span><span class="desc"> builds AI workout plans and sends daily coaching texts</span></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>Technical Skills</h2>
+            <p class="skill"><span class="skill-label">AI Engineering<span class="colon">:</span></span> <span>Large language models (LLMs), generative AI, agentic AI, multi-agent systems, agent harnesses, tool calling, Model Context Protocol (MCP), LLM evals, LLM-as-a-judge, retrieval-augmented generation (RAG), context and prompt engineering</span></p>
+            <p class="skill"><span class="skill-label">Machine Learning<span class="colon">:</span></span> <span>PyTorch, TensorFlow, fine-tuning, computer vision, natural language processing (NLP)</span></p>
+            <p class="skill"><span class="skill-label">Frameworks<span class="colon">:</span></span> <span>Claude Agent SDK, OpenAI Agents SDK, LangGraph, LangChain, LlamaIndex, Claude and OpenAI APIs, Claude Code</span></p>
+            <p class="skill"><span class="skill-label">Languages<span class="colon">:</span></span> <span>Python, TypeScript, JavaScript, Swift, Java, C, C++, SQL</span></p>
+            <p class="skill"><span class="skill-label">Web &amp; Mobile<span class="colon">:</span></span> <span>FastAPI, Django, Flask, Node.js, React (React.js), Remix, SQLAlchemy, Pydantic, REST APIs, OAuth 2.0, SwiftUI (iOS)</span></p>
+            <p class="skill"><span class="skill-label">Infrastructure<span class="colon">:</span></span> <span>PostgreSQL, Redis, vector databases, BigQuery, Docker, Kubernetes, Amazon Web Services (AWS), Google Cloud Platform (GCP), GitHub Actions (CI/CD)</span></p>
+            <p class="skill"><span class="skill-label">Hardware<span class="colon">:</span></span> <span>Verilog, VLSI design, Cadence Virtuoso, Cadence SKILL, electronic design automation (EDA), computer architecture</span></p>
+        </section>
+
+        <section>
+            <h2>Education</h2>
+            <div class="entry">
+                <div class="when">Expected Jun 2027</div>
+                <div>
+                    <h3>University of California, Santa Barbara (UCSB)</h3>
+                    <div class="role">Bachelor of Science (B.S.), Computer Engineering</div>
+                    <ul>
+                        <li>Coursework: AI in Chip Design, VLSI Design, Computer Architecture, Compilers, Semiconductor Fabrication Technology</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>Additional Experience</h2>
+            <div class="entry">
+                <div class="when">2026 &ndash; Present</div>
+                <div>
+                    <!-- TODO: link consulting website -->
+                    <span class="compact-line"><strong>Independent AI Consulting</strong>, agents and internal tools for companies (launching)</span>
+                </div>
+            </div>
+            <div class="entry">
+                <div class="when">Sep 2025 &ndash; Dec 2025</div>
+                <div>
+                    <span class="compact-line"><strong>Perplexity</strong>, Campus Growth Ambassador at UCSB</span>
+                </div>
+            </div>
+        </section>
     </div>
 </body>
-</html> 
+</html>
