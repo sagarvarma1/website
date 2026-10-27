@@ -306,8 +306,8 @@
             .entry ul { margin: 0.15rem 0 0 1.1rem; }
             .entry li { margin-bottom: 0.05rem; }
 
-            .tags { margin-top: 0.1rem; font-size: 8.5pt; font-style: normal; }
-            .tags::before { content: attr(data-label) ": "; font-weight: 700; }
+            /* Per-job tech lists are covered by Technical Skills; hidden to keep the PDF to one page */
+            .tags { display: none; }
             .tag:not(:last-child)::after { content: ", "; color: inherit; white-space: normal; }
 
             .compact li { margin-bottom: 0.05rem; font-size: 9pt; }
@@ -365,10 +365,10 @@
                     <h3>SemiAnalysis</h3>
                     <div class="role">Machine Learning Engineering Intern, Remote</div>
                     <ul>
-                        <li>Built deep research AI agents that mapped thousands of semiconductor fabs at site level, saving hundreds of research hours</li>
-                        <li>Researched fabs by hand to build ground-truth data, then automated it into LLM evaluations (evals)</li>
-                        <li>Designed verifier agents that catch hallucinations before they reach the dataset</li>
-                        <li>Built internal AI tools that researchers across the company used to query and visualize research data</li>
+                        <li>Built the multi-agent deep research system behind Fab Map, mapping thousands of fabs and cutting research from days to minutes</li>
+                        <li>Created a ground-truth dataset and LLM evals harness (LLM-as-a-judge) to select models and catch regressions</li>
+                        <li>Designed verifier agents that catch hallucinations, raising dataset accuracy from ~40% to ~75%</li>
+                        <li>Developed internal tools for researchers to query and visualize fab data</li>
                     </ul>
                 </div>
             </div>
@@ -379,7 +379,8 @@
                     <h3>Avora AI (Y Combinator)</h3>
                     <div class="role">Software Engineering Intern, San Francisco, CA</div>
                     <ul>
-                        <li>Scaled the FastAPI backend to 1,000+ dental practices using the product concurrently</li>
+                        <li>Scaled the FastAPI backend on Kubernetes to hundreds of dental practices, cutting latency from seconds to milliseconds</li>
+                        <li>Built an AssemblyAI speech-to-text + LLM pipeline turning appointment audio into clinical notes, summaries and perio charts</li>
                         <li>Shipped practice telemetry and quality-of-life features that raised retention 55%</li>
                     </ul>
                     <div class="tags" data-label="Technologies">
@@ -391,7 +392,8 @@
                         <span class="tag">FastAPI</span>
                         <span class="tag">SQLAlchemy</span>
                         <span class="tag">Kubernetes</span>
-                        <span class="tag">GCP BigQuery</span>
+                        <span class="tag">GCP</span>
+                        <span class="tag">BigQuery</span>
                         <span class="tag">AssemblyAI</span>
                     </div>
                 </div>
@@ -403,8 +405,8 @@
                     <h3>Intel</h3>
                     <div class="role">Software Engineering Intern, Folsom, CA</div>
                     <ul>
-                        <li>Automated manual code updates across millions of lines, cutting merge conflicts 99%</li>
-                        <li>Shipped security patches for legacy graphics drivers</li>
+                        <li>Built a Python/Perl tool automating code updates across millions of lines, cutting merge conflicts 99%</li>
+                        <li>Shipped security patches in C for legacy graphics drivers</li>
                     </ul>
                     <div class="tags" data-label="Technologies">
                         <span class="tag">Python</span>
@@ -423,11 +425,11 @@
                 <div class="when"></div>
                 <div>
                     <h3><a href="https://orbitdeploy.dev" target="_blank" rel="noopener">Orbit</a> <a class="url" href="https://orbitdeploy.dev" target="_blank" rel="noopener">orbitdeploy.dev</a> <a class="url" href="https://github.com/sagarvarma1/orbit" target="_blank" rel="noopener">github.com/sagarvarma1/orbit</a></h3>
-                    <div class="role">Open-source, self-hostable Vercel alternative that deploys apps from Git</div>
+                    <div class="role">Open-source, self-hostable Vercel alternative that hosts my projects (TypeScript, Next.js, Docker, Caddy)</div>
                     <ul>
-                        <li>Turns a GitHub repo into a live website on every push, the same workflow as Vercel but on any Linux server</li>
-                        <li>Built Next.js SSR with streaming, branch previews, instant rollbacks, auto-HTTPS custom domains and vercel.json support</li>
-                        <li>Hosts my other projects in production and is open to new users</li>
+                        <li>Built Git push-to-deploy CI/CD with preview deployments, Next.js SSR, serverless functions and auto-HTTPS</li>
+                        <li>Made rollbacks instant with immutable builds and production as a single pointer, so nothing rebuilds</li>
+                        <li>Sandboxed untrusted code with per-project Linux users, an iptables firewall and Node's permission model; 87-check E2E test suite</li>
                     </ul>
                 </div>
             </div>
@@ -436,10 +438,11 @@
                 <div class="when"></div>
                 <div>
                     <h3><a href="https://leaf.orbitdeploy.dev" target="_blank" rel="noopener">Leaf</a> <a class="url" href="https://leaf.orbitdeploy.dev" target="_blank" rel="noopener">leaf.orbitdeploy.dev</a> <a class="url" href="https://github.com/sagarvarma1/leaf" target="_blank" rel="noopener">github.com/sagarvarma1/leaf</a></h3>
-                    <div class="role">Notion-style workspace with blocks, nested pages, real-time collaboration and offline sync</div>
+                    <div class="role">Real-time collaborative workspace, Notion-style (TypeScript, WebSockets, ProseMirror, SQLite)</div>
                     <ul>
-                        <li>Lets people write docs and wikis together like Notion, with edits showing up live for everyone and working offline</li>
-                        <li>Wrote and open-sourced my own conflict-resolution sync engine that merges multiplayer and offline edits; deployed on Orbit</li>
+                        <li>Wrote a sync engine from scratch (RGA CRDT + Peritext) with offline-first editing via IndexedDB; deployed on Orbit</li>
+                        <li>Verified convergence with a randomized 3-client simulation across 1,000 seeds, plus 123 unit and end-to-end tests</li>
+                        <li>Built an AI agent (Claude, tool calling) that edits live as a collaborator; undo reverts only its own changes</li>
                     </ul>
                 </div>
             </div>
@@ -447,10 +450,11 @@
             <div class="entry">
                 <div class="when"></div>
                 <div>
-                    <h3><a href="https://textbardie.com" target="_blank" rel="noopener">Bardie</a> <span class="url">textbardie.com</span></h3>
-                    <div class="role">AI assistant that texts college students before they miss deadlines</div>
+                    <h3><a href="https://textbardie.com" target="_blank" rel="noopener">Bardie</a> <a class="url" href="https://textbardie.com" target="_blank" rel="noopener">textbardie.com</a></h3>
+                    <div class="role">Proactive AI assistant over iMessage</div>
                     <ul>
-                        <li>Built the agent harness and Canvas LMS connectors; launched at UCSB with a few dozen users and first paying Pro subscribers</li>
+                        <li>Built an LLM agent with tool calling, Google Calendar/Gmail, vision, and voice input that texts users before they forget</li>
+                        <li>Launched to 10 early-access users</li>
                     </ul>
                 </div>
             </div>
@@ -458,12 +462,12 @@
             <div class="entry">
                 <div class="when"></div>
                 <div>
-                    <!-- TODO: link App Store listing once review is done -->
-                    <h3>Appetite Pal: GLP-1 Food Log <span class="url">iOS App Store</span></h3>
-                    <div class="role">AI food log for people on GLP-1 medications</div>
+                    <!-- TODO: link App Store listing -->
+                    <h3>Appetite Pal <span class="url">iOS App Store</span></h3>
+                    <div class="role">GLP-1 food log (SwiftUI, iOS)</div>
                     <ul>
-                        <li>Built and shipped the iOS app; AI tracks calories and every macronutrient</li>
-                        <li>Sells subscriptions at $14.99/month or $169.99/year</li>
+                        <li>Shipped an iOS app with AI calorie and macro tracking from photos and text</li>
+                        <li>Live on the App Store with subscriptions at $14.99/month or $169.99/year</li>
                     </ul>
                 </div>
             </div>
@@ -473,10 +477,10 @@
                 <div>
                     <div class="role earlier-label">Earlier projects</div>
                     <ul class="compact earlier">
-                        <li><a class="name" href="https://americantimeuse.com" target="_blank" rel="noopener">americantimeuse.com</a><span class="desc"> turns the BLS American Time Use Survey into interactive visualizations</span></li>
+                        <li><a class="name" href="https://americantimeuse.com" target="_blank" rel="noopener">americantimeuse.com</a><span class="desc"> interactive explorer of 258,954 BLS time-use diaries (2003&ndash;2025)</span></li>
+                        <li><a class="name" href="https://wherely.xyz" target="_blank" rel="noopener">wherely.xyz</a><span class="desc"> fine-tuned computer vision model that geolocates any photo</span><span class="meta">~1,500 MAU</span></li>
+                        <li><a class="name" href="https://aitestprep.academy" target="_blank" rel="noopener">aitestprep.academy</a><span class="desc"> LLM pipeline generating lectures, slides, and practice questions</span><span class="meta">~1,000 waitlist</span></li>
                         <li><a class="name" href="https://wheretowatch.fun" target="_blank" rel="noopener">wheretowatch.fun</a><span class="desc"> finds where to stream any movie or TV show</span></li>
-                        <li><span class="name">Wherely</span><span class="desc"> predicts where any photo was taken with a fine-tuned computer vision model</span><span class="meta">~1,500 MAU</span></li>
-                        <li><span class="name">AI Test Prep Academy</span><span class="desc"> generates lectures, slides and practice questions</span><span class="meta">~1,000 waitlist</span></li>
                     </ul>
                 </div>
             </div>
@@ -484,7 +488,7 @@
 
         <section>
             <h2>Technical Skills</h2>
-            <p class="skill"><span class="skill-label">AI Engineering<span class="colon">:</span></span> <span>Large language models (LLMs), generative AI, agentic AI, multi-agent systems, agent harnesses, tool calling, Model Context Protocol (MCP), LLM evals, LLM-as-a-judge, retrieval-augmented generation (RAG), context and prompt engineering</span></p>
+            <p class="skill"><span class="skill-label">AI Engineering<span class="colon">:</span></span> <span>LLMs, agentic AI, multi-agent systems, tool calling, MCP, LLM evals, LLM-as-a-judge, RAG, prompt engineering</span></p>
             <p class="skill"><span class="skill-label">Machine Learning<span class="colon">:</span></span> <span>PyTorch, TensorFlow, fine-tuning, computer vision, natural language processing (NLP)</span></p>
             <p class="skill"><span class="skill-label">Frameworks<span class="colon">:</span></span> <span>Claude Agent SDK, OpenAI Agents SDK, LangGraph, LangChain, LlamaIndex, Claude and OpenAI APIs, Claude Code</span></p>
             <p class="skill"><span class="skill-label">Languages<span class="colon">:</span></span> <span>Python, TypeScript, JavaScript, Swift, Java, C, C++, SQL</span></p>
