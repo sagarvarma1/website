@@ -281,6 +281,7 @@
             .page { max-width: none; padding: 0; }
             .topbar, .screen-only { display: none !important; }
             .print-only { display: inline; }
+            .skills-print { display: block; }
             a { text-decoration: none; }
             header h1 { font-size: 20pt; font-weight: 700; letter-spacing: 0; }
             .tagline { font-size: 10pt; font-style: normal; margin-top: 0.1rem; }
@@ -487,13 +488,17 @@
 
         <section>
             <h2>Technical Skills</h2>
-            <p class="skill"><span class="skill-label">AI Engineering<span class="colon">:</span></span> <span>LLMs, agentic AI, multi-agent systems, tool calling, MCP, LLM evals, LLM-as-a-judge, RAG, prompt engineering</span></p>
-            <p class="skill"><span class="skill-label">Machine Learning<span class="colon">:</span></span> <span>PyTorch, TensorFlow, fine-tuning, computer vision, natural language processing (NLP)</span></p>
-            <p class="skill"><span class="skill-label">Frameworks<span class="colon">:</span></span> <span>Claude Agent SDK, OpenAI Agents SDK, LangGraph, LangChain, LlamaIndex, Claude and OpenAI APIs, Claude Code</span></p>
-            <p class="skill"><span class="skill-label">Languages<span class="colon">:</span></span> <span>Python, TypeScript, JavaScript, Swift, Java, C, C++, SQL</span></p>
-            <p class="skill"><span class="skill-label">Web &amp; Mobile<span class="colon">:</span></span> <span>FastAPI, Django, Flask, Node.js, React (React.js), Remix, SQLAlchemy, Pydantic, REST APIs, OAuth 2.0, SwiftUI (iOS)</span></p>
-            <p class="skill"><span class="skill-label">Infrastructure<span class="colon">:</span></span> <span>PostgreSQL, Redis, vector databases, BigQuery, Docker, Kubernetes, AWS, GCP, GitHub Actions (CI/CD)</span></p>
-            <p class="skill"><span class="skill-label">Hardware<span class="colon">:</span></span> <span>Verilog, VLSI design, Cadence Virtuoso, Cadence SKILL, electronic design automation (EDA), computer architecture</span></p>
+            <p class="skill screen-only"><span class="skill-label"></span><span>I will do whatever it takes to accomplish any task.</span></p>
+            <!-- PDF keeps the full skills list -->
+            <div class="print-only skills-print">
+                <p class="skill"><span class="skill-label">AI Engineering<span class="colon">:</span></span> <span>LLMs, agentic AI, multi-agent systems, tool calling, MCP, LLM evals, LLM-as-a-judge, RAG, prompt engineering</span></p>
+                <p class="skill"><span class="skill-label">Machine Learning<span class="colon">:</span></span> <span>PyTorch, TensorFlow, fine-tuning, computer vision, natural language processing (NLP)</span></p>
+                <p class="skill"><span class="skill-label">Frameworks<span class="colon">:</span></span> <span>Claude Agent SDK, OpenAI Agents SDK, LangGraph, LangChain, LlamaIndex, Claude and OpenAI APIs, Claude Code</span></p>
+                <p class="skill"><span class="skill-label">Languages<span class="colon">:</span></span> <span>Python, TypeScript, JavaScript, Swift, Java, C, C++, SQL</span></p>
+                <p class="skill"><span class="skill-label">Web &amp; Mobile<span class="colon">:</span></span> <span>FastAPI, Django, Flask, Node.js, React (React.js), Remix, SQLAlchemy, Pydantic, REST APIs, OAuth 2.0, SwiftUI (iOS)</span></p>
+                <p class="skill"><span class="skill-label">Infrastructure<span class="colon">:</span></span> <span>PostgreSQL, Redis, vector databases, BigQuery, Docker, Kubernetes, AWS, GCP, GitHub Actions (CI/CD)</span></p>
+                <p class="skill"><span class="skill-label">Hardware<span class="colon">:</span></span> <span>Verilog, VLSI design, Cadence Virtuoso, Cadence SKILL, electronic design automation (EDA), computer architecture</span></p>
+            </div>
         </section>
 
         <section>
