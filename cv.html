@@ -208,22 +208,6 @@
             color: var(--faint);
         }
 
-        /* --- Earlier projects, additional experience --- */
-        .entry ul.compact { list-style: none; margin-left: 0; }
-
-        .compact li {
-            padding-left: 0;
-            margin-bottom: 0.35rem;
-        }
-
-        .compact .name { font-weight: 600; }
-        .compact .desc { color: var(--muted); }
-        .compact .meta {
-            color: var(--muted);
-            font-size: 0.95rem;
-            margin-left: 0.4rem;
-        }
-
         /* --- Skills: label in the margin column --- */
         .skill {
             display: grid;
@@ -286,7 +270,7 @@
             header h1 { font-size: 20pt; font-weight: 700; letter-spacing: 0; }
             .tagline { font-size: 10pt; font-style: normal; margin-top: 0.1rem; }
             .contact { margin-top: 0.3rem; font-size: 8.5pt; gap: 0 0.55rem; }
-            section { margin-top: 0.5rem; }
+            section { margin-top: 0.6rem; }
             section > h2 {
                 font-size: 8pt;
                 font-weight: 700;
@@ -294,11 +278,11 @@
                 text-transform: uppercase;
                 letter-spacing: 0.08em;
                 padding-bottom: 0.1rem;
-                margin-bottom: 0.3rem;
+                margin-bottom: 0.35rem;
             }
 
             /* Date floats to the right of the title line */
-            .entry { display: block; position: relative; margin-bottom: 0.3rem; }
+            .entry { display: block; position: relative; margin-bottom: 0.35rem; }
             .when { position: absolute; top: 0; right: 0; padding: 0; font-size: 9pt; }
             .entry h3 { font-size: 10pt; font-weight: 700; padding-right: 9rem; }
             .entry h3 .url { font-size: 10pt; font-weight: 400; color: var(--ink); margin-left: 0; }
@@ -311,19 +295,6 @@
             .tags { display: none; }
             .tag:not(:last-child)::after { content: ", "; color: inherit; white-space: normal; }
 
-            .compact li { margin-bottom: 0.05rem; font-size: 9pt; }
-            .compact .meta { position: absolute; right: 0; font-size: 9pt; }
-            .compact li { position: relative; }
-
-            .earlier-label { display: inline; font-style: normal; font-weight: 700; color: var(--ink); }
-            .earlier-label::after { content: ": "; }
-            ul.earlier, ul.earlier li { display: inline; }
-            ul.earlier .desc { display: none; }
-            ul.earlier .name { font-weight: 400; }
-            ul.earlier .meta { position: static; margin-left: 0; }
-            ul.earlier .meta::before { content: " ("; }
-            ul.earlier .meta::after { content: ")"; }
-            ul.earlier li:not(:last-child)::after { content: ", "; }
             .skill { display: block; margin-bottom: 0.1rem; font-size: 9pt; }
             .skill-label {
                 display: inline;
@@ -468,19 +439,6 @@
                     <ul>
                         <li>Shipped an iOS app with AI calorie and macro tracking from photos and text</li>
                         <li>Live on the App Store with subscriptions at $14.99/month or $169.99/year</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="entry">
-                <div class="when"></div>
-                <div>
-                    <div class="role earlier-label">Earlier projects</div>
-                    <ul class="compact earlier">
-                        <li><a class="name" href="https://americantimeuse.com" target="_blank" rel="noopener">americantimeuse.com</a><span class="desc"> interactive explorer of 258,954 BLS time-use diaries (2003&ndash;2025)</span></li>
-                        <li><a class="name" href="https://wherely.xyz" target="_blank" rel="noopener">wherely.xyz</a><span class="desc"> fine-tuned computer vision model that geolocates any photo</span><span class="meta">~1,500 MAU</span></li>
-                        <li><a class="name" href="https://aitestprep.academy" target="_blank" rel="noopener">aitestprep.academy</a><span class="desc"> LLM pipeline generating lectures, slides, and practice questions</span><span class="meta">~1,000 waitlist</span></li>
-                        <li><a class="name" href="https://wheretowatch.fun" target="_blank" rel="noopener">wheretowatch.fun</a><span class="desc"> finds where to stream any movie or TV show</span></li>
                     </ul>
                 </div>
             </div>
