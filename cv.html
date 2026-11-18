@@ -269,6 +269,18 @@
             }
             .cw-label .colon { display: none; }
 
+            .print-block { display: none; }
+
+            .closer { margin-top: 4.5rem; }
+            .statement {
+                margin: 1.75rem 0 0.5rem calc(var(--gutter) + 2rem);
+                font-size: 2.4rem;
+                font-style: italic;
+                line-height: 1.15;
+                letter-spacing: -0.01em;
+                color: var(--ink);
+            }
+
             .entry ul { list-style: none; margin: 0.65rem 0 0 1.05rem; }
             .entry li {
                 position: relative;
@@ -293,6 +305,8 @@
             .where.links a + a::before { content: "\00b7"; display: inline-block; margin: 0 0.45em; color: var(--faint); }
             .where.links a.gh { display: inline-block; vertical-align: -0.12em; margin-top: 0; }
             .where.links a.gh::before { content: none; }
+            .closer { margin-top: 3.25rem; }
+            .statement { margin-left: 0; font-size: 2rem; }
             .where.links a.gh svg { display: inline-block; width: 0.95rem; height: 0.95rem; margin-left: 0.6em; }
         }
 
@@ -488,11 +502,10 @@
             </div>
         </section>
 
-        <section>
+        <!-- PDF only: full skills list. The web version closes the page with a one-line statement instead -->
+        <section class="print-block">
             <h2>Technical Skills</h2>
-            <p class="skill screen-only"><span class="skill-label"></span><span>I will do whatever it takes to accomplish any task.</span></p>
-            <!-- PDF keeps the full skills list -->
-            <div class="print-only skills-print">
+            <div class="skills-print">
                 <p class="skill"><span class="skill-label">AI Engineering<span class="colon">:</span></span> <span>LLMs, agentic AI, multi-agent systems, tool calling, MCP, LLM evals, LLM-as-a-judge, RAG, prompt engineering</span></p>
                 <p class="skill"><span class="skill-label">Machine Learning<span class="colon">:</span></span> <span>PyTorch, TensorFlow, fine-tuning, computer vision, natural language processing (NLP)</span></p>
                 <p class="skill"><span class="skill-label">Frameworks<span class="colon">:</span></span> <span>Claude Agent SDK, OpenAI Agents SDK, LangGraph, LangChain, LlamaIndex, Claude and OpenAI APIs, Claude Code</span></p>
@@ -515,6 +528,11 @@
                     </ul>
                 </div>
             </div>
+        </section>
+
+        <section class="screen-only closer">
+            <h2>Skills</h2>
+            <p class="statement">Whatever it takes.</p>
         </section>
     </div>
 </body>
