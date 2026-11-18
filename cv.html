@@ -204,20 +204,6 @@
 
         .entry li::marker { color: var(--faint); }
 
-        /* Screen: a quiet italic line. Print: "Technologies: a, b, c" */
-        .tags {
-            margin-top: 0.45rem;
-            font-size: 0.95rem;
-            font-style: italic;
-            color: var(--muted);
-        }
-
-        .tag:not(:last-child)::after {
-            content: "  \00b7  ";
-            white-space: pre;
-            color: var(--faint);
-        }
-
         /* --- Skills: label in the margin column --- */
         .skill {
             display: grid;
@@ -246,6 +232,52 @@
             .when { padding-top: 0; }
             .skill { margin-bottom: 0.8rem; }
             .skill-label { display: block; }
+        }
+
+        /* --- Screen refinements: clearer hierarchy, less visual noise (print untouched) --- */
+        @media screen {
+            .entry { align-items: baseline; margin-bottom: 2.5rem; }
+            .when { padding-top: 0; }
+            .where {
+                display: block;
+                margin-top: 0.15rem;
+                font-size: 0.9rem;
+                color: var(--muted);
+            }
+
+            .entry h3 + .role { margin-top: 0.1rem; }
+            .role.subhead { font-style: normal; color: var(--ink); }
+
+            .where.links a {
+                display: block;
+                width: fit-content;
+                color: var(--muted);
+            }
+            .where.links a:hover { color: var(--accent); }
+            .where.links a + a { margin-top: 0.1rem; }
+
+            .entry ul { list-style: none; margin: 0.65rem 0 0 1.05rem; }
+            .entry li {
+                position: relative;
+                margin-bottom: 0.25rem;
+                padding-left: 0.2rem;
+                color: var(--muted);
+            }
+            .entry li::before {
+                content: "\2013";
+                position: absolute;
+                left: -1.05rem;
+                color: var(--faint);
+            }
+        }
+
+        @media screen and (max-width: 700px) {
+            .where { display: inline; margin-top: 0; font-size: inherit; }
+            .where::before { content: " \00b7  "; white-space: pre; color: var(--faint); }
+            .where.links { display: block; margin-bottom: 0.1rem; }
+            .where.links::before { content: none; }
+            .where.links a { display: inline; }
+            .where.links a + a::before { content: "\00b7"; display: inline-block; margin: 0 0.45em; color: var(--faint); }
         }
 
         /* --- Print / Save as PDF: one page, ATS-safe --- */
@@ -302,10 +334,6 @@
             .entry ul { margin: 0.15rem 0 0 1.1rem; }
             .entry li { margin-bottom: 0.05rem; }
 
-            /* Per-job tech lists are covered by Technical Skills; hidden to keep the PDF to one page */
-            .tags { display: none; }
-            .tag:not(:last-child)::after { content: ", "; color: inherit; white-space: normal; }
-
             .skill { display: block; margin-bottom: 0.1rem; font-size: 9pt; }
             .skill-label {
                 display: inline;
@@ -350,10 +378,10 @@
             <h2>Experience</h2>
 
             <div class="entry">
-                <div class="when">Oct 2025 &ndash; Sep 2026</div>
+                <div class="when">Oct 2025 &ndash; Sep 2026<span class="where screen-only">Remote</span></div>
                 <div>
                     <h3>SemiAnalysis</h3>
-                    <div class="role">Machine Learning Engineering Intern, Remote</div>
+                    <div class="role subhead">Machine Learning Engineering Intern<span class="print-only">, Remote</span></div>
                     <ul>
                         <li>Built the multi-agent deep research system behind Fab Map, mapping thousands of fabs and cutting research from days to minutes</li>
                         <li>Created a ground-truth dataset and LLM evals harness (LLM-as-a-judge) to select models and catch regressions</li>
@@ -364,46 +392,27 @@
             </div>
 
             <div class="entry">
-                <div class="when">Jun 2025 &ndash; Sep 2025</div>
+                <div class="when">Jun 2025 &ndash; Sep 2025<span class="where screen-only">San Francisco, CA</span></div>
                 <div>
                     <h3>Avora AI (Y Combinator)</h3>
-                    <div class="role">Software Engineering Intern, San Francisco, CA</div>
+                    <div class="role subhead">Software Engineering Intern<span class="print-only">, San Francisco, CA</span></div>
                     <ul>
                         <li>Scaled the FastAPI backend on Kubernetes to hundreds of dental practices, cutting latency from seconds to milliseconds</li>
                         <li>Built an AssemblyAI speech-to-text + LLM pipeline turning appointment audio into clinical notes, summaries and perio charts</li>
                         <li>Shipped practice telemetry and quality-of-life features that raised retention 55%</li>
                     </ul>
-                    <div class="tags" data-label="Technologies">
-                        <span class="tag">Python</span>
-                        <span class="tag">TypeScript</span>
-                        <span class="tag">React</span>
-                        <span class="tag">Remix</span>
-                        <span class="tag">PostgreSQL</span>
-                        <span class="tag">FastAPI</span>
-                        <span class="tag">SQLAlchemy</span>
-                        <span class="tag">Kubernetes</span>
-                        <span class="tag">GCP</span>
-                        <span class="tag">BigQuery</span>
-                        <span class="tag">AssemblyAI</span>
-                    </div>
                 </div>
             </div>
 
             <div class="entry">
-                <div class="when">Jun 2022 &ndash; Sep 2022</div>
+                <div class="when">Jun 2022 &ndash; Sep 2022<span class="where screen-only">Folsom, CA</span></div>
                 <div>
                     <h3>Intel</h3>
-                    <div class="role">Software Engineering Intern, Folsom, CA</div>
+                    <div class="role subhead">Software Engineering Intern<span class="print-only">, Folsom, CA</span></div>
                     <ul>
                         <li>Built a Python/Perl tool automating code updates across millions of lines, cutting merge conflicts 99%</li>
                         <li>Shipped security patches in C for legacy graphics drivers</li>
                     </ul>
-                    <div class="tags" data-label="Technologies">
-                        <span class="tag">Python</span>
-                        <span class="tag">C</span>
-                        <span class="tag">Perl</span>
-                        <span class="tag">Ruby</span>
-                    </div>
                 </div>
             </div>
         </section>
@@ -412,10 +421,10 @@
             <h2>Projects</h2>
 
             <div class="entry">
-                <div class="when"></div>
+                <div class="when"><span class="where links screen-only"><a href="https://orbitdeploy.dev" target="_blank" rel="noopener">orbitdeploy.dev</a><a href="https://github.com/sagarvarma1/orbit" target="_blank" rel="noopener">Source</a></span></div>
                 <div>
-                    <h3><a href="https://orbitdeploy.dev" target="_blank" rel="noopener">Orbit</a> <a class="url" href="https://orbitdeploy.dev" target="_blank" rel="noopener">orbitdeploy.dev</a> <a class="url" href="https://github.com/sagarvarma1/orbit" target="_blank" rel="noopener">github.com/sagarvarma1/orbit</a></h3>
-                    <div class="role">Open-source, self-hostable Vercel alternative that hosts my projects (TypeScript, Next.js, Docker, Caddy)</div>
+                    <h3><a href="https://orbitdeploy.dev" target="_blank" rel="noopener">Orbit</a> <a class="url print-only" href="https://orbitdeploy.dev" target="_blank" rel="noopener">orbitdeploy.dev</a> <a class="url print-only" href="https://github.com/sagarvarma1/orbit" target="_blank" rel="noopener">github.com/sagarvarma1/orbit</a></h3>
+                    <div class="role subhead">Open-source, self-hostable Vercel alternative<span class="print-only"> that hosts my projects (TypeScript, Next.js, Docker, Caddy)</span></div>
                     <ul>
                         <li>Built Git push-to-deploy CI/CD with preview deployments, Next.js SSR, serverless functions and auto-HTTPS</li>
                         <li>Made rollbacks instant with immutable builds and production as a single pointer, so nothing rebuilds</li>
@@ -425,10 +434,10 @@
             </div>
 
             <div class="entry">
-                <div class="when"></div>
+                <div class="when"><span class="where links screen-only"><a href="https://leaf.orbitdeploy.dev" target="_blank" rel="noopener">leaf.orbitdeploy.dev</a><a href="https://github.com/sagarvarma1/leaf" target="_blank" rel="noopener">Source</a></span></div>
                 <div>
-                    <h3><a href="https://leaf.orbitdeploy.dev" target="_blank" rel="noopener">Leaf</a> <a class="url" href="https://leaf.orbitdeploy.dev" target="_blank" rel="noopener">leaf.orbitdeploy.dev</a> <a class="url" href="https://github.com/sagarvarma1/leaf" target="_blank" rel="noopener">github.com/sagarvarma1/leaf</a></h3>
-                    <div class="role">Real-time collaborative workspace, Notion-style (TypeScript, WebSockets, ProseMirror, SQLite)</div>
+                    <h3><a href="https://leaf.orbitdeploy.dev" target="_blank" rel="noopener">Leaf</a> <a class="url print-only" href="https://leaf.orbitdeploy.dev" target="_blank" rel="noopener">leaf.orbitdeploy.dev</a> <a class="url print-only" href="https://github.com/sagarvarma1/leaf" target="_blank" rel="noopener">github.com/sagarvarma1/leaf</a></h3>
+                    <div class="role subhead">Real-time collaborative workspace, Notion-style<span class="print-only"> (TypeScript, WebSockets, ProseMirror, SQLite)</span></div>
                     <ul>
                         <li>Wrote a sync engine from scratch (RGA CRDT + Peritext) with offline-first editing via IndexedDB; deployed on Orbit</li>
                         <li>Verified convergence with a randomized 3-client simulation across 1,000 seeds, plus 123 unit and end-to-end tests</li>
@@ -438,10 +447,10 @@
             </div>
 
             <div class="entry">
-                <div class="when"></div>
+                <div class="when"><span class="where links screen-only"><a href="https://textbardie.com" target="_blank" rel="noopener">textbardie.com</a></span></div>
                 <div>
-                    <h3><a href="https://textbardie.com" target="_blank" rel="noopener">Bardie</a> <a class="url" href="https://textbardie.com" target="_blank" rel="noopener">textbardie.com</a></h3>
-                    <div class="role">Proactive AI assistant over iMessage</div>
+                    <h3><a href="https://textbardie.com" target="_blank" rel="noopener">Bardie</a> <a class="url print-only" href="https://textbardie.com" target="_blank" rel="noopener">textbardie.com</a></h3>
+                    <div class="role subhead">Proactive AI assistant over iMessage</div>
                     <ul>
                         <li>Built an LLM agent with tool calling, Google Calendar/Gmail, vision, and voice input that texts users before they forget</li>
                         <li>Launched to 10 early-access users</li>
@@ -450,11 +459,11 @@
             </div>
 
             <div class="entry">
-                <div class="when"></div>
+                <div class="when"><span class="where links screen-only">iOS App Store</span></div>
                 <div>
                     <!-- TODO: link App Store listing -->
-                    <h3>Appetite Pal <span class="url">iOS App Store</span></h3>
-                    <div class="role">GLP-1 food log (SwiftUI, iOS)</div>
+                    <h3>Appetite Pal <span class="url print-only">iOS App Store</span></h3>
+                    <div class="role subhead">GLP-1 food log<span class="print-only"> (SwiftUI, iOS)</span></div>
                     <ul>
                         <li>Shipped an iOS app with AI calorie and macro tracking from photos and text</li>
                         <li>Live on the App Store with subscriptions at $14.99/month or $169.99/year</li>
